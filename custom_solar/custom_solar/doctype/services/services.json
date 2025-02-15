@@ -1,0 +1,49 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{service}",
+ "creation": "2025-02-03 15:18:24.926639",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "service_name_section",
+  "service"
+ ],
+ "fields": [
+  {
+   "fieldname": "service_name_section",
+   "fieldtype": "Section Break",
+   "label": "Service Name"
+  },
+  {
+   "fieldname": "service",
+   "fieldtype": "Data",
+   "label": "Service "
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-02-07 11:28:35.744698",
+ "modified_by": "Administrator",
+ "module": "Custom Solar",
+ "name": "Services",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

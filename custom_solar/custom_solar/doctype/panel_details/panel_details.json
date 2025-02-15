@@ -1,0 +1,72 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{company_name} - {watt_peaks}",
+ "creation": "2025-02-12 17:16:45.953943",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_xpvk",
+  "company_name",
+  "watt_peaks",
+  "per_panel_price",
+  "watt_peakkw"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_xpvk",
+   "fieldtype": "Section Break",
+   "label": "Add Panel Price"
+  },
+  {
+   "fieldname": "watt_peaks",
+   "fieldtype": "Link",
+   "label": "Watt Peaks",
+   "options": "Watt Peaks"
+  },
+  {
+   "fieldname": "company_name",
+   "fieldtype": "Link",
+   "label": "Company name",
+   "options": "Panel Company"
+  },
+  {
+   "fetch_from": "watt_peaks.watt_peakkw",
+   "fieldname": "watt_peakkw",
+   "fieldtype": "Float",
+   "label": "Watt Peak(Wp)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "per_panel_price",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Per Panel price"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-02-14 10:33:35.738350",
+ "modified_by": "Administrator",
+ "module": "Custom Solar",
+ "name": "Panel details",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

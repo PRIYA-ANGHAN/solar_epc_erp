@@ -1,0 +1,91 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{panel_type}",
+ "creation": "2025-02-03 15:33:47.486517",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "add_panel_type_section",
+  "panel_tech",
+  "description",
+  "column_break_aypi",
+  "residential",
+  "industrial",
+  "common_building",
+  "ground_mounted"
+ ],
+ "fields": [
+  {
+   "fieldname": "add_panel_type_section",
+   "fieldtype": "Section Break",
+   "label": "Add Panel Tech"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "column_break_aypi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "residential",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Residential"
+  },
+  {
+   "default": "0",
+   "fieldname": "industrial",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Industrial"
+  },
+  {
+   "default": "0",
+   "fieldname": "common_building",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Common Building"
+  },
+  {
+   "default": "0",
+   "fieldname": "ground_mounted",
+   "fieldtype": "Check",
+   "label": "Ground Mounted"
+  },
+  {
+   "fieldname": "panel_tech",
+   "fieldtype": "Data",
+   "label": "Solar Panel Tech"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-02-13 09:27:52.978596",
+ "modified_by": "Administrator",
+ "module": "Custom Solar",
+ "name": "Panel Tech",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

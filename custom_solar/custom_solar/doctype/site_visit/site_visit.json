@@ -1,0 +1,157 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "visit-.####",
+ "creation": "2025-01-31 14:11:24.668692",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "site_survey_section",
+  "lead_owner",
+  "cantilever_position",
+  "lead",
+  "column_break_wknm",
+  "shadow_object_analysis",
+  "roof_type",
+  "structure_type",
+  "section_break_gjso",
+  "sanction_load",
+  "is_same_name",
+  "no_of_floor",
+  "column_break_qauc",
+  "final_note",
+  "remarks",
+  "section_break_lgdz",
+  "2d_diagram_of_site",
+  "site_image",
+  "column_break_cbnz",
+  "site_video"
+ ],
+ "fields": [
+  {
+   "fieldname": "site_survey_section",
+   "fieldtype": "Section Break",
+   "label": "Site Survey"
+  },
+  {
+   "fieldname": "lead_owner",
+   "fieldtype": "Link",
+   "label": "Lead Owner",
+   "options": "User"
+  },
+  {
+   "fieldname": "cantilever_position",
+   "fieldtype": "Data",
+   "label": "Cantilever Position"
+  },
+  {
+   "fieldname": "sanction_load",
+   "fieldtype": "Data",
+   "label": "Sanction Load"
+  },
+  {
+   "fieldname": "column_break_wknm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "shadow_object_analysis",
+   "fieldtype": "Data",
+   "label": "Shadow Object/ Analysis"
+  },
+  {
+   "fieldname": "roof_type",
+   "fieldtype": "Select",
+   "label": "Roof Type",
+   "options": "Select Service\nRCC Roof\nCement Roof\nMetal Roof\nRCC + Metal\nGround Mounted"
+  },
+  {
+   "fieldname": "structure_type",
+   "fieldtype": "Select",
+   "label": "Structure Type",
+   "options": "Select Service\n80 * 40\n60 * 40\nMono Rail\nLong Rail\nRound Doom"
+  },
+  {
+   "fieldname": "section_break_gjso",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "is_same_name",
+   "fieldtype": "Select",
+   "label": "Is Same Name",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "no_of_floor",
+   "fieldtype": "Data",
+   "label": "No. of Floor"
+  },
+  {
+   "fieldname": "column_break_qauc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "final_note",
+   "fieldtype": "Data",
+   "label": "Final Note"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "section_break_lgdz",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "2d_diagram_of_site",
+   "fieldtype": "Attach",
+   "label": "2D diagram of Site"
+  },
+  {
+   "fieldname": "site_image",
+   "fieldtype": "Attach Image",
+   "label": "SIte Image"
+  },
+  {
+   "fieldname": "column_break_cbnz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "site_video",
+   "fieldtype": "Attach",
+   "label": "Site Video"
+  },
+  {
+   "fieldname": "lead",
+   "fieldtype": "Link",
+   "label": "Lead",
+   "options": "Leads"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-02-06 14:20:54.989442",
+ "modified_by": "Administrator",
+ "module": "Custom Solar",
+ "name": "Site_Visit",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,217 @@
+{
+ "actions": [],
+ "allow_events_in_timeline": 1,
+ "allow_rename": 1,
+ "autoname": "SL.######",
+ "creation": "2025-01-30 14:27:48.199479",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "personal_details_section",
+  "full_name",
+  "email_id",
+  "column_break_tjjs",
+  "mobile_no",
+  "date_sgma",
+  "status_section_section",
+  "status",
+  "section_break_6jud",
+  "company_name",
+  "column_break_lz9j",
+  "service",
+  "section_break_ahex",
+  "electricity_provider",
+  "unit_rate",
+  "required__kw",
+  "column_break_taqo",
+  "electricity_bill",
+  "billing_cycle",
+  "section_break_3gg2",
+  "panel_details",
+  "watt_peakkw",
+  "column_break_f0wo",
+  "per_panel_price",
+  "panel_count",
+  "section_break_djju",
+  "total_price"
+ ],
+ "fields": [
+  {
+   "fieldname": "personal_details_section",
+   "fieldtype": "Section Break",
+   "label": "Lead Details"
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "label": "Full Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "email_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Email ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_tjjs",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mobile_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Mobile No",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "date_sgma",
+   "fieldtype": "Date",
+   "label": "Created On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "status_section_section",
+   "fieldtype": "Section Break",
+   "label": "Status Section"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Unqualified Suspect\nFollow Up\nSite Visit Schedule\nSite Visit Done\nDormant\nClosed"
+  },
+  {
+   "fieldname": "section_break_6jud",
+   "fieldtype": "Section Break",
+   "label": "Service Detail"
+  },
+  {
+   "fieldname": "electricity_provider",
+   "fieldtype": "Link",
+   "label": "Electricity Provider",
+   "options": "Electricity Provider"
+  },
+  {
+   "fieldname": "electricity_bill",
+   "fieldtype": "Float",
+   "label": "Electricity Bill"
+  },
+  {
+   "fieldname": "required__kw",
+   "fieldtype": "Float",
+   "label": "Required  KW"
+  },
+  {
+   "fieldname": "panel_count",
+   "fieldtype": "Float",
+   "label": "Panel Count"
+  },
+  {
+   "fieldname": "section_break_ahex",
+   "fieldtype": "Section Break",
+   "label": "Location & Electricity Details"
+  },
+  {
+   "fieldname": "column_break_taqo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_3gg2",
+   "fieldtype": "Section Break",
+   "label": "Solar Requirements and price"
+  },
+  {
+   "fieldname": "column_break_f0wo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "unit_rate",
+   "fieldtype": "Currency",
+   "label": "Unit Rate"
+  },
+  {
+   "fieldname": "company_name",
+   "fieldtype": "Link",
+   "label": "Company name",
+   "options": "Panel Company"
+  },
+  {
+   "fetch_from": "panel_details.watt_peakkw",
+   "fieldname": "watt_peakkw",
+   "fieldtype": "Float",
+   "label": "Watt Peak"
+  },
+  {
+   "fieldname": "section_break_djju",
+   "fieldtype": "Section Break",
+   "label": "Final Price"
+  },
+  {
+   "fieldname": "service",
+   "fieldtype": "Table MultiSelect",
+   "label": "Service",
+   "options": "Multiselect",
+   "read_only": 1
+  },
+  {
+   "fieldname": "billing_cycle",
+   "fieldtype": "Select",
+   "label": "Billing Cycle",
+   "options": "1 Month\n2 Month"
+  },
+  {
+   "fieldname": "total_price",
+   "fieldtype": "Data",
+   "label": "Total Price"
+  },
+  {
+   "fieldname": "panel_details",
+   "fieldtype": "Link",
+   "label": "Panel Details",
+   "options": "Panel details"
+  },
+  {
+   "fetch_from": "panel_details.per_panel_price",
+   "fieldname": "per_panel_price",
+   "fieldtype": "Currency",
+   "label": "Per Panel price"
+  },
+  {
+   "fieldname": "column_break_lz9j",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-02-15 11:50:27.110305",
+ "modified_by": "Administrator",
+ "module": "Custom Solar",
+ "name": "Leads",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "full_name",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_seen": 1
+}

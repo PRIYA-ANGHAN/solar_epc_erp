@@ -1,0 +1,58 @@
+{
+ "_comments": "[]",
+ "_liked_by": "[]",
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{watt_peakkw}Wp - {panel_tech}",
+ "creation": "2025-02-03 16:13:33.279461",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "add_watt_peaks_section",
+  "watt_peakkw",
+  "panel_tech"
+ ],
+ "fields": [
+  {
+   "fieldname": "add_watt_peaks_section",
+   "fieldtype": "Section Break",
+   "label": "Add Watt Peaks"
+  },
+  {
+   "fieldname": "panel_tech",
+   "fieldtype": "Link",
+   "label": "Panel Tech",
+   "options": "Panel Tech"
+  },
+  {
+   "fieldname": "watt_peakkw",
+   "fieldtype": "Float",
+   "label": "Watt Peak(Wp)"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-02-15 11:56:13.729412",
+ "modified_by": "Administrator",
+ "module": "Custom Solar",
+ "name": "Watt Peaks",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

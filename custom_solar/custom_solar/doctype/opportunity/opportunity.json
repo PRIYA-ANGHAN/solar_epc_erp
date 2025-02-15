@@ -1,0 +1,202 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "op-.###",
+ "creation": "2025-02-08 12:03:25.829694",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "opportunity_section",
+  "lead_id",
+  "full_name",
+  "email_id",
+  "column_break_m0kq",
+  "mobile_no",
+  "date_sgma",
+  "section_break_yktx",
+  "status",
+  "service_detail_section",
+  "company_name",
+  "column_break_bfqk",
+  "service",
+  "electricity_details_section",
+  "electricity_provider",
+  "unit_rate",
+  "required__kw",
+  "column_break_fjpm",
+  "electricity_bill",
+  "billing_cycle",
+  "solar_requirements_and_price_section",
+  "panel_details",
+  "watt_peakkw",
+  "column_break_vftj",
+  "per_panel_price",
+  "panel_count",
+  "final_price_section",
+  "total_price"
+ ],
+ "fields": [
+  {
+   "fieldname": "opportunity_section",
+   "fieldtype": "Section Break",
+   "label": "Lead Details",
+   "read_only": 1
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name"
+  },
+  {
+   "fieldname": "email_id",
+   "fieldtype": "Data",
+   "label": "Email ID"
+  },
+  {
+   "fieldname": "column_break_m0kq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mobile_no",
+   "fieldtype": "Data",
+   "label": "Mobile No"
+  },
+  {
+   "fieldname": "section_break_yktx",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "label": "Status"
+  },
+  {
+   "fieldname": "date_sgma",
+   "fieldtype": "Data",
+   "label": "Created On"
+  },
+  {
+   "fieldname": "lead_id",
+   "fieldtype": "Link",
+   "label": "Lead ID",
+   "options": "Leads"
+  },
+  {
+   "fieldname": "service_detail_section",
+   "fieldtype": "Section Break",
+   "label": "Service Detail"
+  },
+  {
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "label": "Company name"
+  },
+  {
+   "fieldname": "service",
+   "fieldtype": "Data",
+   "label": "Service"
+  },
+  {
+   "fieldname": "electricity_details_section",
+   "fieldtype": "Section Break",
+   "label": "Electricity Details"
+  },
+  {
+   "fieldname": "electricity_provider",
+   "fieldtype": "Data",
+   "label": "Electricity Provider"
+  },
+  {
+   "fieldname": "unit_rate",
+   "fieldtype": "Data",
+   "label": "Unit Rate"
+  },
+  {
+   "fieldname": "required__kw",
+   "fieldtype": "Data",
+   "label": "Required  KW"
+  },
+  {
+   "fieldname": "column_break_fjpm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "electricity_bill",
+   "fieldtype": "Data",
+   "label": "Electricity Bill"
+  },
+  {
+   "fieldname": "billing_cycle",
+   "fieldtype": "Data",
+   "label": "Billing Cycle"
+  },
+  {
+   "fieldname": "solar_requirements_and_price_section",
+   "fieldtype": "Section Break",
+   "label": "Solar Requirements and price"
+  },
+  {
+   "fieldname": "panel_details",
+   "fieldtype": "Data",
+   "label": "Panel Details"
+  },
+  {
+   "fieldname": "watt_peakkw",
+   "fieldtype": "Data",
+   "label": "Watt Peak"
+  },
+  {
+   "fieldname": "column_break_vftj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "per_panel_price",
+   "fieldtype": "Data",
+   "label": "Per Panel price"
+  },
+  {
+   "fieldname": "panel_count",
+   "fieldtype": "Data",
+   "label": "Panel Count"
+  },
+  {
+   "fieldname": "final_price_section",
+   "fieldtype": "Section Break",
+   "label": "Final Price"
+  },
+  {
+   "fieldname": "total_price",
+   "fieldtype": "Data",
+   "label": "Total Price"
+  },
+  {
+   "fieldname": "column_break_bfqk",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-02-14 10:59:16.623130",
+ "modified_by": "Administrator",
+ "module": "Custom Solar",
+ "name": "Opportunity",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
