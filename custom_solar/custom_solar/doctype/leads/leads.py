@@ -79,77 +79,78 @@ class Leads(Document):
             if not re.match(email_pattern, self.email_id):
                 frappe.throw("Invalid email format. Please enter a valid email address.")
 
-    
- 
-    def on_update(self):
-        """Ensure validation happens when the record is updated."""
-        self.validate()  # Ensure validation happens on update
- 
-        # Check if the status is 'Closed' before creating/updating Opportunity
-        if self.status == "Closed":
-            # Ensure required fields are present in the Lead doc
-            required_fields = ['full_name', 'email_id', 'mobile_no', 'date_sgma']
-            for field in required_fields:
-                if not getattr(self, field):
-                    frappe.throw(f"Required field '{field}' is missing to create an Opportunity.")
- 
-            # Fetch existing Opportunity with the same full name
-            existing_opportunity = frappe.get_all(
-                'Opportunity',
-                filters={'full_name': self.full_name},
-                fields=['name', 'email_id', 'mobile_no', 'status'],  
-                limit=1
-            )       
- 
-            if existing_opportunity:
-                opportunity_name = existing_opportunity[0]['name']
-                existing_email = existing_opportunity[0]['email_id']
-                existing_mobile = existing_opportunity[0]['mobile_no']
- 
-                # Update existing Opportunity if mobile or email has changed
-                if self.email_id != existing_email or self.mobile_no != existing_mobile:
-                    opportunity_doc = frappe.get_doc('Opportunity', opportunity_name)
-                    opportunity_doc.email_id = self.email_id
-                    opportunity_doc.mobile_no = self.mobile_no
-                    opportunity_doc.save(ignore_permissions=True)
-                    frappe.db.commit()
-                    frappe.msgprint(f"Updated Opportunity: <a href='/app/opportunity/{opportunity_name}'>{opportunity_name}</a> with new details.")
-                else:
-                    frappe.msgprint(f"Opportunity already exists: <a href='/app/opportunity/{opportunity_name}'>{opportunity_name}</a> with the same details.")
+def on_update(self):
+    """Ensure validation happens when the record is updated."""
+    self.validate()  # Ensure validation happens on update
+
+    # Check if the status is 'Closed' before creating/updating Opportunity
+    if self.status == "Closed":
+        # Ensure required fields are present in the Lead doc
+        required_fields = ['full_name', 'email_id', 'mobile_no', 'date_sgma']
+        for field in required_fields:
+            if not getattr(self, field):
+                frappe.throw(f"Required field '{field}' is missing to create an Opportunity.")
+
+        # Fetch existing Opportunity with the same full name
+        existing_opportunity = frappe.get_all(
+            'Opportunity',
+            filters={'full_name': self.full_name},
+            fields=['name', 'email_id', 'mobile_no', 'status'],  
+            limit=1
+        )       
+
+        if existing_opportunity:
+            opportunity_name = existing_opportunity[0]['name']
+            existing_email = existing_opportunity[0]['email_id']
+            existing_mobile = existing_opportunity[0]['mobile_no']
+
+            # Update existing Opportunity if mobile or email has changed
+            if self.email_id != existing_email or self.mobile_no != existing_mobile:
+                opportunity_doc = frappe.get_doc('Opportunity', opportunity_name)
+                opportunity_doc.email_id = self.email_id
+                opportunity_doc.mobile_no = self.mobile_no
+                opportunity_doc.save(ignore_permissions=True)
+                frappe.db.commit()
+                frappe.msgprint(f"Updated Opportunity: <a href='/app/opportunity/{opportunity_name}'>{opportunity_name}</a> with new details.")
             else:
-                try:
-                        # Create a new Opportunity if no matching record exists
-                    opportunity = frappe.get_doc({
-                        'doctype': 'Opportunity',
-                        'lead_id': self.name,
-                        'full_name': self.full_name,
-                        'email_id': self.email_id,
-                        'mobile_no': self.mobile_no,
-                        'date_sgma': self.date_sgma,
-                        'status': 'Closed', 
-                        "company_name": self.company_name,
-                        "service": self.service,
-                        "electricity_provider": self.electricity_provider,
-                        "unit_rate": self.unit_rate,
-                        "required__kw": self.required__kw,
-                        "electricity_bill": self.electricity_bill,
-                        "billing_cycle": self.billing_cycle,
-                        "panel_details": self.panel_details,
-                        "watt_peakkw": self.watt_peakkw,
-                        "per_panel_price": self.per_panel_price,
-                        "panel_count": self.panel_count,
-                        "total_price": self.total_price
-                    })
- 
-                    opportunity.insert(ignore_permissions=True)
-                    frappe.db.commit()
- 
-                    frappe.msgprint(f"New Opportunity created for lead: {self.full_name}")
- 
-                except Exception as e:
-                    frappe.log_error(frappe.get_traceback(), "Opportunity Creation Failed")
-                    frappe.throw(f"Failed to create opportunity: {str(e)}")
- 
+                frappe.msgprint(f"Opportunity already exists: <a href='/app/opportunity/{opportunity_name}'>{opportunity_name}</a> with the same details.")
+        else:
+            try:
+                # Convert service list into a comma-separated string
+                service_string = ", ".join([row["service"] for row in self.service]) if isinstance(self.service, list) else str(self.service)
+
+                # Create a new Opportunity if no matching record exists
+                opportunity = frappe.get_doc({
+                    'doctype': 'Opportunity',
+                    'lead_id': self.name,
+                    'full_name': self.full_name,
+                    'email_id': self.email_id,
+                    'mobile_no': self.mobile_no,
+                    'date_sgma': self.date_sgma,
+                    'status': 'Closed', 
+                    "company_name": self.company_name,
+                    "service": service_string,  # covert list into string
+                    "electricity_provider": self.electricity_provider,
+                    "unit_rate": self.unit_rate,
+                    "required__kw": self.required__kw,
+                    "electricity_bill": self.electricity_bill,
+                    "billing_cycle": self.billing_cycle,
+                    "panel_details": self.panel_details,
+                    "watt_peakkw": self.watt_peakkw,
+                    "per_panel_price": self.per_panel_price,
+                    "panel_count": self.panel_count,
+                    "total_price": self.total_price
+                })
+
+                opportunity.insert(ignore_permissions=True)
+                frappe.db.commit()
+
+                frappe.msgprint(f"New Opportunity created for lead: {self.full_name}")
+
+            except Exception as e:
+                frappe.log_error(frappe.get_traceback(), "Opportunity Creation Failed")
+                frappe.throw(f"Failed to create opportunity: {str(e)}")
+
 @frappe.whitelist()
 
 def log_status_change(docname, old_status, new_status, comment):

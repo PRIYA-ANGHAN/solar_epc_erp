@@ -93,8 +93,10 @@
   },
   {
    "fieldname": "service",
-   "fieldtype": "Data",
-   "label": "Service"
+   "fieldtype": "Table MultiSelect",
+   "label": "Service",
+   "options": "Multiselect",
+   "read_only": 1
   },
   {
    "fieldname": "electricity_details_section",
@@ -176,7 +178,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-14 10:59:16.623130",
+ "modified": "2025-02-17 11:42:51.106666",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Opportunity",

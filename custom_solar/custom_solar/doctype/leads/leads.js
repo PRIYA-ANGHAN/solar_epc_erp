@@ -39,32 +39,18 @@ frappe.ui.form.on('Leads', {
         }
         console.log("Initial Status:", frm.old_status);
     },
-    
-    // company_name: function(frm) {
-    //     if (frm.doc.company_name) {
-    //         frappe.call({
-    //             method: "custom_solar.custom_solar.doctype.leads.leads.get_services",
-    //             args: {
-    //                 company_name: frm.doc.company_name
-    //             },
-    //             callback: function(r) {
-    //                 if (r.message) {
-    //                     // Set the fetched services and make the field read-only
-    //                     frm.set_value("service", r.message.map(service => service.service).join(", "));
-    //                     frm.set_df_property("service", "read_only", 1);
-    //                 } else {
-    //                     frm.set_value("service", "");
-    //                     frappe.msgprint("No services found for the selected company.");
-    //                 }
-    //             }
-    //         });
-    //     } else {
-    //         frm.set_value("service", "");
-    //     }
-    // }
-    
 
     refresh: function(frm) {
+        add_custom_timeline_tabs(frm); // Ensure tabs are added
+        load_site_visit_data(frm); // Load correct Site Visit data for the opened lead
+    
+        // Set Site Visit as the default tab when opening a new Lead
+        $('#site-visit-tab').addClass('active');
+        $('#activity-tab').removeClass('active');
+    
+        // Show Site Visit content and hide Activity content
+        $('#site-visit-content').show();
+        frm.timeline.timeline_items_wrapper.hide(); // Hide Activity
         // Make the service field read-only initially
         frm.set_df_property("service", "read_only", 1);
     },
