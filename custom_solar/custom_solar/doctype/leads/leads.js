@@ -29,6 +29,7 @@ frappe.ui.form.on('Leads', {
         // Show Site Visit content and hide Activity content
         $('#site-visit-content').show();
         frm.timeline.timeline_items_wrapper.hide(); // Hide Activity
+        
     },
     
     onload: function(frm) {
@@ -51,47 +52,93 @@ frappe.ui.form.on('Leads', {
         // Show Site Visit content and hide Activity content
         $('#site-visit-content').show();
         frm.timeline.timeline_items_wrapper.hide(); // Hide Activity
-        // Make the service field read-only initially
-        frm.set_df_property("service", "read_only", 1);
+        
     },
-
-    company_name: function(frm) {
-        if (frm.doc.company_name) {
-            frappe.call({
-                method: "custom_solar.custom_solar.doctype.leads.leads.get_services",
-                args: {
-                    company_name: frm.doc.company_name
-                },
-                callback: function(r) {
-                    if (r.message && r.message.length > 0) {
-                        // Clear existing entries in the service child table
-                        frm.clear_table("service");
-
-                        // Add fetched services automatically
-                        r.message.forEach(service => {
-                            let row = frm.add_child("service");
-                            row.service = service.service;
-                        });
-
-                        // Refresh the child table field
-                        frm.refresh_field("service");
-
-                        // Make the service field read-only
-                        frm.set_df_property("service", "read_only", 1);
-                    } else {
-                        frm.clear_table("service");
-                        frm.refresh_field("service");
-                        frappe.msgprint("No services found for the selected company.");
+    services: function(frm) {
+        if (frm.doc.services && frm.doc.services.length > 0) {
+            let selected_services = frm.doc.services;
+            console.log(selected_services)
+    
+            frm.set_query("panel_tech", function() {
+                return {
+                    filters: {
+                        "service": frm.doc.services  // Filter Panel Tech based on selected Service
                     }
-                }
+                };
             });
         } else {
-            // If no company is selected, clear the service field
-            frm.clear_table("service");
-            frm.refresh_field("service");
+            frm.set_query('panel_tech', function() {
+                return {};
+            });
+        }
+    },
+    panel_tech: function(frm) {
+        if (frm.doc.panel_tech) {
+            frm.set_query("watt_peakkw", function() {
+                return {
+                    filters: {
+                        "panel_tech": frm.doc.panel_tech  // Filter Watt Peak based on selected Panel Tech
+                    }
+                };
+            });
+        } else {
+            frm.set_query("watt_peakkw", function() {
+                return {};
+            });
+        }
+    },
+    watt_peakkw: function(frm) {
+        if (frm.doc.watt_peakkw) {
+            frm.set_query("company_name", function() {
+                return {
+                    filters: {
+                        "service": ["in", frm.doc.services.map(service => service.service)]  // Filter Company based on Services
+                    }
+                };
+            });
+        } else {
+            frm.set_query("company_name", function() {
+                return {};
+            });
         }
     },
 
+    // company_name: function(frm) {
+    //     if (frm.doc.company_name) {
+    //         frappe.call({
+    //             method: "custom_solar.custom_solar.doctype.leads.leads.get_services",
+    //             args: {
+    //                 company_name: frm.doc.company_name
+    //             },
+    //             callback: function(r) {
+    //                 if (r.message && r.message.length > 0) {
+    //                     // Clear existing entries in the service child table
+    //                     frm.clear_table("service");
+
+    //                     // Add fetched services automatically
+    //                     r.message.forEach(service => {
+    //                         let row = frm.add_child("service");
+    //                         row.service = service.service;
+    //                     });
+
+    //                     // Refresh the child table field
+    //                     frm.refresh_field("service");
+
+    //                     // Make the service field read-only
+    //                     frm.set_df_property("service", "read_only", 1);
+    //                 } else {
+    //                     frm.clear_table("service");
+    //                     frm.refresh_field("service");
+    //                     frappe.msgprint("No services found for the selected company.");
+    //                 }
+    //             }
+    //         });
+    //     } else {
+    //         // If no company is selected, clear the service field
+    //         frm.clear_table("service");
+    //         frm.refresh_field("service");
+    //     }
+    // },
 
     status: function(frm) {
         if (frm.doc && frm.doc.status) {
@@ -220,7 +267,7 @@ function add_custom_timeline_tabs(frm) {
     }
 }
 
- 
+
 function load_site_visit_data(frm) {
  
     $('#site-visit-content').html('');  // Clear previous Site Visit data
@@ -326,4 +373,5 @@ function load_site_visit_data(frm) {
             $('#site-visit-content').html(content); // Display Site Visit data
         }
     });
+
 }

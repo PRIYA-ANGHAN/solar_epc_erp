@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{panel_type}",
+ "autoname": "format:{panel_tech}",
  "creation": "2025-02-03 15:33:47.486517",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -13,7 +13,9 @@
   "residential",
   "industrial",
   "common_building",
-  "ground_mounted"
+  "ground_mounted",
+  "section_break_xo9q",
+  "services"
  ],
  "fields": [
   {
@@ -61,11 +63,21 @@
    "fieldname": "panel_tech",
    "fieldtype": "Data",
    "label": "Solar Panel Tech"
+  },
+  {
+   "fieldname": "section_break_xo9q",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "services",
+   "fieldtype": "Table MultiSelect",
+   "label": "Services",
+   "options": "Multiselect"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-13 09:27:52.978596",
+ "modified": "2025-02-19 15:03:36.586200",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Panel Tech",

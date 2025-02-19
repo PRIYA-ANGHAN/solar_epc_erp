@@ -40,6 +40,8 @@ function add_custom_tabs(frm) {
 
         // Append the custom tabs to the timeline wrapper
         $(timeline_wrapper).prepend(tab_html);
+        load_site_visit_data(frm);
+
 
         // Bind Activity tab click event to toggle visibility of content
         $('#activity-tab').on('click', function() {

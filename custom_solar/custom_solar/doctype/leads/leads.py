@@ -1,9 +1,8 @@
- 
 import frappe
 from frappe.model.document import Document
 import re
 import math
-
+ 
 class Leads(Document):
  
     def validate(self):
@@ -34,7 +33,7 @@ class Leads(Document):
             # If the mobile number doesn't match the expected pattern, raise an error
             if not re.match(pattern, self.mobile_no):
                 frappe.throw("Mobile number must follow the format: <Country Code> <10-digit phone number>")
-
+ 
     def calculate_required_kw(self):
         """Calculate Required kW based on Electricity Bill, Unit Rate, and Billing Cycle."""
         if self.electricity_bill and self.unit_rate and self.billing_cycle:
@@ -43,9 +42,9 @@ class Leads(Document):
                 self.required__kw = self.electricity_bill / (billing_cycle_factor * self.unit_rate)
             except ZeroDivisionError:
                 frappe.throw("Unit Rate cannot be zero.")
-
+ 
     
-
+ 
     def calculate_panel_count(self):
         """Calculate Panel Count when Required kW and Watt Peak are provided."""
         if self.required__kw and self.watt_peakkw:
@@ -56,8 +55,8 @@ class Leads(Document):
                 frappe.throw("Watt Peak value cannot be zero.")
         
             frappe.msgprint(f"Panel Count calculated: {self.panel_count} panels")
-
-
+ 
+ 
     def calculate_total_price(self):
         """Calculate Total Price based on Panel Count and Per Panel Price."""
         if self.panel_count and self.per_panel_price:
@@ -65,9 +64,9 @@ class Leads(Document):
                 self.total_price = self.panel_count * self.per_panel_price
             except Exception as e:
                 frappe.throw(f"Error calculating Total Price: {str(e)}")
-
-
-
+ 
+ 
+ 
     def validate_email(self):
         """Validate email format."""
         if self.email_id:
@@ -79,80 +78,79 @@ class Leads(Document):
             if not re.match(email_pattern, self.email_id):
                 frappe.throw("Invalid email format. Please enter a valid email address.")
 
-def on_update(self):
-    """Ensure validation happens when the record is updated."""
-    self.validate()  # Ensure validation happens on update
-
-    # Check if the status is 'Closed' before creating/updating Opportunity
-    if self.status == "Closed":
-        # Ensure required fields are present in the Lead doc
-        required_fields = ['full_name', 'email_id', 'mobile_no', 'date_sgma']
-        for field in required_fields:
-            if not getattr(self, field):
-                frappe.throw(f"Required field '{field}' is missing to create an Opportunity.")
-
-        # Fetch existing Opportunity with the same full name
-        existing_opportunity = frappe.get_all(
-            'Opportunity',
-            filters={'full_name': self.full_name},
-            fields=['name', 'email_id', 'mobile_no', 'status'],  
-            limit=1
-        )       
-
-        if existing_opportunity:
-            opportunity_name = existing_opportunity[0]['name']
-            existing_email = existing_opportunity[0]['email_id']
-            existing_mobile = existing_opportunity[0]['mobile_no']
-
-            # Update existing Opportunity if mobile or email has changed
-            if self.email_id != existing_email or self.mobile_no != existing_mobile:
-                opportunity_doc = frappe.get_doc('Opportunity', opportunity_name)
-                opportunity_doc.email_id = self.email_id
-                opportunity_doc.mobile_no = self.mobile_no
-                opportunity_doc.save(ignore_permissions=True)
-                frappe.db.commit()
-                frappe.msgprint(f"Updated Opportunity: <a href='/app/opportunity/{opportunity_name}'>{opportunity_name}</a> with new details.")
+ 
+    def on_update(self):
+        """Ensure validation happens when the record is updated."""
+        self.validate()  # Ensure validation happens on update
+ 
+        # Check if the status is 'Closed' before creating/updating Opportunity
+        if self.status == "Closed":
+            # Ensure required fields are present in the Lead doc
+            required_fields = ['full_name', 'email_id', 'mobile_no', 'date_sgma']
+            for field in required_fields:
+                if not getattr(self, field):
+                    frappe.throw(f"Required field '{field}' is missing to create an Opportunity.")
+ 
+            # Fetch existing Opportunity with the same full name
+            existing_opportunity = frappe.get_all(
+                'Opportunity',
+                filters={'full_name': self.full_name},
+                fields=['name', 'email_id', 'mobile_no', 'status'],  
+                limit=1
+            )       
+ 
+            if existing_opportunity:
+                opportunity_name = existing_opportunity[0]['name']
+                existing_email = existing_opportunity[0]['email_id']
+                existing_mobile = existing_opportunity[0]['mobile_no']
+ 
+                # Update existing Opportunity if mobile or email has changed
+                if self.email_id != existing_email or self.mobile_no != existing_mobile:
+                    opportunity_doc = frappe.get_doc('Opportunity', opportunity_name)
+                    opportunity_doc.email_id = self.email_id
+                    opportunity_doc.mobile_no = self.mobile_no
+                    opportunity_doc.save(ignore_permissions=True)
+                    frappe.db.commit()
+                    frappe.msgprint(f"Updated Opportunity: <a href='/app/opportunity/{opportunity_name}'>{opportunity_name}</a> with new details.")
+                else:
+                    frappe.msgprint(f"Opportunity already exists: <a href='/app/opportunity/{opportunity_name}'>{opportunity_name}</a> with the same details.")
             else:
-                frappe.msgprint(f"Opportunity already exists: <a href='/app/opportunity/{opportunity_name}'>{opportunity_name}</a> with the same details.")
-        else:
-            try:
-                # Convert service list into a comma-separated string
-                service_string = ", ".join([row["service"] for row in self.service]) if isinstance(self.service, list) else str(self.service)
-
-                # Create a new Opportunity if no matching record exists
-                opportunity = frappe.get_doc({
-                    'doctype': 'Opportunity',
-                    'lead_id': self.name,
-                    'full_name': self.full_name,
-                    'email_id': self.email_id,
-                    'mobile_no': self.mobile_no,
-                    'date_sgma': self.date_sgma,
-                    'status': 'Closed', 
-                    "company_name": self.company_name,
-                    "service": service_string,  # covert list into string
-                    "electricity_provider": self.electricity_provider,
-                    "unit_rate": self.unit_rate,
-                    "required__kw": self.required__kw,
-                    "electricity_bill": self.electricity_bill,
-                    "billing_cycle": self.billing_cycle,
-                    "panel_details": self.panel_details,
-                    "watt_peakkw": self.watt_peakkw,
-                    "per_panel_price": self.per_panel_price,
-                    "panel_count": self.panel_count,
-                    "total_price": self.total_price
-                })
-
-                opportunity.insert(ignore_permissions=True)
-                frappe.db.commit()
-
-                frappe.msgprint(f"New Opportunity created for lead: {self.full_name}")
-
-            except Exception as e:
-                frappe.log_error(frappe.get_traceback(), "Opportunity Creation Failed")
-                frappe.throw(f"Failed to create opportunity: {str(e)}")
+                try:
+                        # Create a new Opportunity if no matching record exists
+                    opportunity = frappe.get_doc({
+                        'doctype': 'Opportunity',
+                        'lead_id': self.name,
+                        'full_name': self.full_name,
+                        'email_id': self.email_id,
+                        'mobile_no': self.mobile_no,
+                        'date_sgma': self.date_sgma,
+                        'status': 'Closed',
+                        "company_name": self.company_name,
+                        "services": self.services,
+                        "panel_tech" : self.panel_tech,
+                        "electricity_provider": self.electricity_provider,
+                        "unit_rate": self.unit_rate,
+                        "required__kw": self.required__kw,
+                        "electricity_bill": self.electricity_bill,
+                        "billing_cycle": self.billing_cycle,
+                        "panel_details": self.panel_details,
+                        "watt_peakkw": self.watt_peakkw,
+                        "per_panel_price": self.per_panel_price,
+                        "panel_count": self.panel_count,
+                        "total_price": self.total_price 
+                        })
+    
+                    opportunity.insert(ignore_permissions=True)
+                    frappe.db.commit()
+ 
+                    frappe.msgprint(f"New Opportunity created for lead: {self.full_name}")
+ 
+                except Exception as e:
+                    frappe.log_error(frappe.get_traceback(), "Opportunity Creation Failed")
+                    frappe.throw(f"Failed to create opportunity: {str(e)}")
 
 @frappe.whitelist()
-
+ 
 def log_status_change(docname, old_status, new_status, comment):
     """
     Log the status change along with the comment and update the timeline of the lead.
@@ -176,8 +174,11 @@ def log_status_change(docname, old_status, new_status, comment):
  
     return {"message": "Status change logged successfully"}
  
+ 
 @frappe.whitelist()
-def get_site_visit_history(lead):
+def get_site_visit_history(**kwargs):
+    lead = kwargs.get("lead")
+
     """
     Get the history of site visits related to the lead.
     """
@@ -190,34 +191,5 @@ def get_site_visit_history(lead):
     if not visits:
         return {"message": "No site visits found for this lead"}
     
-    return visits
-
-
-
-# @frappe.whitelist()
-# def get_services(company_name):
-#     services = []
-    
-#     # Fetch Panel Company document
-#     panel_company = frappe.get_doc("Panel Company", company_name)
-
-#     # Check if services exist in the child table (Multiselect)
-#     if panel_company.services:
-#         services = [{"service": row.service} for row in panel_company.services]
-    
-#     return services if services else []
-
-
-
-@frappe.whitelist()
-def get_services(company_name):
-    service = []
-
-    # Fetch the Panel Company document
-    panel_company = frappe.get_doc("Panel Company", company_name)
-
-    # Ensure services exist and iterate through the child table correctly
-    if panel_company.get("service"):
-        service = [{"service": row.service} for row in panel_company.get("service")]
-
-    return service if service else []
+    return visits 
+ 
