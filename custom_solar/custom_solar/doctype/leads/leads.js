@@ -31,32 +31,6 @@ frappe.ui.form.on('Leads', {
         
     },
 
-    service: function(frm) {
-        if (frm.doc.service) {
-            frappe.call({
-                method: 'custom_solar.custom_solar.doctype.leads.leads.get_panel_tech_options',
-                args: {
-                    service: frm.doc.service
-                },
-                callback: function(r) {
-                    if (r.message) {
-                        let panel_tech_options = r.message.map(pt => pt.name);
-                        
-                        frm.set_query('panel_tech', function() {
-                            return {
-                                filters: [['Panel Tech', 'name', 'in', panel_tech_options]]
-                            };
-                        });
-                    }
-                }
-            });
-        } else {
-            frm.set_query('panel_tech', function() {
-                return {};
-            });
-        }
-    },
-
     onload: function(frm) {
         if (!frm.doc.status) {
             frm.old_status = "";
@@ -118,7 +92,7 @@ frappe.ui.form.on('Leads', {
             });
         }
     },
-    
+
     watt_peakkw: function(frm) {
         if (frm.doc.watt_peakkw) {
             frm.set_query("company_name", function() {
