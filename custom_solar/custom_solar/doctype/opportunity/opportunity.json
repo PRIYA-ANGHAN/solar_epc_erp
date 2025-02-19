@@ -16,9 +16,12 @@
   "section_break_yktx",
   "status",
   "service_detail_section",
-  "company_name",
-  "column_break_bfqk",
   "service",
+  "panel_tech",
+  "watt_peakkw",
+  "column_break_bfqk",
+  "company_name",
+  "panel_details",
   "electricity_details_section",
   "electricity_provider",
   "unit_rate",
@@ -27,10 +30,8 @@
   "electricity_bill",
   "billing_cycle",
   "solar_requirements_and_price_section",
-  "panel_details",
-  "watt_peakkw",
-  "column_break_vftj",
   "per_panel_price",
+  "column_break_vftj",
   "panel_count",
   "final_price_section",
   "total_price"
@@ -172,11 +173,16 @@
   {
    "fieldname": "column_break_bfqk",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "panel_tech",
+   "fieldtype": "Data",
+   "label": "Panel Tech"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-14 10:59:16.623130",
+ "modified": "2025-02-19 17:43:21.304882",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Opportunity",

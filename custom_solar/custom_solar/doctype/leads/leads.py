@@ -1,9 +1,8 @@
- 
 import frappe
 from frappe.model.document import Document
 import re
 import math
-
+ 
 class Leads(Document):
  
     def validate(self):
@@ -13,7 +12,7 @@ class Leads(Document):
         self.calculate_required_kw()
         self.calculate_panel_count()
         self.calculate_total_price()
- 
+  
     def validate_mobile_number(self):
         """Validate mobile number format."""
         if self.mobile_no:
@@ -33,7 +32,7 @@ class Leads(Document):
  
             # If the mobile number doesn't match the expected pattern, raise an error
             if not re.match(pattern, self.mobile_no):
-                frappe.throw("Mobile number must follow the format: <Country Code> <10-digit phone number>")
+                frappe.throw("Mobile number must follow the format: <Country Code> <10-digit phone number>") 
 
     def calculate_required_kw(self):
         """Calculate Required kW based on Electricity Bill, Unit Rate, and Billing Cycle."""
@@ -43,9 +42,9 @@ class Leads(Document):
                 self.required__kw = self.electricity_bill / (billing_cycle_factor * self.unit_rate)
             except ZeroDivisionError:
                 frappe.throw("Unit Rate cannot be zero.")
-
+ 
     
-
+ 
     def calculate_panel_count(self):
         """Calculate Panel Count when Required kW and Watt Peak are provided."""
         if self.required__kw and self.watt_peakkw:
@@ -56,8 +55,8 @@ class Leads(Document):
                 frappe.throw("Watt Peak value cannot be zero.")
         
             frappe.msgprint(f"Panel Count calculated: {self.panel_count} panels")
-
-
+ 
+ 
     def calculate_total_price(self):
         """Calculate Total Price based on Panel Count and Per Panel Price."""
         if self.panel_count and self.per_panel_price:
@@ -65,9 +64,9 @@ class Leads(Document):
                 self.total_price = self.panel_count * self.per_panel_price
             except Exception as e:
                 frappe.throw(f"Error calculating Total Price: {str(e)}")
-
-
-
+ 
+ 
+ 
     def validate_email(self):
         """Validate email format."""
         if self.email_id:
@@ -78,8 +77,7 @@ class Leads(Document):
  
             if not re.match(email_pattern, self.email_id):
                 frappe.throw("Invalid email format. Please enter a valid email address.")
-
-    
+ 
  
     def on_update(self):
         """Ensure validation happens when the record is updated."""
@@ -126,9 +124,10 @@ class Leads(Document):
                         'email_id': self.email_id,
                         'mobile_no': self.mobile_no,
                         'date_sgma': self.date_sgma,
-                        'status': 'Closed', 
+                        'status': 'Closed',
+                        "service": self.services,
+                        "panel_tech": self.panel_tech,
                         "company_name": self.company_name,
-                        "service": self.service,
                         "electricity_provider": self.electricity_provider,
                         "unit_rate": self.unit_rate,
                         "required__kw": self.required__kw,
@@ -139,19 +138,71 @@ class Leads(Document):
                         "per_panel_price": self.per_panel_price,
                         "panel_count": self.panel_count,
                         "total_price": self.total_price
-                    })
- 
+                        })
+    
                     opportunity.insert(ignore_permissions=True)
                     frappe.db.commit()
- 
+
+
+                    # Fetch comments from Leads
+                    comments = frappe.get_all(
+                        "Comment",
+                        filters={"reference_doctype": "Leads", "reference_name": self.name},
+                        fields=["content", "creation", "comment_email", "comment_by"],
+                        order_by="creation ASC"
+                    )
+
+                    for comment_data in comments:
+                        comment = frappe.new_doc("Comment")
+                        comment.update(
+                            {
+                                "comment_type": "Comment",
+                                "reference_doctype": "Opportunity",
+                                "reference_name": opportunity.name,
+                                "comment_email": comment_data["comment_email"],
+                                "comment_by": comment_data["comment_by"],
+                                "content": comment_data["content"],
+                                "creation": comment_data["creation"],  # Retaining the original creation timestamp
+                            }
+                        )
+                        comment.insert(ignore_permissions=True)
+
                     frappe.msgprint(f"New Opportunity created for lead: {self.full_name}")
- 
+
                 except Exception as e:
                     frappe.log_error(frappe.get_traceback(), "Opportunity Creation Failed")
                     frappe.throw(f"Failed to create opportunity: {str(e)}")
- 
-@frappe.whitelist()
 
+                    # data =  frappe.get_all(
+                    #             "Comment",
+                    #             filters={"reference_doctype": "Leads", "reference_name": self.name},
+                    #             fields=["content", "creation","comment_email","comment_by",],
+                    #             order_by="creation desc"
+                    #         )
+                    # for dd  in data:
+
+                    #     comment = frappe.new_doc("Comment")
+                    #     comment.update(
+                    #         {
+                    #             "comment_type": "Comment",
+                    #             "reference_doctype": 'Opportunity',
+                    #             "reference_name": opportunity.name,
+                    #             "comment_email": dd,
+                    #             "comment_by": dd,
+                    #             "content": extract_images_from_html(reference_doc, content, is_private=True),
+                    #         }
+                    #     )
+
+                #         comment.insert(ignore_permissions=True)
+                #     # from frappe.utils import 
+                #     frappe.msgprint(f"New Opportunity created for lead: {self.full_name}")
+ 
+                # except Exception as e:
+                #     frappe.log_error(frappe.get_traceback(), "Opportunity Creation Failed")
+                #     frappe.throw(f"Failed to create opportunity: {str(e)}")
+ 
+
+@frappe.whitelist()
 def log_status_change(docname, old_status, new_status, comment):
     """
     Log the status change along with the comment and update the timeline of the lead.
@@ -175,8 +226,11 @@ def log_status_change(docname, old_status, new_status, comment):
  
     return {"message": "Status change logged successfully"}
  
+ 
 @frappe.whitelist()
-def get_site_visit_history(lead):
+def get_site_visit_history(**kwargs):
+    lead = kwargs.get("lead")
+ 
     """
     Get the history of site visits related to the lead.
     """
@@ -190,33 +244,19 @@ def get_site_visit_history(lead):
         return {"message": "No site visits found for this lead"}
     
     return visits
-
-
-
-# @frappe.whitelist()
-# def get_services(company_name):
-#     services = []
-    
-#     # Fetch Panel Company document
-#     panel_company = frappe.get_doc("Panel Company", company_name)
-
-#     # Check if services exist in the child table (Multiselect)
-#     if panel_company.services:
-#         services = [{"service": row.service} for row in panel_company.services]
-    
-#     return services if services else []
-
-
-
+ 
 @frappe.whitelist()
-def get_services(company_name):
-    service = []
+def get_panel_tech_options(service):
+    """Fetch panel tech options based on selected service."""
+    if not service:
+        return []
+    
+    service_field = service.lower().replace(" ", "_")  # Match the JS format
 
-    # Fetch the Panel Company document
-    panel_company = frappe.get_doc("Panel Company", company_name)
+    panel_techs = frappe.get_all(
+        "Panel Tech",
+        filters={service_field: 1},  # Match the service field dynamically
+        fields=["name"]
+    )
 
-    # Ensure services exist and iterate through the child table correctly
-    if panel_company.get("service"):
-        service = [{"service": row.service} for row in panel_company.get("service")]
-
-    return service if service else []
+    return panel_techs

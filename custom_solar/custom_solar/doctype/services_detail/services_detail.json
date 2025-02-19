@@ -1,0 +1,36 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-02-19 09:22:56.524809",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_isqi",
+  "service"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_isqi",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "service",
+   "fieldtype": "Link",
+   "label": "Service",
+   "options": "Services"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-02-19 09:23:30.310769",
+ "modified_by": "Administrator",
+ "module": "Custom Solar",
+ "name": "services detail",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -13,7 +13,8 @@
   "residential",
   "industrial",
   "common_building",
-  "ground_mounted"
+  "ground_mounted",
+  "services"
  ],
  "fields": [
   {
@@ -61,11 +62,17 @@
    "fieldname": "panel_tech",
    "fieldtype": "Data",
    "label": "Solar Panel Tech"
+  },
+  {
+   "fieldname": "services",
+   "fieldtype": "Table MultiSelect",
+   "label": "Services",
+   "options": "Multiselect"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-13 09:27:52.978596",
+ "modified": "2025-02-19 17:36:37.872558",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Panel Tech",

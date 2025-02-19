@@ -2,7 +2,7 @@ frappe.ui.form.on('Opportunity', {
     refresh(frm) {
         add_custom_tabs(frm); // Ensure tabs are added
         load_site_visit_data(frm); // Load Site Visit data for the opened lead
-        load_activity_data(frm);  // Load Activity data (as part of timeline)
+        // load_activity_data(frm);  // Load Activity data (as part of timeline)
 
         // Set Site Visit as the default tab when opening a new Opportunity
         $('#site-visit-tab').addClass('active');
@@ -40,6 +40,8 @@ function add_custom_tabs(frm) {
 
         // Append the custom tabs to the timeline wrapper
         $(timeline_wrapper).prepend(tab_html);
+
+        load_site_visit_data(frm);
 
         // Bind Activity tab click event to toggle visibility of content
         $('#activity-tab').on('click', function() {
@@ -168,33 +170,61 @@ function load_site_visit_data(frm) {
     });
 }
 
-function load_activity_data(frm) {
-    // Hide Activity content initially
-    frm.timeline.timeline_items_wrapper.hide();
-    frm.timeline.wrapper.find('.timeline-item').hide();
-    frm.timeline.timeline_items_wrapper.show();
+// function load_activity_data(frm) {
+//     $('#activity-content').html('<p>Loading activity logs...</p>');
 
-    // let old_status = frm.doc.status;  // Get the current status before change
-    // let new_status = frm.doc.status;  // Get the actual changed status
-    // let comment = "Viewing activity logs"; // Optional comment
+//     frappe.call({
+//         method: 'frappe.client.get_list',
+//         args: {
+//             doctype: 'Comment',
+//             filters: {
+//                 reference_doctype: 'Leads',
+//                 reference_name: frm.doc.lead_id
+//             },
+//             fields: ['content', 'creation'],
+//             order_by: 'creation desc',
+//             limit_page_length: 10
+//         },
+//         callback: function(response) {
+//             let activities = response.message || [];
+//             let content = '';
 
-    frappe.call({
-        method: 'custom_solar.custom_solar.doctype.leads.leads.log_status_change',
-        args: {
-            docname: frm.doc.lead_id,  
-            old_status: old_status,  
-            new_status: new_status,  // Use actual status
-            comment: comment  
-        },
-        callback: function(response) {
-            let activities = response.message || [];
-            let content = '';
+//             if (activities.length > 0) {
+//                 activities.forEach(activity => {
+//                     content += `<div class="activity-log"><b>${activity.creation}</b><br>${activity.content}</div><hr>`;
+//                 });
+//             } else {
+//                 content = '<p>No activity logs found.</p>';
+//             }
 
-            activities.forEach((activity) => {
-                content += `<div class="activity-log">${activity.content || 'No content available.'}</div>`;
-            });
+//             $('#activity-content').html(content);
+//         }
+//     });
+// }
 
-            $('#activity-content').html(content);
-        }
-    });
-}
+// function load_activity_data(frm) {
+//     if (!frm.doc.lead_id) {
+//         $('#activity-content').html('<p>No lead linked to this opportunity.</p>');
+//         return;
+//     }
+
+//     frappe.call({
+//         method: 'custom_solar.custom_solar.doctype.opportunity.opportunity.get_lead_activity_logs',
+//         args: { lead_id: frm.doc.lead_id },
+//         callback: function (response) {
+//             console.log(response.message)
+//             let activities = response.message || [];
+//             let content = '';
+
+//             if (activities.length > 0) {
+//                 activities.forEach(activity => {
+//                     content += `<div class="activity-log"><b>${activity.creation}</b><br>${activity.content}</div><hr>`;
+//                 });
+//             } else {
+//                 content = '<p>No activity logs found.</p>';
+//             }
+
+//             $('#activity-content').html(content);
+//         }
+//     });
+// }
