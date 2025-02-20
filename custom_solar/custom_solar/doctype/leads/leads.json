@@ -17,20 +17,18 @@
   "status",
   "section_break_6jud",
   "services",
-  "panel_tech",
-  "watt_peakkw",
-  "column_break_lz9j",
-  "company_name",
-  "panel_details",
-  "section_break_ahex",
   "electricity_provider",
+  "billing_cycle",
+  "column_break_lz9j",
+  "electricity_bill",
   "unit_rate",
   "required__kw",
+  "section_break_ahex",
+  "panel_tech",
+  "watt_peakkw",
   "column_break_taqo",
-  "electricity_bill",
-  "billing_cycle",
+  "company_name",
   "section_break_3gg2",
-  "per_panel_price",
   "column_break_f0wo",
   "panel_count",
   "section_break_djju",
@@ -83,7 +81,7 @@
   {
    "fieldname": "section_break_6jud",
    "fieldtype": "Section Break",
-   "label": "Service Detail"
+   "label": "Service And Electricity Details"
   },
   {
    "fieldname": "electricity_provider",
@@ -109,7 +107,7 @@
   {
    "fieldname": "section_break_ahex",
    "fieldtype": "Section Break",
-   "label": "Location & Electricity Details"
+   "label": "Panel Tech and Company Details"
   },
   {
    "fieldname": "column_break_taqo",
@@ -125,6 +123,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "fetch_from": "electricity_provider.unit_rate",
    "fieldname": "unit_rate",
    "fieldtype": "Currency",
    "label": "Unit Rate"
@@ -159,18 +158,6 @@
    "label": "Total Price"
   },
   {
-   "fieldname": "panel_details",
-   "fieldtype": "Link",
-   "label": "Panel Details",
-   "options": "Panel details"
-  },
-  {
-   "fetch_from": "panel_details.per_panel_price",
-   "fieldname": "per_panel_price",
-   "fieldtype": "Currency",
-   "label": "Per Panel price"
-  },
-  {
    "fieldname": "column_break_lz9j",
    "fieldtype": "Column Break"
   },
@@ -195,7 +182,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-19 17:07:44.076928",
+ "modified": "2025-02-20 14:29:38.949835",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Leads",
