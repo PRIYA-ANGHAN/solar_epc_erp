@@ -7,7 +7,8 @@
  "engine": "InnoDB",
  "field_order": [
   "section_break_xakp",
-  "electricity_provide"
+  "electricity_provide",
+  "unit_rate"
  ],
  "fields": [
   {
@@ -19,11 +20,16 @@
    "fieldname": "electricity_provide",
    "fieldtype": "Data",
    "label": "Electricity Provide"
+  },
+  {
+   "fieldname": "unit_rate",
+   "fieldtype": "Currency",
+   "label": "Unit Rate"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-12 10:07:04.539738",
+ "modified": "2025-02-20 14:29:10.418695",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Electricity Provider",

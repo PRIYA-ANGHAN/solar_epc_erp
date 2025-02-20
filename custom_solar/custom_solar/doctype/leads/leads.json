@@ -16,21 +16,20 @@
   "status_section_section",
   "status",
   "section_break_6jud",
-  "company_name",
-  "column_break_lz9j",
-  "service",
-  "section_break_ahex",
+  "services",
   "electricity_provider",
+  "billing_cycle",
+  "column_break_lz9j",
+  "electricity_bill",
   "unit_rate",
   "required__kw",
-  "column_break_taqo",
-  "electricity_bill",
-  "billing_cycle",
-  "section_break_3gg2",
-  "panel_details",
+  "section_break_ahex",
+  "panel_tech",
   "watt_peakkw",
+  "column_break_taqo",
+  "company_name",
+  "section_break_3gg2",
   "column_break_f0wo",
-  "per_panel_price",
   "panel_count",
   "section_break_djju",
   "total_price"
@@ -80,16 +79,9 @@
    "label": "Status Section"
   },
   {
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Status",
-   "options": "Unqualified Suspect\nFollow Up\nSite Visit Schedule\nSite Visit Done\nDormant\nClosed"
-  },
-  {
    "fieldname": "section_break_6jud",
    "fieldtype": "Section Break",
-   "label": "Service Detail"
+   "label": "Service And Electricity Details"
   },
   {
    "fieldname": "electricity_provider",
@@ -115,7 +107,7 @@
   {
    "fieldname": "section_break_ahex",
    "fieldtype": "Section Break",
-   "label": "Location & Electricity Details"
+   "label": "Panel Tech and Company Details"
   },
   {
    "fieldname": "column_break_taqo",
@@ -131,6 +123,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "fetch_from": "electricity_provider.unit_rate",
    "fieldname": "unit_rate",
    "fieldtype": "Currency",
    "label": "Unit Rate"
@@ -138,26 +131,20 @@
   {
    "fieldname": "company_name",
    "fieldtype": "Link",
-   "label": "Company name",
+   "label": "Company Name",
    "options": "Panel Company"
   },
   {
    "fetch_from": "panel_details.watt_peakkw",
    "fieldname": "watt_peakkw",
-   "fieldtype": "Float",
-   "label": "Watt Peak"
+   "fieldtype": "Link",
+   "label": "Watt Peak",
+   "options": "Watt Peaks"
   },
   {
    "fieldname": "section_break_djju",
    "fieldtype": "Section Break",
    "label": "Final Price"
-  },
-  {
-   "fieldname": "service",
-   "fieldtype": "Table MultiSelect",
-   "label": "Service",
-   "options": "Multiselect",
-   "read_only": 1
   },
   {
    "fieldname": "billing_cycle",
@@ -171,25 +158,31 @@
    "label": "Total Price"
   },
   {
-   "fieldname": "panel_details",
-   "fieldtype": "Link",
-   "label": "Panel Details",
-   "options": "Panel details"
-  },
-  {
-   "fetch_from": "panel_details.per_panel_price",
-   "fieldname": "per_panel_price",
-   "fieldtype": "Currency",
-   "label": "Per Panel price"
-  },
-  {
    "fieldname": "column_break_lz9j",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "services",
+   "fieldtype": "Link",
+   "label": "Services",
+   "options": "Services"
+  },
+  {
+   "fieldname": "panel_tech",
+   "fieldtype": "Link",
+   "label": "Panel Tech",
+   "options": "Panel Tech"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Unqualified Suspect\nFollow Up\nSite Visit Schedule\nSite Visit Done\nDormant\nClosed"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-15 11:50:27.110305",
+ "modified": "2025-02-20 14:29:38.949835",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Leads",
