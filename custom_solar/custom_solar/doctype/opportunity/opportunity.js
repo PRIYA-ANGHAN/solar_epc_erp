@@ -1,5 +1,5 @@
 frappe.ui.form.on('Opportunity', {
-    refresh(frm) {
+    refresh: function(frm) {
         add_custom_tabs(frm); // Ensure tabs are added
         load_site_visit_data(frm); // Load Site Visit data for the opened lead
         // load_activity_data(frm);  // Load Activity data (as part of timeline)

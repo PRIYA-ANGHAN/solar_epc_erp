@@ -11,7 +11,7 @@ class Leads(Document):
         self.validate_email()
         self.calculate_required_kw()
         self.calculate_panel_count()
-        self.calculate_total_price()
+        # self.calculate_total_price()
   
     def validate_mobile_number(self):
         """Validate mobile number format."""
@@ -34,39 +34,6 @@ class Leads(Document):
             if not re.match(pattern, self.mobile_no):
                 frappe.throw("Mobile number must follow the format: <Country Code> <10-digit phone number>") 
 
-    def calculate_required_kw(self):
-        """Calculate Required kW based on Electricity Bill, Unit Rate, and Billing Cycle."""
-        if self.electricity_bill and self.unit_rate and self.billing_cycle:
-            billing_cycle_factor = 120 if self.billing_cycle == "1 Month" else 240
-            try:
-                self.required__kw = self.electricity_bill / (billing_cycle_factor * self.unit_rate)
-            except ZeroDivisionError:
-                frappe.throw("Unit Rate cannot be zero.")
- 
-    
- 
-    def calculate_panel_count(self):
-        """Calculate Panel Count when Required kW and Watt Peak are provided."""
-        if self.required__kw and self.watt_peakkw:
-            try:
-                panel_count = (self.required__kw * 1000) / self.watt_peakkw
-                self.panel_count = math.ceil(panel_count)  # Always round up
-            except ZeroDivisionError:
-                frappe.throw("Watt Peak value cannot be zero.")
-        
-            frappe.msgprint(f"Panel Count calculated: {self.panel_count} panels")
- 
- 
-    def calculate_total_price(self):
-        """Calculate Total Price based on Panel Count and Per Panel Price."""
-        if self.panel_count and self.per_panel_price:
-            try:
-                self.total_price = self.panel_count * self.per_panel_price
-            except Exception as e:
-                frappe.throw(f"Error calculating Total Price: {str(e)}")
- 
- 
- 
     def validate_email(self):
         """Validate email format."""
         if self.email_id:
@@ -77,7 +44,42 @@ class Leads(Document):
  
             if not re.match(email_pattern, self.email_id):
                 frappe.throw("Invalid email format. Please enter a valid email address.")
- 
+
+
+    def calculate_required_kw(self):
+        """Calculate Required kW based on Electricity Bill, Unit Rate, and Billing Cycle."""
+        if self.electricity_bill and self.unit_rate and self.billing_cycle:
+            billing_cycle_factor = 120 if self.billing_cycle == "1 Month" else 240
+            try:
+                self.required__kw = self.electricity_bill / (billing_cycle_factor * self.unit_rate)
+            except ZeroDivisionError:
+                frappe.throw("Unit Rate cannot be zero.")
+     
+    def calculate_panel_count(self):
+        """
+        Calculate the number of panels required based on the required kW
+        and watt peak per kW. Always rounds up the count.
+        """
+        if self.required__kw and self.watt_peakkw:
+            try:
+                # Convert required_kw to float
+                required_kw = float(self.required__kw)
+            
+                # Extract the numeric part from watt_peakkw using regex
+                watt_peak_numbers = re.findall(r"[\d.]+", self.watt_peakkw)
+                if watt_peak_numbers:
+                    watt_peak = float(watt_peak_numbers[0])
+                else:
+                    frappe.throw("Watt Peak value is not a valid number.")
+            
+                # Calculate the panel count and round up
+                panel_count_calc = (required_kw * 1000) / watt_peak
+                self.panel_count = math.ceil(panel_count_calc)
+                frappe.msgprint(f"Panel Count calculated: {self.panel_count} panels")
+            except ZeroDivisionError:
+                frappe.throw("Watt Peak value cannot be zero.")
+            except ValueError:
+                frappe.throw("Invalid input values for Required kW or Watt Peak per kW.") 
  
     def on_update(self):
         """Ensure validation happens when the record is updated."""
@@ -133,9 +135,9 @@ class Leads(Document):
                         "required__kw": self.required__kw,
                         "electricity_bill": self.electricity_bill,
                         "billing_cycle": self.billing_cycle,
-                        "panel_details": self.panel_details,
+                        # "panel_details": self.panel_details,
                         "watt_peakkw": self.watt_peakkw,
-                        "per_panel_price": self.per_panel_price,
+                        # "per_panel_price": self.per_panel_price,
                         "panel_count": self.panel_count,
                         "total_price": self.total_price
                         })
@@ -171,36 +173,7 @@ class Leads(Document):
 
                 except Exception as e:
                     frappe.log_error(frappe.get_traceback(), "Opportunity Creation Failed")
-                    frappe.throw(f"Failed to create opportunity: {str(e)}")
-
-                    # data =  frappe.get_all(
-                    #             "Comment",
-                    #             filters={"reference_doctype": "Leads", "reference_name": self.name},
-                    #             fields=["content", "creation","comment_email","comment_by",],
-                    #             order_by="creation desc"
-                    #         )
-                    # for dd  in data:
-
-                    #     comment = frappe.new_doc("Comment")
-                    #     comment.update(
-                    #         {
-                    #             "comment_type": "Comment",
-                    #             "reference_doctype": 'Opportunity',
-                    #             "reference_name": opportunity.name,
-                    #             "comment_email": dd,
-                    #             "comment_by": dd,
-                    #             "content": extract_images_from_html(reference_doc, content, is_private=True),
-                    #         }
-                    #     )
-
-                #         comment.insert(ignore_permissions=True)
-                #     # from frappe.utils import 
-                #     frappe.msgprint(f"New Opportunity created for lead: {self.full_name}")
- 
-                # except Exception as e:
-                #     frappe.log_error(frappe.get_traceback(), "Opportunity Creation Failed")
-                #     frappe.throw(f"Failed to create opportunity: {str(e)}")
- 
+                    frappe.throw(f"Failed to create opportunity: {str(e)}") 
 
 @frappe.whitelist()
 def log_status_change(docname, old_status, new_status, comment):
@@ -208,18 +181,21 @@ def log_status_change(docname, old_status, new_status, comment):
     Log the status change along with the comment and update the timeline of the lead.
     """
     lead = frappe.get_doc("Leads", docname)
- 
+    try:
     # Create a new comment or log for status change
-    activity = frappe.get_doc({
-        'doctype': 'Comment',
-        'reference_doctype': 'Leads',
-        'reference_name': docname,
-        'content': f"Status changed from {old_status} to {new_status} by {frappe.session.user}:\n\n> {comment}",
-        'comment_type': 'Comment',
-        'owner': frappe.session.user,
-    })
-    activity.insert(ignore_permissions=True)
- 
+        activity = frappe.get_doc({
+            'doctype': 'Comment',
+            'reference_doctype': 'Leads',
+            'reference_name': docname,
+            'content': f"Status changed from {old_status} to {new_status} by {frappe.session.user}:\n\n> {comment}",
+            'comment_type': 'Comment',
+            'owner': frappe.session.user,
+        })
+        activity.insert(ignore_permissions=True)
+    except Exception as e:
+        frappe.log_error(frappe.get_traceback(), "Status Change Logging Failed")
+        frappe.throw(f"Failed to log status change: {str(e)}")
+
     # Update the Lead's status
     lead.status = new_status
     lead.save()

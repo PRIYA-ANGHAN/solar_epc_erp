@@ -1,38 +1,45 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{electricity_provide}",
- "creation": "2025-02-12 09:59:36.838821",
+ "autoname": "format:{company_name}-{watt_peak}",
+ "creation": "2025-02-20 14:55:58.580146",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "section_break_xakp",
-  "electricity_provide",
-  "unit_rate"
+  "section_break_m507",
+  "company_name",
+  "watt_peak",
+  "price"
  ],
  "fields": [
   {
-   "fieldname": "section_break_xakp",
-   "fieldtype": "Section Break",
-   "label": "Electricity Provider"
+   "fieldname": "section_break_m507",
+   "fieldtype": "Section Break"
   },
   {
-   "fieldname": "electricity_provide",
-   "fieldtype": "Data",
-   "label": "Electricity Provide"
+   "fieldname": "company_name",
+   "fieldtype": "Link",
+   "label": "Company Name",
+   "options": "Panel Company"
   },
   {
-   "fieldname": "unit_rate",
+   "fieldname": "watt_peak",
+   "fieldtype": "Link",
+   "label": "Watt Peak",
+   "options": "Watt Peaks"
+  },
+  {
+   "fieldname": "price",
    "fieldtype": "Currency",
-   "label": "Unit rate"
+   "label": "Price"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-20 14:06:55.019457",
+ "modified": "2025-02-21 10:07:54.643680",
  "modified_by": "Administrator",
  "module": "Custom Solar",
- "name": "Electricity Provider",
+ "name": "Company Details",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [

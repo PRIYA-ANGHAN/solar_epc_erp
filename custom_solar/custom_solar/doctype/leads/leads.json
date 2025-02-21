@@ -7,6 +7,7 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "lead_details_tab",
   "personal_details_section",
   "full_name",
   "email_id",
@@ -15,6 +16,7 @@
   "date_sgma",
   "status_section_section",
   "status",
+  "tab_break_nhir",
   "section_break_6jud",
   "column_break_fsrf",
   "services",
@@ -22,7 +24,6 @@
   "watt_peakkw",
   "column_break_lz9j",
   "company_name",
-  "panel_details",
   "section_break_ahex",
   "electricity_provider",
   "unit_rate",
@@ -31,8 +32,6 @@
   "electricity_bill",
   "billing_cycle",
   "section_break_3gg2",
-  "column_break_f0wo",
-  "per_panel_price",
   "column_break_gafd",
   "panel_count",
   "section_break_djju",
@@ -130,10 +129,7 @@
    "label": "Solar Requirements and price"
   },
   {
-   "fieldname": "column_break_f0wo",
-   "fieldtype": "Column Break"
-  },
-  {
+   "fetch_from": "electricity_provider.unit_rate",
    "fieldname": "unit_rate",
    "fieldtype": "Currency",
    "label": "Unit Rate"
@@ -162,18 +158,6 @@
    "label": "Total Price"
   },
   {
-   "fieldname": "panel_details",
-   "fieldtype": "Link",
-   "label": "Panel Details",
-   "options": "Panel details"
-  },
-  {
-   "fetch_from": "panel_details.per_panel_price",
-   "fieldname": "per_panel_price",
-   "fieldtype": "Currency",
-   "label": "Per Panel price"
-  },
-  {
    "fieldname": "column_break_lz9j",
    "fieldtype": "Column Break"
   },
@@ -191,7 +175,7 @@
    "fieldname": "company_name",
    "fieldtype": "Link",
    "label": "Company Name",
-   "options": "Panel Company"
+   "options": "Company Details"
   },
   {
    "fieldname": "column_break_fsrf",
@@ -203,11 +187,21 @@
    "fieldtype": "Link",
    "label": "Services",
    "options": "Services"
+  },
+  {
+   "fieldname": "tab_break_nhir",
+   "fieldtype": "Tab Break",
+   "label": "Panel Details"
+  },
+  {
+   "fieldname": "lead_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Lead Details"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-19 17:42:56.318389",
+ "modified": "2025-02-21 11:14:32.778854",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Leads",

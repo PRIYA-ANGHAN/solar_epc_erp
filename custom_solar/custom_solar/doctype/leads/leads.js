@@ -11,25 +11,6 @@ frappe.ui.form.on('Leads', {
     required__kw: function(frm) {
         calculate_panel_count(frm);
     },
-    panel_count: function(frm) {
-        calculate_total_price(frm);
-    },
-    per_panel_price: function(frm) {
-        calculate_total_price(frm);
-    },
-    refresh(frm) {        
-        add_custom_timeline_tabs(frm); // Ensure tabs are added
-        load_site_visit_data(frm); // Load correct Site Visit data for the opened lead
-    
-        // Set Site Visit as the default tab when opening a new Lead
-        $('#site-visit-tab').addClass('active');
-        $('#activity-tab').removeClass('active');
-    
-        // Show Site Visit content and hide Activity content
-        $('#site-visit-content').show();
-        frm.timeline.timeline_items_wrapper.hide(); // Hide Activity
-        
-    },
 
     onload: function(frm) {
         if (!frm.doc.status) {
@@ -108,7 +89,7 @@ frappe.ui.form.on('Leads', {
             });
         }
     },
- 
+
     status: function(frm) {
         if (frm.doc && frm.doc.status) {
             const old_status = frm.old_status;
@@ -160,7 +141,6 @@ frappe.ui.form.on('Leads', {
     
 });
  
- 
 function calculate_required_kw(frm) {
     let electricity_bill = frm.doc.electricity_bill || 0;
     let unit_rate = frm.doc.unit_rate || 0;
@@ -172,26 +152,31 @@ function calculate_required_kw(frm) {
         frm.set_value('required__kw', required_kw.toFixed(2));
     }
 }
- 
+
 function calculate_panel_count(frm) {
-    let required_kw = frm.doc.required__kw || 0;
-    let watt_peakkw = frm.doc.watt_peakkw || 0;
-    if (required_kw > 0 && watt_peakkw > 0) {
-        let panel_count = (required_kw * 1000) / watt_peakkw;
+    // Retrieve and convert required_kw to a number
+    let required_kw = parseFloat(frm.doc.required_kw) || 0;
+    // Retrieve watt_peakkw as a string
+    let watt_peakkw = frm.doc.watt_peakkw || "";
+    
+    if (required_kw > 0 && watt_peakkw) {
+        // Extract numeric part using a regular expression
+        let match = watt_peakkw.match(/[\d.]+/);
+        if (!match) {
+            frappe.msgprint("Watt Peak value is not a valid number.");
+            return;
+        }
+        let watt_peak = parseFloat(match[0]);
+        if (watt_peak <= 0) {
+            frappe.msgprint("Watt Peak value must be greater than zero.");
+            return;
+        }
+        // Calculate panel count (converting kW to watts) and round the result
+        let panel_count = (required_kw * 1000) / watt_peak;
         frm.set_value('panel_count', Math.round(panel_count));
     }
 }
- 
-function calculate_total_price(frm) {
-    let panel_count = frm.doc.panel_count || 0;
-    let per_panel_price = frm.doc.per_panel_price || 0;
- 
-    if (panel_count > 0 && per_panel_price > 0) {
-        let total_price = panel_count * per_panel_price;
-        frm.set_value('total_price', total_price);
-    }
-}
- 
+  
 function add_custom_timeline_tabs(frm) {
     if (!frm.custom_tabs_added) {
         let timeline_wrapper = frm.timeline.wrapper;
@@ -235,7 +220,6 @@ function add_custom_timeline_tabs(frm) {
         frm.custom_tabs_added = true;
     }
 }
- 
  
 function load_site_visit_data(frm) {
  
@@ -342,6 +326,5 @@ function load_site_visit_data(frm) {
             $('#site-visit-content').html(content); // Display Site Visit data
         }
     });
- 
 }
  
