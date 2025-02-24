@@ -9,7 +9,7 @@
   "section_break_m507",
   "company_name",
   "watt_peak",
-  "price"
+  "per_panel_price"
  ],
  "fields": [
   {
@@ -29,14 +29,14 @@
    "options": "Watt Peaks"
   },
   {
-   "fieldname": "price",
+   "fieldname": "per_panel_price",
    "fieldtype": "Currency",
    "label": "Price"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-21 10:07:54.643680",
+ "modified": "2025-02-24 10:00:30.076146",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Company Details",

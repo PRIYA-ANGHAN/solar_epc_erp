@@ -7,7 +7,6 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "lead_details_tab",
   "personal_details_section",
   "full_name",
   "email_id",
@@ -16,13 +15,12 @@
   "date_sgma",
   "status_section_section",
   "status",
-  "tab_break_nhir",
   "section_break_6jud",
   "column_break_fsrf",
   "services",
   "panel_tech",
-  "watt_peakkw",
   "column_break_lz9j",
+  "watt_peakkw",
   "company_name",
   "section_break_ahex",
   "electricity_provider",
@@ -32,9 +30,11 @@
   "electricity_bill",
   "billing_cycle",
   "section_break_3gg2",
-  "column_break_gafd",
   "panel_count",
+  "column_break_gafd",
+  "system_size",
   "section_break_djju",
+  "per_panel_price",
   "total_price"
  ],
  "fields": [
@@ -175,7 +175,7 @@
    "fieldname": "company_name",
    "fieldtype": "Link",
    "label": "Company Name",
-   "options": "Company Details"
+   "options": "Panel Company"
   },
   {
    "fieldname": "column_break_fsrf",
@@ -189,19 +189,19 @@
    "options": "Services"
   },
   {
-   "fieldname": "tab_break_nhir",
-   "fieldtype": "Tab Break",
-   "label": "Panel Details"
+   "fieldname": "per_panel_price",
+   "fieldtype": "Currency",
+   "label": "Per Panel Price"
   },
   {
-   "fieldname": "lead_details_tab",
-   "fieldtype": "Tab Break",
-   "label": "Lead Details"
+   "fieldname": "system_size",
+   "fieldtype": "Data",
+   "label": "System Size"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-21 11:14:32.778854",
+ "modified": "2025-02-24 12:49:50.622006",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Leads",
