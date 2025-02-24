@@ -12,6 +12,7 @@ class Leads(Document):
         self.validate_email()
         self.calculate_required_kw()
         self.calculate_panel_count()
+        self.calculate_system_size()
         self.calculate_total_price()
 
     def validate_mobile_number(self):
@@ -65,30 +66,51 @@ class Leads(Document):
     def calculate_panel_count(self):
         """
         Calculate the number of panels required based on required__kw and watt_peakkw.
-        Auto‑calculation is performed only if panel_count is not manually set.
+        If the panel count has already been set manually, do not override it.
         """
         if self.required__kw and self.watt_peakkw:
             try:
-                # Convert required__kw to float
                 required_kw = float(self.required__kw)
-                
-                # Extract the numeric part from watt_peakkw using regex
+ 
                 watt_peak_numbers = re.findall(r"[\d.]+", self.watt_peakkw)
                 if watt_peak_numbers:
                     watt_peak = float(watt_peak_numbers[0])
                 else:
                     frappe.throw("Watt Peak value is not a valid number.")
-                
-                # Calculate panel count: (convert kW to watts) divided by watt_peak, and round up
-                panel_count_calc = (required_kw * 1000) / watt_peak
-                self.panel_count = math.ceil(panel_count_calc)
-                frappe.msgprint("Panel Count calculated: {} panels".format(self.panel_count))
+ 
+                panel_count_calc = math.ceil((required_kw * 1000) / watt_peak)
+ 
+                # Only set panel_count if it is empty or unchanged
+                if not self.panel_count or self.panel_count == math.ceil((required_kw * 1000) / watt_peak):
+                    self.panel_count = panel_count_calc  # Auto-calculate only if unchanged
+ 
+                frappe.msgprint(f"Panel Count calculated: {self.panel_count} panels")
             except ZeroDivisionError:
                 frappe.throw("Watt Peak value cannot be zero.")
             except ValueError:
                 frappe.throw("Invalid input values for Required KW or Watt Peak per kW.")
         else:
             self.panel_count = 0
+
+
+    def calculate_system_size(self):
+        """
+        Calculate System Size = (panel_count * watt_peakkw) / 1000
+        """
+        if self.panel_count and self.watt_peakkw:
+            try:
+                watt_peak_numbers = re.findall(r"[\d.]+", self.watt_peakkw)
+                if watt_peak_numbers:
+                    watt_peak = float(watt_peak_numbers[0])
+                else:
+                    frappe.throw("Watt Peak value is not a valid number.")
+ 
+                self.system_size = (self.panel_count * watt_peak) / 1000
+            except ValueError:
+                frappe.throw("Invalid values for Panel Count or Watt Peak.")
+        else:
+            self.system_size = 0
+ 
 
 
     def calculate_total_price(self):
@@ -190,6 +212,7 @@ class Leads(Document):
                 except Exception as e:
                     frappe.log_error(frappe.get_traceback(), "Opportunity Creation Failed")
                     frappe.throw(f"Failed to create opportunity: {str(e)}")
+
 
 @frappe.whitelist()
 def log_status_change(docname, old_status, new_status, comment):

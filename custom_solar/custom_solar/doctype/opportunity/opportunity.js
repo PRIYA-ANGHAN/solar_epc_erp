@@ -71,6 +71,12 @@ function add_custom_tabs(frm) {
 
 function load_site_visit_data(frm) {
     $('#site-visit-content').html('');  // Clear previous Site Visit data
+ 
+    frm.timeline.timeline_items_wrapper.hide();
+    frm.timeline.wrapper.find('.timeline-item').hide(); // Hide Activity content
+ 
+    frm.timeline.timeline_items_wrapper.show(); // Ensure timeline is visible
+ 
 
     frappe.call({
         method: 'custom_solar.custom_solar.doctype.leads.leads.get_site_visit_history',
