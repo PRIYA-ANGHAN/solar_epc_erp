@@ -32,6 +32,7 @@
   "column_break_f0wo",
   "panel_count",
   "section_break_djju",
+  "per_panel_price",
   "total_price"
  ],
  "fields": [
@@ -132,7 +133,7 @@
    "fieldname": "company_name",
    "fieldtype": "Link",
    "label": "Company Name",
-   "options": "Panel Company"
+   "options": "Company Details"
   },
   {
    "fetch_from": "panel_details.watt_peakkw",
@@ -178,11 +179,17 @@
    "fieldtype": "Select",
    "label": "Status",
    "options": "Unqualified Suspect\nFollow Up\nSite Visit Schedule\nSite Visit Done\nDormant\nClosed"
+  },
+  {
+   "fetch_from": "company_name.per_panel_price",
+   "fieldname": "per_panel_price",
+   "fieldtype": "Currency",
+   "label": "Per Panel Price"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-20 14:29:38.949835",
+ "modified": "2025-02-24 09:28:27.563744",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Leads",

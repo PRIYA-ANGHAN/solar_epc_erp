@@ -12,6 +12,14 @@ frappe.ui.form.on('Leads', {
     required__kw: function(frm) {
         calculate_panel_count(frm);
     },
+    panel_count: function(frm) {
+        calculate_total_price(frm);
+    },
+    per_panel_price: function(frm) {
+        calculate_total_price(frm);
+    },
+
+
     refresh: function(frm) {
         add_custom_timeline_tabs(frm); // Ensure tabs are added
         load_site_visit_data(frm); // Load correct Site Visit data for the opened lead
@@ -74,7 +82,7 @@ frappe.ui.form.on('Leads', {
             frm.set_query("company_name", function() {
                 return {
                     filters: {
-                        "service": ["in", frm.doc.services.map(service => service.service)]  // Filter Company based on Services
+                        "watt_peak": frm.doc.watt_peakkw
                     }
                 };
             });
@@ -85,7 +93,6 @@ frappe.ui.form.on('Leads', {
         }
     },
     
-
     status: function(frm) {
         if (frm.doc && frm.doc.status) {
             const old_status = frm.old_status;
@@ -137,6 +144,17 @@ frappe.ui.form.on('Leads', {
     
 });
 
+function calculate_total_price(frm) {
+    // Convert both fields to numbers (default to 0 if empty/NaN)
+    let panel_count = parseFloat(frm.doc.panel_count) || 0;
+    let per_panel_price = parseFloat(frm.doc.per_panel_price) || 0;
+    
+    // Calculate the total
+    let total = panel_count * per_panel_price;
+    
+    // Update the total_price field
+    frm.set_value('total_price', total);
+}
 
 function calculate_required_kw(frm) {
     let electricity_bill = frm.doc.electricity_bill || 0;
@@ -150,11 +168,10 @@ function calculate_required_kw(frm) {
         frm.set_value('required__kw', required_kw.toFixed(2));
     }
 }
-
 function calculate_panel_count(frm) {
-    // Retrieve and convert required_kw to a number
-    let required_kw = parseFloat(frm.doc.required_kw) || 0;
-    // Retrieve watt_peakkw as a string
+    // Convert required__kw to a number
+    let required_kw = parseFloat(frm.doc.required__kw) || 0;
+    // Get watt_peakkw as a string
     let watt_peakkw = frm.doc.watt_peakkw || "";
     
     if (required_kw > 0 && watt_peakkw) {
@@ -169,9 +186,11 @@ function calculate_panel_count(frm) {
             frappe.msgprint("Watt Peak value must be greater than zero.");
             return;
         }
-        // Calculate panel count (converting kW to watts) and round the result
+        // Calculate panel count (convert kW to watts) and round the result
         let panel_count = (required_kw * 1000) / watt_peak;
         frm.set_value('panel_count', Math.round(panel_count));
+    } else {
+        frm.set_value('panel_count', 0);
     }
 }
 
