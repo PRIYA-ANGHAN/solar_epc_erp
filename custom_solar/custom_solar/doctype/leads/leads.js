@@ -110,6 +110,7 @@ frappe.ui.form.on('Leads', {
             });
         }
     },
+    
     company_name: function(frm) {           //this filter is for panel per price from company detail doctype
         if (frm.doc.company_name && frm.doc.watt_peakkw) {
             frappe.call({

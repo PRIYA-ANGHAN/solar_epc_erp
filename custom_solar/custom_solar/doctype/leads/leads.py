@@ -61,8 +61,6 @@ class Leads(Document):
             except ZeroDivisionError:
                 frappe.throw("Unit Rate cannot be zero.")
 
-
-
     def calculate_panel_count(self):
         """
         Calculate the number of panels required based on required__kw and watt_peakkw.
@@ -92,7 +90,6 @@ class Leads(Document):
         else:
             self.panel_count = 0
 
-
     def calculate_system_size(self):
         """
         Calculate System Size = (panel_count * watt_peakkw) / 1000
@@ -111,8 +108,6 @@ class Leads(Document):
         else:
             self.system_size = 0
  
-
-
     def calculate_total_price(self):
         """Calculate total price = panel_count * per_panel_price"""
         if self.panel_count and self.per_panel_price:
@@ -212,7 +207,6 @@ class Leads(Document):
                 except Exception as e:
                     frappe.log_error(frappe.get_traceback(), "Opportunity Creation Failed")
                     frappe.throw(f"Failed to create opportunity: {str(e)}")
-
 
 @frappe.whitelist()
 def log_status_change(docname, old_status, new_status, comment):

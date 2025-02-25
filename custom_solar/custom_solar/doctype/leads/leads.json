@@ -31,9 +31,11 @@
   "section_break_3gg2",
   "column_break_f0wo",
   "panel_count",
+  "column_break_fwdd",
   "system_size",
   "section_break_djju",
   "per_panel_price",
+  "column_break_n9cj",
   "total_price"
  ],
  "fields": [
@@ -190,11 +192,19 @@
    "fieldname": "system_size",
    "fieldtype": "Data",
    "label": "System Size"
+  },
+  {
+   "fieldname": "column_break_fwdd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_n9cj",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-24 15:25:43.339415",
+ "modified": "2025-02-25 16:06:24.630415",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Leads",
