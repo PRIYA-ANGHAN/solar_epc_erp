@@ -411,4 +411,3 @@ function load_site_visit_data(frm) {
         }
     });
 }
- 

@@ -2,7 +2,7 @@ import frappe
 from frappe.model.document import Document
 import re
 import math
- 
+
 class Leads(Document):
     def validate(self):
         """
@@ -12,8 +12,9 @@ class Leads(Document):
         self.validate_email()
         self.calculate_required_kw()
         self.calculate_panel_count()
+        self.calculate_system_size()
         self.calculate_total_price()
- 
+
     def validate_mobile_number(self):
         """
         Validate and normalize the mobile number.
@@ -22,32 +23,32 @@ class Leads(Document):
         """
         if not self.mobile_no:
             return
- 
+
         self.mobile_no = self.mobile_no.strip()
- 
+
         # Check for recognized country code; otherwise, add the default "+91"
         if not self.mobile_no.startswith(("+91", "+", "1", "44", "91", "0")):
             self.mobile_no = "+91 " + self.mobile_no.lstrip("0")
         else:
             self.mobile_no = self.mobile_no.lstrip("0")
- 
+
         # Validate mobile number pattern: optional '+' with 1-3 digits, a space, then 10 digits.
         pattern = r'^\+?\d{1,3} \d{10}$'
         if not re.match(pattern, self.mobile_no):
             frappe.throw("Mobile number must follow the format: <Country Code> <10-digit phone number>")
- 
+
     def validate_email(self):
         """
         Validate the email address format.
         """
         if not self.email_id:
             return
- 
+
         self.email_id = self.email_id.strip()
         email_pattern = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
         if not re.match(email_pattern, self.email_id):
             frappe.throw("Invalid email format. Please enter a valid email address.")
- 
+
     def calculate_required_kw(self):
         """
         Calculate the required kW based on the electricity bill, unit rate,
@@ -59,7 +60,7 @@ class Leads(Document):
                 self.required__kw = self.electricity_bill / (billing_cycle_factor * self.unit_rate)
             except ZeroDivisionError:
                 frappe.throw("Unit Rate cannot be zero.")
- 
+
     def calculate_panel_count(self):
         """
         Calculate the number of panels required based on required__kw and watt_peakkw.
@@ -68,19 +69,19 @@ class Leads(Document):
         if self.required__kw and self.watt_peakkw:
             try:
                 required_kw = float(self.required__kw)
-
+ 
                 watt_peak_numbers = re.findall(r"[\d.]+", self.watt_peakkw)
                 if watt_peak_numbers:
                     watt_peak = float(watt_peak_numbers[0])
                 else:
                     frappe.throw("Watt Peak value is not a valid number.")
-
+ 
                 panel_count_calc = math.ceil((required_kw * 1000) / watt_peak)
-
+ 
                 # Only set panel_count if it is empty or unchanged
                 if not self.panel_count or self.panel_count == math.ceil((required_kw * 1000) / watt_peak):
                     self.panel_count = panel_count_calc  # Auto-calculate only if unchanged
-
+ 
                 frappe.msgprint(f"Panel Count calculated: {self.panel_count} panels")
             except ZeroDivisionError:
                 frappe.throw("Watt Peak value cannot be zero.")
@@ -89,14 +90,6 @@ class Leads(Document):
         else:
             self.panel_count = 0
 
-    def calculate_total_price(self):
-        """Calculate total price = panel_count * per_panel_price"""
-        if self.panel_count and self.per_panel_price:
-            # Both are numeric; compute total
-            self.total_price = self.panel_count * self.per_panel_price
-        else:
-            self.total_price = 0
-    
     def calculate_system_size(self):
         """
         Calculate System Size = (panel_count * watt_peakkw) / 1000
@@ -108,14 +101,21 @@ class Leads(Document):
                     watt_peak = float(watt_peak_numbers[0])
                 else:
                     frappe.throw("Watt Peak value is not a valid number.")
-
+ 
                 self.system_size = (self.panel_count * watt_peak) / 1000
             except ValueError:
                 frappe.throw("Invalid values for Panel Count or Watt Peak.")
         else:
             self.system_size = 0
-
  
+    def calculate_total_price(self):
+        """Calculate total price = panel_count * per_panel_price"""
+        if self.panel_count and self.per_panel_price:
+            # Both are numeric; compute total
+            self.total_price = self.panel_count * self.per_panel_price
+        else:
+            self.total_price = 0
+
     def on_update(self):
         """Ensure validation happens when the record is updated."""
         self.validate()  # Ensure validation happens on update
@@ -178,6 +178,7 @@ class Leads(Document):
                     opportunity.insert(ignore_permissions=True)
                     frappe.db.commit()
  
+ 
                     # Fetch comments from Leads
                     comments = frappe.get_all(
                         "Comment",
@@ -206,7 +207,7 @@ class Leads(Document):
                 except Exception as e:
                     frappe.log_error(frappe.get_traceback(), "Opportunity Creation Failed")
                     frappe.throw(f"Failed to create opportunity: {str(e)}")
- 
+
 @frappe.whitelist()
 def log_status_change(docname, old_status, new_status, comment):
     """
@@ -226,12 +227,12 @@ def log_status_change(docname, old_status, new_status, comment):
     except Exception as e:
         frappe.log_error(frappe.get_traceback(), "Status Change Logging Failed")
         frappe.throw(f"Failed to log status change: {str(e)}")
- 
+
     # Update the Lead's status
     lead.status = new_status
     lead.save()
     return {"message": "Status change logged successfully"}
- 
+
 @frappe.whitelist()
 def get_site_visit_history(**kwargs):
     """
@@ -250,4 +251,3 @@ def get_site_visit_history(**kwargs):
     if not visits:
         return {"message": "No site visits found for this lead"}
     return visits
- 

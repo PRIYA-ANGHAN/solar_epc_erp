@@ -1,13 +1,13 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{company_name}-{watt_peak}",
+ "autoname": "format:{panel_company}-{watt_peak}",
  "creation": "2025-02-20 14:55:58.580146",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "section_break_m507",
-  "company_name",
+  "panel_company",
   "watt_peak",
   "per_panel_price"
  ],
@@ -15,12 +15,6 @@
   {
    "fieldname": "section_break_m507",
    "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "company_name",
-   "fieldtype": "Link",
-   "label": "Company Name",
-   "options": "Panel Company"
   },
   {
    "fieldname": "watt_peak",
@@ -32,11 +26,17 @@
    "fieldname": "per_panel_price",
    "fieldtype": "Currency",
    "label": "Price"
+  },
+  {
+   "fieldname": "panel_company",
+   "fieldtype": "Link",
+   "label": "Panel Company",
+   "options": "Panel Company"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-24 10:00:30.076146",
+ "modified": "2025-02-25 16:31:33.255737",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Company Details",
