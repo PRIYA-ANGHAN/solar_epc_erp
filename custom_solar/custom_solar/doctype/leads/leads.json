@@ -16,6 +16,7 @@
   "status_section_section",
   "status",
   "section_break_6jud",
+  "column_break_fsrf",
   "services",
   "electricity_provider",
   "billing_cycle",
@@ -29,9 +30,12 @@
   "column_break_taqo",
   "company_name",
   "section_break_3gg2",
-  "column_break_f0wo",
   "panel_count",
+  "column_break_gafd",
+  "system_size",
   "section_break_djju",
+  "per_panel_price",
+  "column_break_brgv",
   "total_price"
  ],
  "fields": [
@@ -119,20 +123,10 @@
    "label": "Solar Requirements and price"
   },
   {
-   "fieldname": "column_break_f0wo",
-   "fieldtype": "Column Break"
-  },
-  {
    "fetch_from": "electricity_provider.unit_rate",
    "fieldname": "unit_rate",
    "fieldtype": "Currency",
    "label": "Unit Rate"
-  },
-  {
-   "fieldname": "company_name",
-   "fieldtype": "Link",
-   "label": "Company Name",
-   "options": "Panel Company"
   },
   {
    "fetch_from": "panel_details.watt_peakkw",
@@ -154,7 +148,7 @@
   },
   {
    "fieldname": "total_price",
-   "fieldtype": "Data",
+   "fieldtype": "Currency",
    "label": "Total Price"
   },
   {
@@ -162,10 +156,8 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "services",
-   "fieldtype": "Link",
-   "label": "Services",
-   "options": "Services"
+   "fieldname": "column_break_gafd",
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "panel_tech",
@@ -174,15 +166,40 @@
    "options": "Panel Tech"
   },
   {
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "label": "Status",
-   "options": "Unqualified Suspect\nFollow Up\nSite Visit Schedule\nSite Visit Done\nDormant\nClosed"
+   "fieldname": "company_name",
+   "fieldtype": "Link",
+   "label": "Company Name",
+   "options": "Panel Company"
+  },
+  {
+   "fieldname": "column_break_fsrf",
+   "fieldtype": "Column Break",
+   "options": "Services"
+  },
+  {
+   "fieldname": "services",
+   "fieldtype": "Link",
+   "label": "Services",
+   "options": "Services"
+  },
+  {
+   "fieldname": "per_panel_price",
+   "fieldtype": "Currency",
+   "label": "Per Panel Price"
+  },
+  {
+   "fieldname": "system_size",
+   "fieldtype": "Data",
+   "label": "System Size"
+  },
+  {
+   "fieldname": "column_break_brgv",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-20 14:29:38.949835",
+ "modified": "2025-02-25 16:06:12.093376",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Leads",

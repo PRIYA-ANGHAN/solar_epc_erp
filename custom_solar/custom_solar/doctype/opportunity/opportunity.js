@@ -1,8 +1,8 @@
 frappe.ui.form.on('Opportunity', {
-    refresh(frm) {
+    refresh: function(frm) {
         add_custom_tabs(frm); // Ensure tabs are added
         load_site_visit_data(frm); // Load Site Visit data for the opened lead
-        load_activity_data(frm);  // Load Activity data (as part of timeline)
+        // load_activity_data(frm);  // Load Activity data (as part of timeline)
 
         // Set Site Visit as the default tab when opening a new Opportunity
         $('#site-visit-tab').addClass('active');
@@ -43,6 +43,8 @@ function add_custom_tabs(frm) {
         load_site_visit_data(frm);
 
 
+        load_site_visit_data(frm);
+
         // Bind Activity tab click event to toggle visibility of content
         $('#activity-tab').on('click', function() {
             $('#site-visit-content').hide();  // Hide Site Visit content
@@ -71,6 +73,11 @@ function add_custom_tabs(frm) {
 
 function load_site_visit_data(frm) {
     $('#site-visit-content').html('');  // Clear previous Site Visit data
+
+    frm.timeline.timeline_items_wrapper.hide();
+    frm.timeline.wrapper.find('.timeline-item').hide(); // Hide Activity content
+ 
+    frm.timeline.timeline_items_wrapper.show(); // Ensure timeline is visible
 
     frappe.call({
         method: 'custom_solar.custom_solar.doctype.leads.leads.get_site_visit_history',
@@ -166,37 +173,6 @@ function load_site_visit_data(frm) {
             });
 
             $('#site-visit-content').html(content); // Display Site Visit data
-        }
-    });
-}
-
-function load_activity_data(frm) {
-    // Hide Activity content initially
-    frm.timeline.timeline_items_wrapper.hide();
-    frm.timeline.wrapper.find('.timeline-item').hide();
-    frm.timeline.timeline_items_wrapper.show();
-
-    // let old_status = frm.doc.status;  // Get the current status before change
-    // let new_status = frm.doc.status;  // Get the actual changed status
-    // let comment = "Viewing activity logs"; // Optional comment
-
-    frappe.call({
-        method: 'custom_solar.custom_solar.doctype.leads.leads.log_status_change',
-        args: {
-            docname: frm.doc.lead_id,  
-            old_status: old_status,  
-            new_status: new_status,  // Use actual status
-            comment: comment  
-        },
-        callback: function(response) {
-            let activities = response.message || [];
-            let content = '';
-
-            activities.forEach((activity) => {
-                content += `<div class="activity-log">${activity.content || 'No content available.'}</div>`;
-            });
-
-            $('#activity-content').html(content);
         }
     });
 }
