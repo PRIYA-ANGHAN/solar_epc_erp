@@ -44,7 +44,7 @@ frappe.listview_settings["Leads"] = {
                 indicator[1] = "blue";  // Blue color for Site Visit Schedule
                 break;
             case "Site Visit Done":
-                indicator[1] = "lightblue";  // Lightblue color for Site Visit Done
+                indicator[1] = "pink";  // pink color for Site Visit Done
                 break;
             case "Dormant":
                 indicator[1] = "grey";  // Grey color for Dormant
@@ -53,7 +53,6 @@ frappe.listview_settings["Leads"] = {
                 indicator[1] = "transparent";  // Default color if status is not listed
                 break;
         }
- 
         return indicator;  // Return the color indicator array
     }
 };

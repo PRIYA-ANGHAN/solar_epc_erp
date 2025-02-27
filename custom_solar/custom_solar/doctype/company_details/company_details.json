@@ -1,0 +1,64 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{panel_company}-{watt_peak}",
+ "creation": "2025-02-20 14:55:58.580146",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_m507",
+  "panel_company",
+  "watt_peak",
+  "per_panel_price"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_m507",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "watt_peak",
+   "fieldtype": "Link",
+   "label": "Watt Peak",
+   "options": "Watt Peaks"
+  },
+  {
+   "fieldname": "per_panel_price",
+   "fieldtype": "Currency",
+   "label": "Price"
+  },
+  {
+   "fieldname": "panel_company",
+   "fieldtype": "Link",
+   "label": "Panel Company",
+   "options": "Panel Company"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-02-27 12:35:18.146511",
+ "modified_by": "Administrator",
+ "module": "Custom Solar",
+ "name": "Company Details",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "panel_company"
+}

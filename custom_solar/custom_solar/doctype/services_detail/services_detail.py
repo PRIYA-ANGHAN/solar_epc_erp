@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class Paneldetails(Document):
+class servicesdetail(Document):
 	pass

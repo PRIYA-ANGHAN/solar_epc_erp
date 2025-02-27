@@ -1,4 +1,3 @@
-
 frappe.ui.form.on('Leads', {
     electricity_bill: function(frm) {
         calculate_required_kw(frm);
@@ -18,7 +17,14 @@ frappe.ui.form.on('Leads', {
     per_panel_price: function(frm) {
         calculate_total_price(frm);
     },
-    refresh(frm) {        
+    panel_count: function(frm) {
+        calculate_system_size(frm);
+    },
+    watt_peakkw: function(frm) {
+        calculate_system_size(frm);
+    },
+ 
+    refresh: function(frm) {
         add_custom_timeline_tabs(frm); // Ensure tabs are added
         load_site_visit_data(frm); // Load correct Site Visit data for the opened lead
     
@@ -30,7 +36,7 @@ frappe.ui.form.on('Leads', {
         $('#site-visit-content').show();
         frm.timeline.timeline_items_wrapper.hide(); // Hide Activity
     },
-    
+     
     onload: function(frm) {
         if (!frm.doc.status) {
             frm.old_status = "";
@@ -38,85 +44,109 @@ frappe.ui.form.on('Leads', {
             frm.old_status = frm.doc.status;
         }
         console.log("Initial Status:", frm.old_status);
+
+        if (!frm.doc.mobile_no) {  
+            frm.set_value('mobile_no', '+91 ');  
+        }
+    },
+ 
+    services: function(frm) {
+        if (frm.doc.services && frm.doc.services.length > 0) {
+            let selected_services = frm.doc.services;
+            console.log(selected_services)
+    
+            frm.set_query("panel_tech", function() {
+                return {
+                    filters: {
+                        "service": frm.doc.services  // Filter Panel Tech based on selected Service
+                    }
+                };
+            });
+        } else {
+            frm.set_query('panel_tech', function() {
+                return {};
+            });
+        }
+    },
+ 
+    panel_tech: function(frm) {
+        if (frm.doc.panel_tech) {
+            frm.set_query("watt_peakkw", function() {
+                return {
+                    filters: {
+                        "panel_tech": frm.doc.panel_tech  // Filter Watt Peak based on selected Panel Tech
+                    }
+                };
+            });
+        } else {
+            frm.set_query("watt_peakkw", function() {
+                return {};
+            });
+        }
     },
     
-    // company_name: function(frm) {
-    //     if (frm.doc.company_name) {
-    //         frappe.call({
-    //             method: "custom_solar.custom_solar.doctype.leads.leads.get_services",
-    //             args: {
-    //                 company_name: frm.doc.company_name
-    //             },
-    //             callback: function(r) {
-    //                 if (r.message) {
-    //                     // Set the fetched services and make the field read-only
-    //                     frm.set_value("service", r.message.map(service => service.service).join(", "));
-    //                     frm.set_df_property("service", "read_only", 1);
-    //                 } else {
-    //                     frm.set_value("service", "");
-    //                     frappe.msgprint("No services found for the selected company.");
-    //                 }
-    //             }
-    //         });
-    //     } else {
-    //         frm.set_value("service", "");
-    //     }
-    // }
-    
-
-    refresh: function(frm) {
-        // Make the service field read-only initially
-        frm.set_df_property("service", "read_only", 1);
-    },
-
-    company_name: function(frm) {
-        if (frm.doc.company_name) {
+    watt_peakkw: function(frm) {
+        if (frm.doc.watt_peakkw) {
             frappe.call({
-                method: "custom_solar.custom_solar.doctype.leads.leads.get_services",
+                method: 'frappe.client.get_list',
                 args: {
-                    company_name: frm.doc.company_name
+                    doctype: 'Company Details', //get filter from company detail doctype
+                    filters: { 'watt_peak': frm.doc.watt_peakkw }, //filter according wattpeak
+                    fields: ['panel_company']
                 },
-                callback: function(r) {
-                    if (r.message && r.message.length > 0) {
-                        // Clear existing entries in the service child table
-                        frm.clear_table("service");
-
-                        // Add fetched services automatically
-                        r.message.forEach(service => {
-                            let row = frm.add_child("service");
-                            row.service = service.service;
+                callback: function(response) {
+                    if (response.message) {
+                        let company_list = response.message.map(c => c.panel_company);
+                        frm.set_query("company_name", function() {
+                            return {
+                                filters: { "name": ["in", company_list] }
+                            };
                         });
-
-                        // Refresh the child table field
-                        frm.refresh_field("service");
-
-                        // Make the service field read-only
-                        frm.set_df_property("service", "read_only", 1);
-                    } else {
-                        frm.clear_table("service");
-                        frm.refresh_field("service");
-                        frappe.msgprint("No services found for the selected company.");
                     }
                 }
             });
         } else {
-            // If no company is selected, clear the service field
-            frm.clear_table("service");
-            frm.refresh_field("service");
+            frm.set_query("company_name", function() {
+                return {};
+            });
         }
     },
-
+    
+    company_name: function(frm) {           //this filter is for panel per price from company detail doctype
+        if (frm.doc.company_name && frm.doc.watt_peakkw) {
+            frappe.call({
+                method: 'frappe.client.get_value',
+                args: {
+                    doctype: 'Company Details',
+                    filters: {
+                        'panel_company': frm.doc.company_name,
+                        'watt_peak': frm.doc.watt_peakkw
+                    },
+                    fieldname: 'per_panel_price'
+                },
+                callback: function(response) {
+                    if (response.message) {
+                        frm.set_value("per_panel_price", response.message.per_panel_price);
+                    } else {
+                        frm.set_value("per_panel_price", "");
+                    }
+                }
+            });
+        } else {
+            frm.set_value("per_panel_price", "");
+        }
+    },
 
     status: function(frm) {
         if (frm.doc && frm.doc.status) {
             const old_status = frm.old_status;
             const new_status = frm.doc.status;
-
+ 
             if (old_status !== new_status) {
                 console.log('Status has changed.');
                 console.log('Old Status:', old_status);
                 console.log('New Status:', new_status);
-
+ 
                 setTimeout(() => {
                     frappe.prompt(
                         {
@@ -127,10 +157,10 @@ frappe.ui.form.on('Leads', {
                         },
                         (values) => {
                             console.log('Comment added:', values.status_comment);
-
+ 
                             // const content = `Status changed from **${old_status}** to **${new_status}** by ${frappe.session.user}:\n\n> **"${values.status_comment}"**`;
                             const content = `Status changed from **${old_status}** to **${new_status}** by ${frappe.session.user}:\n\n> **"${values.status_comment}"**`;
-
+ 
                             frappe.call({
                                 method: 'frappe.desk.form.utils.add_comment',
                                 args: {
@@ -157,43 +187,84 @@ frappe.ui.form.on('Leads', {
     }
     
 });
-
-
+ 
+function calculate_total_price(frm) {
+    // Convert both fields to numbers (default to 0 if empty/NaN)
+    let panel_count = parseFloat(frm.doc.panel_count) || 0;
+    let per_panel_price = parseFloat(frm.doc.per_panel_price) || 0;
+    
+    // Calculate the total
+    let total = panel_count * per_panel_price;
+    
+    // Update the total_price field
+    frm.set_value('total_price', total);
+}
+ 
 function calculate_required_kw(frm) {
     let electricity_bill = frm.doc.electricity_bill || 0;
     let unit_rate = frm.doc.unit_rate || 0;
     let billing_cycle = frm.doc.billing_cycle;
-
+ 
     if (electricity_bill > 0 && unit_rate > 0 && billing_cycle) {
         let divisor = (billing_cycle === "1 Month") ? 120 : 240;
+        // let required_kw = electricity_bill / (divisor * unit_rate);
         let required_kw = electricity_bill / (divisor * unit_rate);
         frm.set_value('required__kw', required_kw.toFixed(2));
     }
 }
-
+ 
 function calculate_panel_count(frm) {
-    let required_kw = frm.doc.required__kw || 0;
-    let watt_peakkw = frm.doc.watt_peakkw || 0;
-    if (required_kw > 0 && watt_peakkw > 0) {
-        let panel_count = (required_kw * 1000) / watt_peakkw;
-        frm.set_value('panel_count', Math.round(panel_count));
+    let required_kw = parseFloat(frm.doc.required__kw) || 0;
+    let watt_peakkw = frm.doc.watt_peakkw || "";
+
+    if (required_kw > 0 && watt_peakkw) {
+        let match = watt_peakkw.match(/[\d.]+/);
+        if (!match) {
+            frappe.msgprint("Watt Peak value is not a valid number.");
+            return;
+        }
+
+        let watt_peak = parseFloat(match[0]);
+        if (watt_peak <= 0) {
+            frappe.msgprint("Watt Peak value must be greater than zero.");
+            return;
+        }
+
+        let panel_count = Math.ceil((required_kw * 1000) / watt_peak);
+
+        // Only auto-update panel_count if it has not been manually modified
+        if (!frm.doc.panel_count || frm.doc.panel_count === panel_count) {
+            frm.set_value("panel_count", panel_count);
+        }
+    } else {
+        frm.set_value("panel_count", 0);
     }
 }
 
-function calculate_total_price(frm) {
-    let panel_count = frm.doc.panel_count || 0;
-    let per_panel_price = frm.doc.per_panel_price || 0;
+function calculate_system_size(frm) {
+    let panel_count = parseFloat(frm.doc.panel_count) || 0;
+    let watt_peakkw = frm.doc.watt_peakkw || "";
 
-    if (panel_count > 0 && per_panel_price > 0) {
-        let total_price = panel_count * per_panel_price;
-        frm.set_value('total_price', total_price);
+    if (panel_count > 0 && watt_peakkw) {
+        let match = watt_peakkw.match(/[\d.]+/);
+        if (!match) {
+            frappe.msgprint("Watt Peak value is not a valid number.");
+            return;
+        }
+
+        let watt_peak = parseFloat(match[0]);
+        let system_size = (panel_count * watt_peak) / 1000;
+
+        frm.set_value("system_size", system_size.toFixed(2));
+    } else {
+        frm.set_value("system_size", 0);
     }
 }
 
 function add_custom_timeline_tabs(frm) {
     if (!frm.custom_tabs_added) {
         let timeline_wrapper = frm.timeline.wrapper;
-
+ 
         let tab_html = `
         <ul class="nav nav-tabs" id="customTab" role="tablist">
             <li class="nav-item">
@@ -207,33 +278,32 @@ function add_custom_timeline_tabs(frm) {
             <div class="tab-pane fade show active" id="site-visit-content" role="tabpanel"></div>
             <div class="tab-pane fade" id="activity-content" role="tabpanel"></div>
         </div>`;
-
+ 
         $(timeline_wrapper).prepend(tab_html);
-
+ 
         load_site_visit_data(frm);
-
+ 
         $('#activity-tab').on('click', function() {
             $('#site-visit-content').hide();
             frm.timeline.timeline_items_wrapper.show();
             frm.timeline.wrapper.find('.timeline-item').show();
-
+ 
             $('#site-visit-tab').removeClass('active');
             $('#activity-tab').addClass('active');
         });
-
+ 
         $('#site-visit-tab').on('click', function() {
             frm.timeline.timeline_items_wrapper.hide();
             frm.timeline.wrapper.find('.timeline-item').hide();
             $('#site-visit-content').show();
-
+ 
             $('#activity-tab').removeClass('active');
             $('#site-visit-tab').addClass('active');
         });
-
+ 
         frm.custom_tabs_added = true;
     }
 }
-
  
 function load_site_visit_data(frm) {
  
