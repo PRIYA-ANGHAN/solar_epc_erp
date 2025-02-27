@@ -130,7 +130,6 @@ frappe.ui.form.on('Leads', {
                         frm.set_value("per_panel_price", response.message.per_panel_price);
                     } else {
                         frm.set_value("per_panel_price", "");
-
                     }
                 };
             });
@@ -201,7 +200,7 @@ function calculate_total_price(frm) {
     // Update the total_price field
     frm.set_value('total_price', total);
 }
- 
+
 function calculate_required_kw(frm) {
     let electricity_bill = frm.doc.electricity_bill || 0;
     let unit_rate = frm.doc.unit_rate || 0;
@@ -218,15 +217,12 @@ function calculate_required_kw(frm) {
 function calculate_panel_count(frm) {
     let required_kw = parseFloat(frm.doc.required__kw) || 0;
     let watt_peakkw = frm.doc.watt_peakkw || "";
-
     if (required_kw > 0 && watt_peakkw) {
-
         let match = watt_peakkw.match(/[\d.]+/);
         if (!match) {
             frappe.msgprint("Watt Peak value is not a valid number.");
             return;
         }
-
         let watt_peak = parseFloat(match[0]);
         if (watt_peak <= 0) {
             frappe.msgprint("Watt Peak value must be greater than zero.");
@@ -234,7 +230,6 @@ function calculate_panel_count(frm) {
         }
 
         let panel_count = Math.ceil((required_kw * 1000) / watt_peak);
-
         // Only auto-update panel_count if it has not been manually modified
         if (!frm.doc.panel_count || frm.doc.panel_count === panel_count) {
             frm.set_value("panel_count", panel_count);
@@ -247,7 +242,6 @@ function calculate_panel_count(frm) {
 function calculate_system_size(frm) {
     let panel_count = parseFloat(frm.doc.panel_count) || 0;
     let watt_peakkw = frm.doc.watt_peakkw || "";
-
     if (panel_count > 0 && watt_peakkw) {
         let match = watt_peakkw.match(/[\d.]+/);
         if (!match) {
@@ -257,7 +251,6 @@ function calculate_system_size(frm) {
 
         let watt_peak = parseFloat(match[0]);
         let system_size = (panel_count * watt_peak) / 1000;
-
         frm.set_value("system_size", system_size.toFixed(2));
     } else {
         frm.set_value("system_size", 0);

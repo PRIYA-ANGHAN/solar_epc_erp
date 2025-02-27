@@ -3,3 +3,4 @@ from frappe import Document
 
 class Opportunity(Document):
     pass
+

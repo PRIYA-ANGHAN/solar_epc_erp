@@ -31,13 +31,13 @@
   {
    "fieldname": "service",
    "fieldtype": "Table MultiSelect",
-   "label": "service",
+   "label": "Service",
    "options": "Multiselect"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-07 11:46:20.811556",
+ "modified": "2025-02-25 15:57:18.962741",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Panel Company",
