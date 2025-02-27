@@ -1,0 +1,65 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{company_name}-{capacity_kw}",
+ "creation": "2025-02-27 14:35:45.466434",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_e3ko",
+  "company_name",
+  "capacity_kw",
+  "rate__qty"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_e3ko",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Company Name"
+  },
+  {
+   "fieldname": "capacity_kw",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Capacity KW"
+  },
+  {
+   "fieldname": "rate__qty",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Rate / qty."
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-02-27 14:40:19.222522",
+ "modified_by": "Administrator",
+ "module": "Custom Solar",
+ "name": "Inverter",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "company_name"
+}

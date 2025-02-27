@@ -23,7 +23,7 @@ frappe.ui.form.on('Leads', {
     watt_peakkw: function(frm) {
         calculate_system_size(frm);
     },
- 
+
     refresh: function(frm) {
         add_custom_timeline_tabs(frm); // Ensure tabs are added
         load_site_visit_data(frm); // Load correct Site Visit data for the opened lead
