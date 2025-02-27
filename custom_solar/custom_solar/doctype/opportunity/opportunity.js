@@ -1,8 +1,8 @@
 frappe.ui.form.on('Opportunity', {
-    refresh(frm) {
+    refresh: function(frm) {
         add_custom_tabs(frm); // Ensure tabs are added
         load_site_visit_data(frm); // Load Site Visit data for the opened lead
-        load_activity_data(frm);  // Load Activity data (as part of timeline)
+        // load_activity_data(frm);  // Load Activity data (as part of timeline)
 
         // Set Site Visit as the default tab when opening a new Opportunity
         $('#site-visit-tab').addClass('active');
@@ -43,6 +43,8 @@ function add_custom_tabs(frm) {
         load_site_visit_data(frm);
 
 
+        load_site_visit_data(frm);
+
         // Bind Activity tab click event to toggle visibility of content
         $('#activity-tab').on('click', function() {
             $('#site-visit-content').hide();  // Hide Site Visit content
@@ -77,6 +79,11 @@ function load_site_visit_data(frm) {
  
     frm.timeline.timeline_items_wrapper.show(); // Ensure timeline is visible
  
+
+    frm.timeline.timeline_items_wrapper.hide();
+    frm.timeline.wrapper.find('.timeline-item').hide(); // Hide Activity content
+ 
+    frm.timeline.timeline_items_wrapper.show(); // Ensure timeline is visible
 
     frappe.call({
         method: 'custom_solar.custom_solar.doctype.leads.leads.get_site_visit_history',

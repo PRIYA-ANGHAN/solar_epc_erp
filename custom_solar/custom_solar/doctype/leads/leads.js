@@ -1,4 +1,3 @@
-
 frappe.ui.form.on('Leads', {
     electricity_bill: function(frm) {
         calculate_required_kw(frm);
@@ -46,6 +45,10 @@ frappe.ui.form.on('Leads', {
             frm.old_status = frm.doc.status;
         }
         console.log("Initial Status:", frm.old_status);
+
+        if (!frm.doc.mobile_no) {  
+            frm.set_value('mobile_no', '+91 ');  
+        }
     },
 
     services: function(frm) {
@@ -128,23 +131,23 @@ frappe.ui.form.on('Leads', {
                     } else {
                         frm.set_value("per_panel_price", "");
                     }
-                }
+                };
             });
         } else {
             frm.set_value("per_panel_price", "");
         }
     },
-
+  
     status: function(frm) {
         if (frm.doc && frm.doc.status) {
             const old_status = frm.old_status;
             const new_status = frm.doc.status;
-
+ 
             if (old_status !== new_status) {
                 console.log('Status has changed.');
                 console.log('Old Status:', old_status);
                 console.log('New Status:', new_status);
-
+ 
                 setTimeout(() => {
                     frappe.prompt(
                         {
@@ -155,10 +158,10 @@ frappe.ui.form.on('Leads', {
                         },
                         (values) => {
                             console.log('Comment added:', values.status_comment);
-
+ 
                             // const content = `Status changed from **${old_status}** to **${new_status}** by ${frappe.session.user}:\n\n> **"${values.status_comment}"**`;
                             const content = `Status changed from **${old_status}** to **${new_status}** by ${frappe.session.user}:\n\n> **"${values.status_comment}"**`;
-
+ 
                             frappe.call({
                                 method: 'frappe.desk.form.utils.add_comment',
                                 args: {
@@ -185,7 +188,7 @@ frappe.ui.form.on('Leads', {
     }
     
 });
-
+ 
 function calculate_total_price(frm) {
     // Convert both fields to numbers (default to 0 if empty/NaN)
     let panel_count = parseFloat(frm.doc.panel_count) || 0;
@@ -202,7 +205,7 @@ function calculate_required_kw(frm) {
     let electricity_bill = frm.doc.electricity_bill || 0;
     let unit_rate = frm.doc.unit_rate || 0;
     let billing_cycle = frm.doc.billing_cycle;
-
+ 
     if (electricity_bill > 0 && unit_rate > 0 && billing_cycle) {
         let divisor = (billing_cycle === "1 Month") ? 120 : 240;
         // let required_kw = electricity_bill / (divisor * unit_rate);
@@ -210,26 +213,23 @@ function calculate_required_kw(frm) {
         frm.set_value('required__kw', required_kw.toFixed(2));
     }
 }
-
+ 
 function calculate_panel_count(frm) {
     let required_kw = parseFloat(frm.doc.required__kw) || 0;
     let watt_peakkw = frm.doc.watt_peakkw || "";
- 
     if (required_kw > 0 && watt_peakkw) {
         let match = watt_peakkw.match(/[\d.]+/);
         if (!match) {
             frappe.msgprint("Watt Peak value is not a valid number.");
             return;
         }
- 
         let watt_peak = parseFloat(match[0]);
         if (watt_peak <= 0) {
             frappe.msgprint("Watt Peak value must be greater than zero.");
             return;
         }
- 
+
         let panel_count = Math.ceil((required_kw * 1000) / watt_peak);
- 
         // Only auto-update panel_count if it has not been manually modified
         if (!frm.doc.panel_count || frm.doc.panel_count === panel_count) {
             frm.set_value("panel_count", panel_count);
@@ -242,17 +242,15 @@ function calculate_panel_count(frm) {
 function calculate_system_size(frm) {
     let panel_count = parseFloat(frm.doc.panel_count) || 0;
     let watt_peakkw = frm.doc.watt_peakkw || "";
- 
     if (panel_count > 0 && watt_peakkw) {
         let match = watt_peakkw.match(/[\d.]+/);
         if (!match) {
             frappe.msgprint("Watt Peak value is not a valid number.");
             return;
         }
- 
+
         let watt_peak = parseFloat(match[0]);
         let system_size = (panel_count * watt_peak) / 1000;
- 
         frm.set_value("system_size", system_size.toFixed(2));
     } else {
         frm.set_value("system_size", 0);
@@ -262,7 +260,7 @@ function calculate_system_size(frm) {
 function add_custom_timeline_tabs(frm) {
     if (!frm.custom_tabs_added) {
         let timeline_wrapper = frm.timeline.wrapper;
-
+ 
         let tab_html = `
         <ul class="nav nav-tabs" id="customTab" role="tablist">
             <li class="nav-item">
@@ -276,29 +274,29 @@ function add_custom_timeline_tabs(frm) {
             <div class="tab-pane fade show active" id="site-visit-content" role="tabpanel"></div>
             <div class="tab-pane fade" id="activity-content" role="tabpanel"></div>
         </div>`;
-
+ 
         $(timeline_wrapper).prepend(tab_html);
-
+ 
         load_site_visit_data(frm);
-
+ 
         $('#activity-tab').on('click', function() {
             $('#site-visit-content').hide();
             frm.timeline.timeline_items_wrapper.show();
             frm.timeline.wrapper.find('.timeline-item').show();
-
+ 
             $('#site-visit-tab').removeClass('active');
             $('#activity-tab').addClass('active');
         });
-
+ 
         $('#site-visit-tab').on('click', function() {
             frm.timeline.timeline_items_wrapper.hide();
             frm.timeline.wrapper.find('.timeline-item').hide();
             $('#site-visit-content').show();
-
+ 
             $('#activity-tab').removeClass('active');
             $('#site-visit-tab').addClass('active');
         });
-
+ 
         frm.custom_tabs_added = true;
     }
 }
@@ -408,5 +406,4 @@ function load_site_visit_data(frm) {
             $('#site-visit-content').html(content); // Display Site Visit data
         }
     });
-
 }

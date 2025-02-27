@@ -1,5 +1,5 @@
 import frappe
-from frappe.model.document import Document
+from frappe import Document
 import re
 import math
 
@@ -69,7 +69,6 @@ class Leads(Document):
         if self.required__kw and self.watt_peakkw:
             try:
                 required_kw = float(self.required__kw)
- 
                 watt_peak_numbers = re.findall(r"[\d.]+", self.watt_peakkw)
                 if watt_peak_numbers:
                     watt_peak = float(watt_peak_numbers[0])
@@ -200,7 +199,6 @@ class Leads(Document):
                             }
                         )
                         comment.insert(ignore_permissions=True)
- 
                     frappe.msgprint(f"New Opportunity created for lead: {self.full_name}")
  
                 except Exception as e:

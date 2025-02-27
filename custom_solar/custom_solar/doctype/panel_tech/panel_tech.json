@@ -14,7 +14,6 @@
   "industrial",
   "common_building",
   "ground_mounted",
-  "section_break_xo9q",
   "services"
  ],
  "fields": [
@@ -65,10 +64,6 @@
    "label": "Solar Panel Tech"
   },
   {
-   "fieldname": "section_break_xo9q",
-   "fieldtype": "Section Break"
-  },
-  {
    "fieldname": "services",
    "fieldtype": "Table MultiSelect",
    "label": "Services",
@@ -77,7 +72,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-19 15:03:36.586200",
+ "modified": "2025-02-19 17:36:37.872558",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Panel Tech",
