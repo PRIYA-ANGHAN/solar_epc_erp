@@ -1,0 +1,64 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-02-27 14:42:19.157680",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_urow",
+  "company",
+  "structure_specifications",
+  "weight__pipe",
+  "rate__pipe"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_urow",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Data",
+   "label": "Company"
+  },
+  {
+   "fieldname": "structure_specifications",
+   "fieldtype": "Data",
+   "label": "Structure Specifications"
+  },
+  {
+   "fieldname": "weight__pipe",
+   "fieldtype": "Float",
+   "label": "Weight / Pipe"
+  },
+  {
+   "fieldname": "rate__pipe",
+   "fieldtype": "Data",
+   "label": "Rate / Pipe"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-02-27 14:44:31.782841",
+ "modified_by": "Administrator",
+ "module": "Custom Solar",
+ "name": "Structure",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
