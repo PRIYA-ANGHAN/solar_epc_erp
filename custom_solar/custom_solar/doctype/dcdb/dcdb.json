@@ -1,0 +1,66 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{model}",
+ "creation": "2025-02-27 14:54:26.673196",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_9ea4",
+  "model",
+  "specifications",
+  "market_rate",
+  "rate"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_9ea4",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "model",
+   "fieldtype": "Data",
+   "label": "Model"
+  },
+  {
+   "fieldname": "specifications",
+   "fieldtype": "Data",
+   "label": "Specifications"
+  },
+  {
+   "fieldname": "market_rate",
+   "fieldtype": "Currency",
+   "label": "Market Rate"
+  },
+  {
+   "fieldname": "rate",
+   "fieldtype": "Currency",
+   "label": "Rate"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-02-27 14:56:10.882178",
+ "modified_by": "Administrator",
+ "module": "Custom Solar",
+ "name": "DCDB",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
