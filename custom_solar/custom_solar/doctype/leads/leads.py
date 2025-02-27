@@ -1,5 +1,5 @@
 import frappe
-from frappe.model.document import Document
+from frappe import Document
 import re
 import math
 
@@ -177,7 +177,6 @@ class Leads(Document):
     
                     opportunity.insert(ignore_permissions=True)
                     frappe.db.commit()
- 
  
                     # Fetch comments from Leads
                     comments = frappe.get_all(

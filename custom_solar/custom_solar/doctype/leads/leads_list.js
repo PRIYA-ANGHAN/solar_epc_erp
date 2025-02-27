@@ -53,7 +53,6 @@ frappe.listview_settings["Leads"] = {
                 indicator[1] = "transparent";  // Default color if status is not listed
                 break;
         }
- 
         return indicator;  // Return the color indicator array
     }
 };
