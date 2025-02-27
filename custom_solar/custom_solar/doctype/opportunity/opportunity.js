@@ -175,34 +175,3 @@ function load_site_visit_data(frm) {
         }
     });
 }
-
-function load_activity_data(frm) {
-    // Hide Activity content initially
-    frm.timeline.timeline_items_wrapper.hide();
-    frm.timeline.wrapper.find('.timeline-item').hide();
-    frm.timeline.timeline_items_wrapper.show();
-
-    // let old_status = frm.doc.status;  // Get the current status before change
-    // let new_status = frm.doc.status;  // Get the actual changed status
-    // let comment = "Viewing activity logs"; // Optional comment
-
-    frappe.call({
-        method: 'custom_solar.custom_solar.doctype.leads.leads.log_status_change',
-        args: {
-            docname: frm.doc.lead_id,  
-            old_status: old_status,  
-            new_status: new_status,  // Use actual status
-            comment: comment  
-        },
-        callback: function(response) {
-            let activities = response.message || [];
-            let content = '';
-
-            activities.forEach((activity) => {
-                content += `<div class="activity-log">${activity.content || 'No content available.'}</div>`;
-            });
-
-            $('#activity-content').html(content);
-        }
-    });
-}

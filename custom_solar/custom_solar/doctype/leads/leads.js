@@ -25,7 +25,6 @@ frappe.ui.form.on('Leads', {
         calculate_system_size(frm);
     },
 
-
     refresh: function(frm) {
         add_custom_timeline_tabs(frm); // Ensure tabs are added
         load_site_visit_data(frm); // Load correct Site Visit data for the opened lead
@@ -187,8 +186,6 @@ frappe.ui.form.on('Leads', {
     
 });
 
-
-
 function calculate_total_price(frm) {
     // Convert both fields to numbers (default to 0 if empty/NaN)
     let panel_count = parseFloat(frm.doc.panel_count) || 0;
@@ -213,6 +210,7 @@ function calculate_required_kw(frm) {
         frm.set_value('required__kw', required_kw.toFixed(2));
     }
 }
+
 function calculate_panel_count(frm) {
     let required_kw = parseFloat(frm.doc.required__kw) || 0;
     let watt_peakkw = frm.doc.watt_peakkw || "";
@@ -304,7 +302,6 @@ function add_custom_timeline_tabs(frm) {
         frm.custom_tabs_added = true;
     }
 }
-
 
 function load_site_visit_data(frm) {
  

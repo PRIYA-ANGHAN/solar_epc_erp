@@ -30,7 +30,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-20 14:26:15.168432",
+ "modified": "2025-02-27 11:49:20.280819",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Watt Peaks",
@@ -50,7 +50,9 @@
    "write": 1
   }
  ],
+ "show_title_field_in_link": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "watt_peakkw"
 }

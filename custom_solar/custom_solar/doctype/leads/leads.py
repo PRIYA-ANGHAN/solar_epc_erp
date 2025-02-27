@@ -178,7 +178,6 @@ class Leads(Document):
                     opportunity.insert(ignore_permissions=True)
                     frappe.db.commit()
  
- 
                     # Fetch comments from Leads
                     comments = frappe.get_all(
                         "Comment",
