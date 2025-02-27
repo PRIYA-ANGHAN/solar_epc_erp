@@ -91,11 +91,6 @@
    "label": "Company name"
   },
   {
-   "fieldname": "service",
-   "fieldtype": "Data",
-   "label": "Service"
-  },
-  {
    "fieldname": "electricity_details_section",
    "fieldtype": "Section Break",
    "label": "Electricity Details"

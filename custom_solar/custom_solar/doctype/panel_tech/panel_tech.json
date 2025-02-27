@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{panel_type}",
+ "autoname": "format:{panel_tech}",
  "creation": "2025-02-03 15:33:47.486517",
  "doctype": "DocType",
  "engine": "InnoDB",

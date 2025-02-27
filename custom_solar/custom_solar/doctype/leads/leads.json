@@ -83,16 +83,9 @@
    "label": "Status Section"
   },
   {
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Status",
-   "options": "Unqualified Suspect\nFollow Up\nSite Visit Schedule\nSite Visit Done\nDormant\nClosed"
-  },
-  {
    "fieldname": "section_break_6jud",
    "fieldtype": "Section Break",
-   "label": "Service Detail"
+   "label": "Service And Electricity Details"
   },
   {
    "fieldname": "electricity_provider",
@@ -118,7 +111,7 @@
   {
    "fieldname": "section_break_ahex",
    "fieldtype": "Section Break",
-   "label": "Location & Electricity Details"
+   "label": "Panel Tech and Company Details"
   },
   {
    "fieldname": "column_break_taqo",

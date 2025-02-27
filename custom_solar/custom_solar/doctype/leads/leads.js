@@ -23,7 +23,7 @@ frappe.ui.form.on('Leads', {
     watt_peakkw: function(frm) {
         calculate_system_size(frm);
     },
- 
+
     refresh: function(frm) {
         add_custom_timeline_tabs(frm); // Ensure tabs are added
         load_site_visit_data(frm); // Load correct Site Visit data for the opened lead
@@ -35,6 +35,7 @@ frappe.ui.form.on('Leads', {
         // Show Site Visit content and hide Activity content
         $('#site-visit-content').show();
         frm.timeline.timeline_items_wrapper.hide(); // Hide Activity
+        
     },
      
     onload: function(frm) {
@@ -49,7 +50,7 @@ frappe.ui.form.on('Leads', {
             frm.set_value('mobile_no', '+91 ');  
         }
     },
- 
+
     services: function(frm) {
         if (frm.doc.services && frm.doc.services.length > 0) {
             let selected_services = frm.doc.services;
@@ -68,7 +69,7 @@ frappe.ui.form.on('Leads', {
             });
         }
     },
- 
+
     panel_tech: function(frm) {
         if (frm.doc.panel_tech) {
             frm.set_query("watt_peakkw", function() {
@@ -129,14 +130,15 @@ frappe.ui.form.on('Leads', {
                         frm.set_value("per_panel_price", response.message.per_panel_price);
                     } else {
                         frm.set_value("per_panel_price", "");
+
                     }
-                }
+                };
             });
         } else {
             frm.set_value("per_panel_price", "");
         }
     },
-
+  
     status: function(frm) {
         if (frm.doc && frm.doc.status) {
             const old_status = frm.old_status;
@@ -218,6 +220,7 @@ function calculate_panel_count(frm) {
     let watt_peakkw = frm.doc.watt_peakkw || "";
 
     if (required_kw > 0 && watt_peakkw) {
+
         let match = watt_peakkw.match(/[\d.]+/);
         if (!match) {
             frappe.msgprint("Watt Peak value is not a valid number.");
@@ -304,7 +307,7 @@ function add_custom_timeline_tabs(frm) {
         frm.custom_tabs_added = true;
     }
 }
- 
+
 function load_site_visit_data(frm) {
  
     $('#site-visit-content').html('');  // Clear previous Site Visit data
