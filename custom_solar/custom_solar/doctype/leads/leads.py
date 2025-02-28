@@ -1,5 +1,7 @@
 import frappe
-from frappe import Document
+# from frappe import Document
+from frappe.model.document import Document
+
 import re
 import math
 
