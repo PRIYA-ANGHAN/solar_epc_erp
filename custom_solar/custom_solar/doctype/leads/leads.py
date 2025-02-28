@@ -171,6 +171,7 @@ class Leads(Document):
                         "billing_cycle": self.billing_cycle,
                         "watt_peakkw": self.watt_peakkw,
                         "panel_count": self.panel_count,
+                        "system_size":self.system_size,
                         "total_price": self.total_price
                         })
     

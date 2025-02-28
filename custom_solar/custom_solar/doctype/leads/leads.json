@@ -34,10 +34,10 @@
   "column_break_gafd",
   "system_size",
   "section_break_djju",
-  "per_panel_price",
   "column_break_brgv",
-
-  "total_price"
+  "total_price",
+  "column_break_bqmt",
+  "per_panel_price"
  ],
  "fields": [
   {
@@ -174,8 +174,7 @@
   },
   {
    "fieldname": "column_break_fsrf",
-   "fieldtype": "Column Break",
-   "options": "Services"
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "services",
@@ -186,6 +185,7 @@
   {
    "fieldname": "per_panel_price",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Per Panel Price"
   },
   {
@@ -196,11 +196,22 @@
   {
    "fieldname": "column_break_brgv",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Unqualified Suspect\nFollow Up\nSite Visit Schedule\nSite Visit Done\nDormant\nClosed"
+  },
+  {
+   "fieldname": "column_break_bqmt",
+   "fieldtype": "Column Break",
+   "hidden": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-25 16:06:12.093376",
+ "modified": "2025-02-28 15:50:24.984191",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Leads",
