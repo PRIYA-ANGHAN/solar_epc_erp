@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{company}-{type}",
  "creation": "2025-02-27 15:50:44.433113",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -51,10 +52,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-27 15:53:18.985027",
+ "modified": "2025-02-28 17:05:32.082033",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "LUG",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

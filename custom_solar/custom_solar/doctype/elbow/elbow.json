@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{company}-{type}",
  "creation": "2025-02-27 15:15:56.441019",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -45,10 +46,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-27 15:16:36.654728",
+ "modified": "2025-02-28 17:03:13.772573",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Elbow",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

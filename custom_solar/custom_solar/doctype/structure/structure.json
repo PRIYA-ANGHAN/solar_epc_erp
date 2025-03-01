@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{company}-{weight__pipe}",
  "creation": "2025-02-27 14:42:19.157680",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -39,10 +40,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-27 14:44:31.782841",
+ "modified": "2025-02-28 16:57:44.208673",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Structure",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

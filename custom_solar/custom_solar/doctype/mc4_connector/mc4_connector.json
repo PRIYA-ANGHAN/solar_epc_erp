@@ -1,46 +1,55 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{company}-{capacity_kw}",
- "creation": "2025-02-27 14:35:45.466434",
+ "autoname": "format:{company}-{type}",
+ "creation": "2025-02-27 15:12:40.966697",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "section_break_e3ko",
+  "section_break_kdkb",
   "company",
-  "capacity_kw",
-  "rate__qty"
+  "specifications",
+  "type",
+  "current_rating",
+  "price"
  ],
  "fields": [
   {
-   "fieldname": "section_break_e3ko",
+   "fieldname": "section_break_kdkb",
    "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "capacity_kw",
-   "fieldtype": "Float",
-   "in_list_view": 1,
-   "label": "Capacity KW"
-  },
-  {
-   "fieldname": "rate__qty",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Rate / qty."
   },
   {
    "fieldname": "company",
    "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Company "
+   "label": "Company"
+  },
+  {
+   "fieldname": "specifications",
+   "fieldtype": "Data",
+   "label": "Specifications"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Data",
+   "label": "Type"
+  },
+  {
+   "fieldname": "current_rating",
+   "fieldtype": "Data",
+   "label": "Current Rating"
+  },
+  {
+   "fieldname": "price",
+   "fieldtype": "Currency",
+   "label": "Price"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-28 16:56:38.148014",
+ "modified": "2025-02-28 17:03:40.876706",
  "modified_by": "Administrator",
  "module": "Custom Solar",
- "name": "Inverter",
+ "name": "MC4 Connector",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [

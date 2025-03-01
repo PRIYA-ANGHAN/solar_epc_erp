@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{company}-{type}",
  "creation": "2025-02-27 15:37:34.559177",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -45,10 +46,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-27 15:38:48.157019",
+ "modified": "2025-02-28 16:59:38.269075",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Clamp",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

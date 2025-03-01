@@ -131,7 +131,7 @@ frappe.ui.form.on('Leads', {
                     } else {
                         frm.set_value("per_panel_price", "");
                     }
-                };
+                },
             });
         } else {
             frm.set_value("per_panel_price", "");
