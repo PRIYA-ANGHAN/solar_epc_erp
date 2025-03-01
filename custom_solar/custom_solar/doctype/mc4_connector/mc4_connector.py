@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class MC4(Document):
+class MC4Connector(Document):
 	pass

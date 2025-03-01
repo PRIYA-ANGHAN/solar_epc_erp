@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{company}-{type}",
  "creation": "2025-02-27 15:30:11.681325",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -51,10 +52,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-27 15:31:46.139676",
+ "modified": "2025-02-28 17:00:19.556244",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Fasteners",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

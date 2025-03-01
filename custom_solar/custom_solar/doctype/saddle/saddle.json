@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{company}-{type}",
  "creation": "2025-02-27 15:28:17.490358",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -45,10 +46,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-27 15:29:03.048164",
+ "modified": "2025-02-28 17:02:29.598185",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Saddle",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

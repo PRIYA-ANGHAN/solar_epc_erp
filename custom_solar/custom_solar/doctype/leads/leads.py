@@ -14,7 +14,7 @@ class Leads(Document):
         self.calculate_panel_count()
         self.calculate_system_size()
         self.calculate_total_price()
-
+        
     def validate_mobile_number(self):
         """
         Validate and normalize the mobile number.
@@ -23,19 +23,31 @@ class Leads(Document):
         """
         if not self.mobile_no:
             return
-
+ 
         self.mobile_no = self.mobile_no.strip()
-
+ 
         # Check for recognized country code; otherwise, add the default "+91"
         if not self.mobile_no.startswith(("+91", "+", "1", "44", "91", "0")):
             self.mobile_no = "+91 " + self.mobile_no.lstrip("0")
         else:
             self.mobile_no = self.mobile_no.lstrip("0")
-
-        # Validate mobile number pattern: optional '+' with 1-3 digits, a space, then 10 digits.
-        pattern = r'^\+?\d{1,3} \d{10}$'
+ 
+        # Ensure there is a space after the country code
+        match = re.match(r'^(\+?\d{1,3})\s?(\d{10})$', self.mobile_no)
+        if match:
+            country_code = match.group(1)
+            number = match.group(2)
+ 
+            # Format number with space after first 5 digits
+            formatted_number = f"{number[:5]} {number[5:]}"
+            
+            # Combine country code with formatted number
+            self.mobile_no = f"{country_code} {formatted_number}"
+ 
+        # Validate final mobile number format
+        pattern = r'^\+?\d{1,3} \d{5} \d{5}$'
         if not re.match(pattern, self.mobile_no):
-            frappe.throw("Mobile number must follow the format: <Country Code> <10-digit phone number>")
+            frappe.throw("Mobile number must follow the format: <Country Code> <First 5 Digits> <Last 5 Digits>")
 
     def validate_email(self):
         """
