@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{company}-{type}",
  "creation": "2025-02-27 15:02:10.646661",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -45,10 +46,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-27 15:03:24.876551",
+ "modified": "2025-02-28 16:21:29.931980",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Circuit Breaker",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

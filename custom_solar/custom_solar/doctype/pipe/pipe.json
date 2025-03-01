@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{company}-{material}-{diameter_mm}",
  "creation": "2025-02-27 15:39:41.829109",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -51,10 +52,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-27 15:49:50.925942",
+ "modified": "2025-02-28 16:37:55.884621",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Pipe",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

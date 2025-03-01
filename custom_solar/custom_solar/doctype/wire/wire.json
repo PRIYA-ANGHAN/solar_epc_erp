@@ -1,12 +1,13 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{company}-{type}",
  "creation": "2025-02-27 14:59:10.192287",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "section_break_zsgz",
-  "company_name",
+  "company",
   "specifications",
   "type",
   "size_mm2",
@@ -16,11 +17,6 @@
   {
    "fieldname": "section_break_zsgz",
    "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "company_name",
-   "fieldtype": "Data",
-   "label": "Company Name"
   },
   {
    "fieldname": "specifications",
@@ -41,14 +37,20 @@
    "fieldname": "price",
    "fieldtype": "Currency",
    "label": "Price"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Data",
+   "label": "Company"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-27 15:00:29.097727",
+ "modified": "2025-02-28 16:20:35.600430",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Wire",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

@@ -1,28 +1,31 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{company}-{type}",
- "creation": "2025-02-27 15:30:11.681325",
+ "autoname": "format:{kit_name}",
+ "creation": "2025-02-28 17:23:05.010057",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "section_break_x5rv",
-  "company",
+  "section_break_bnhn",
+  "kit_name",
   "specifications",
-  "type",
-  "material",
-  "size_mm",
+  "rod_material",
+  "rod_diameter_mm",
+  "rod_length_m",
+  "pricewire_material",
+  "wire_size_mm2",
+  "compound_weight_kg",
   "price"
  ],
  "fields": [
   {
-   "fieldname": "section_break_x5rv",
+   "fieldname": "section_break_bnhn",
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "company",
+   "fieldname": "kit_name",
    "fieldtype": "Data",
-   "label": "Company"
+   "label": "KIt Name"
   },
   {
    "fieldname": "specifications",
@@ -30,19 +33,34 @@
    "label": "Specifications"
   },
   {
-   "fieldname": "type",
+   "fieldname": "rod_material",
    "fieldtype": "Data",
-   "label": "Type "
+   "label": "ROD Material"
   },
   {
-   "fieldname": "material",
+   "fieldname": "rod_diameter_mm",
    "fieldtype": "Data",
-   "label": "Material"
+   "label": "ROD Diameter (mm)"
   },
   {
-   "fieldname": "size_mm",
+   "fieldname": "rod_length_m",
    "fieldtype": "Data",
-   "label": "Size (mm)"
+   "label": "ROD Length (m)"
+  },
+  {
+   "fieldname": "pricewire_material",
+   "fieldtype": "Data",
+   "label": "Pricewire Material"
+  },
+  {
+   "fieldname": "wire_size_mm2",
+   "fieldtype": "Data",
+   "label": "Wire Size (mm2)"
+  },
+  {
+   "fieldname": "compound_weight_kg",
+   "fieldtype": "Data",
+   "label": "Compound Weight (kg)"
   },
   {
    "fieldname": "price",
@@ -52,10 +70,10 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-28 16:32:21.625253",
+ "modified": "2025-02-28 17:29:05.480355",
  "modified_by": "Administrator",
  "module": "Custom Solar",
- "name": "Fasteners",
+ "name": "Earthing Kit",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [

@@ -16,7 +16,7 @@
   "section_break_yktx",
   "status",
   "service_detail_section",
-  "service",
+  "services",
   "panel_tech",
   "watt_peakkw",
   "column_break_bfqk",
@@ -44,11 +44,13 @@
   {
    "fieldname": "full_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Full Name"
   },
   {
    "fieldname": "email_id",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Email ID"
   },
   {
@@ -67,6 +69,7 @@
   {
    "fieldname": "status",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Status"
   },
   {
@@ -77,6 +80,7 @@
   {
    "fieldname": "lead_id",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Lead ID",
    "options": "Leads"
   },
@@ -89,11 +93,6 @@
    "fieldname": "company_name",
    "fieldtype": "Data",
    "label": "Company name"
-  },
-  {
-   "fieldname": "service",
-   "fieldtype": "Data",
-   "label": "Service"
   },
   {
    "fieldname": "electricity_details_section",
@@ -166,11 +165,16 @@
    "fieldname": "panel_tech",
    "fieldtype": "Data",
    "label": "Panel Tech"
+  },
+  {
+   "fieldname": "services",
+   "fieldtype": "Data",
+   "label": "Service"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-20 14:14:35.145600",
+ "modified": "2025-02-28 15:47:34.938077",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Opportunity",
