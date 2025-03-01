@@ -1,21 +1,20 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{company}-{type}",
- "creation": "2025-02-27 15:02:10.646661",
+ "creation": "2025-02-27 15:12:40.966697",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "section_break_fykt",
+  "section_break_kdkb",
   "company",
   "specifications",
   "type",
-  "voltage",
+  "current_rating",
   "price"
  ],
  "fields": [
   {
-   "fieldname": "section_break_fykt",
+   "fieldname": "section_break_kdkb",
    "fieldtype": "Section Break"
   },
   {
@@ -34,9 +33,9 @@
    "label": "Type"
   },
   {
-   "fieldname": "voltage",
-   "fieldtype": "Float",
-   "label": "Voltage"
+   "fieldname": "current_rating",
+   "fieldtype": "Data",
+   "label": "Current Rating"
   },
   {
    "fieldname": "price",
@@ -46,12 +45,10 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-28 17:04:09.304851",
+ "modified": "2025-02-27 15:15:23.255338",
  "modified_by": "Administrator",
  "module": "Custom Solar",
- "name": "Circuit Breaker",
- "naming_rule": "Expression",
-
+ "name": "MC4",
  "owner": "Administrator",
  "permissions": [
   {
