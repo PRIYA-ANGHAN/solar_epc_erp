@@ -1,0 +1,57 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-03-20 14:24:50.305181",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "structure_company",
+  "rate__pipe",
+  "structure_quantity",
+  "amount"
+ ],
+ "fields": [
+  {
+   "fieldname": "structure_company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Structure Company",
+   "options": "Structure"
+  },
+  {
+   "default": "1",
+   "fieldname": "structure_quantity",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Structure Quantity"
+  },
+  {
+   "fetch_from": "structure_company.rate__pipe",
+   "fieldname": "rate__pipe",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Rate / Pipe",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Amount",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-03-20 14:52:29.451765",
+ "modified_by": "Administrator",
+ "module": "Custom Solar",
+ "name": "Structure Child",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

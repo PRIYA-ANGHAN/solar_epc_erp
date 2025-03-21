@@ -1,8 +1,8 @@
 app_name = "custom_solar"
 app_title = "Custom Solar"
-app_publisher = "varoon soneji"
-app_description = "solar erp"
-app_email = "varoon.sarvadhi@gmail.com"
+app_publisher = "Neha Patil"
+app_description = "Solar EPC"
+app_email = "neha.sarvadhi@gmail.com"
 app_license = "mit"
 
 # Apps

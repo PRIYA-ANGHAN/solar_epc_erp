@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{company}-{weight__pipe}",
+ "autoname": "format:{company}-({structure_specifications})",
  "creation": "2025-02-27 14:42:19.157680",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -40,7 +40,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-28 16:11:40.420932",
+ "modified": "2025-03-20 11:16:47.184304",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Structure",

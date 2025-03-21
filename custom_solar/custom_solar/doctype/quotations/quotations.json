@@ -1,0 +1,217 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format: SLQ-{lead_id}-{YYYY}-{####}",
+ "creation": "2025-03-20 10:08:33.145483",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_3iiv",
+  "lead_id",
+  "email_id",
+  "address",
+  "column_break_oxan",
+  "mobile_no",
+  "date",
+  "section_break_itf6",
+  "company_name",
+  "column_break_s3g5",
+  "panel_tech",
+  "column_break_evdl",
+  "watt_peak",
+  "inventor_details_section",
+  "table_vucq",
+  "structure_details_section",
+  "table_hajp",
+  "wire_details_section",
+  "table_okfg",
+  "section_break_vibs",
+  "miscellaneous_items",
+  "column_break_lyim",
+  "item_price",
+  "gst_section",
+  "gst",
+  "section_break_08ds",
+  "without_gst_amount",
+  "column_break_l5f2",
+  "with_gst_amount"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_3iiv",
+   "fieldtype": "Section Break",
+   "label": "Lead Details"
+  },
+  {
+   "fieldname": "lead_id",
+   "fieldtype": "Link",
+   "label": "Lead ID",
+   "options": "Leads"
+  },
+  {
+   "fetch_from": "lead_id.email_id",
+   "fieldname": "email_id",
+   "fieldtype": "Data",
+   "label": "Email ID"
+  },
+  {
+   "fetch_from": "lead_id.address",
+   "fieldname": "address",
+   "fieldtype": "Data",
+   "label": "Address"
+  },
+  {
+   "fetch_from": "lead_id.mobile_no",
+   "fieldname": "mobile_no",
+   "fieldtype": "Data",
+   "label": "Mobile No."
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "Date"
+  },
+  {
+   "fieldname": "column_break_oxan",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_itf6",
+   "fieldtype": "Section Break",
+   "label": "Panel Details"
+  },
+  {
+   "fetch_from": "lead_id.company_name",
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "label": "Company Name"
+  },
+  {
+   "fetch_from": "lead_id.panel_tech",
+   "fieldname": "panel_tech",
+   "fieldtype": "Data",
+   "label": "Panel Tech"
+  },
+  {
+   "fieldname": "column_break_evdl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "lead_id.watt_peakkw",
+   "fieldname": "watt_peak",
+   "fieldtype": "Data",
+   "label": "Watt Peak"
+  },
+  {
+   "fieldname": "column_break_s3g5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "wire_details_section",
+   "fieldtype": "Section Break",
+   "label": "Wire Details"
+  },
+  {
+   "fieldname": "section_break_vibs",
+   "fieldtype": "Section Break",
+   "label": "Miscellaneous Items"
+  },
+  {
+   "fieldname": "miscellaneous_items",
+   "fieldtype": "Data",
+   "label": "Miscellaneous Items"
+  },
+  {
+   "default": "13.8%",
+   "fieldname": "gst",
+   "fieldtype": "Data",
+   "label": "GST"
+  },
+  {
+   "fieldname": "without_gst_amount",
+   "fieldtype": "Data",
+   "label": "Without GST Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "with_gst_amount",
+   "fieldtype": "Data",
+   "label": "With GST Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "gst_section",
+   "fieldtype": "Section Break",
+   "hidden": 1,
+   "label": "GST"
+  },
+  {
+   "fieldname": "section_break_08ds",
+   "fieldtype": "Section Break",
+   "label": "Project Cost"
+  },
+  {
+   "fieldname": "column_break_l5f2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_lyim",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "item_price",
+   "fieldtype": "Currency",
+   "label": "Item Price"
+  },
+  {
+   "fieldname": "inventor_details_section",
+   "fieldtype": "Section Break",
+   "label": "Inventor Details"
+  },
+  {
+   "fieldname": "table_vucq",
+   "fieldtype": "Table",
+   "options": "Inventor Child"
+  },
+  {
+   "fieldname": "structure_details_section",
+   "fieldtype": "Section Break",
+   "label": "Structure Details"
+  },
+  {
+   "fieldname": "table_hajp",
+   "fieldtype": "Table",
+   "options": "Structure Child"
+  },
+  {
+   "fieldname": "table_okfg",
+   "fieldtype": "Table",
+   "options": "Wire Child"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-03-20 15:51:43.176676",
+ "modified_by": "Administrator",
+ "module": "Custom Solar",
+ "name": "Quotations",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

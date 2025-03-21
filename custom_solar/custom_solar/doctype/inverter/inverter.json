@@ -1,15 +1,16 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{company}-{capacity_kw}",
+ "autoname": "format:{inverter_company}-{###}",
  "creation": "2025-02-27 14:35:45.466434",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "section_break_e3ko",
-  "company",
+  "inverter_company",
   "capacity_kw",
-  "rate__qty"
+  "rate__qty",
+  "weight"
  ],
  "fields": [
   {
@@ -29,14 +30,20 @@
    "label": "Rate / qty."
   },
   {
-   "fieldname": "company",
+   "fieldname": "inverter_company",
+   "fieldtype": "Link",
+   "label": "Inverter Company",
+   "options": "Inverter Company"
+  },
+  {
+   "fieldname": "weight",
    "fieldtype": "Data",
-   "label": "Company"
+   "label": "Weight"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-28 16:54:22.361977",
+ "modified": "2025-03-20 15:46:31.818909",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Inverter",
@@ -58,5 +65,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "capacity_kw"
 }

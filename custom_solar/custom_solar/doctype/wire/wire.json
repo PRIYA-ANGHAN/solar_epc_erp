@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:{company}-{type}",
+ "autoname": "format:{company}-({specifications})",
  "creation": "2025-02-27 14:59:10.192287",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -46,7 +46,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-28 16:20:35.600430",
+ "modified": "2025-03-20 11:21:13.346317",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Wire",

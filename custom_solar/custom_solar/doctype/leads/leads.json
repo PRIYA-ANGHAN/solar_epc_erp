@@ -2,7 +2,7 @@
  "actions": [],
  "allow_events_in_timeline": 1,
  "allow_rename": 1,
- "autoname": "SL.######",
+ "autoname": "SL.####",
  "creation": "2025-01-30 14:27:48.199479",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -10,6 +10,7 @@
   "personal_details_section",
   "full_name",
   "email_id",
+  "address",
   "column_break_tjjs",
   "mobile_no",
   "date_sgma",
@@ -87,7 +88,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
-   "options": "Unqualified Suspect\nFollow Up\nSite Visit Schedule\nSite Visit Done\nDormant\nClosed"
+   "options": "Unqualified Suspect\nFollow Up\nSite Visit Schedule\nSite Visit Done\nDormant\nQuotation\nClosed"
   },
   {
    "fieldname": "section_break_6jud",
@@ -202,11 +203,16 @@
   {
    "fieldname": "column_break_brgv",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Data",
+   "label": "Address"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-28 15:45:55.910192",
+ "modified": "2025-03-20 15:40:26.553722",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Leads",

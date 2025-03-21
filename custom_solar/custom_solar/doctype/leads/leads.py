@@ -1,5 +1,5 @@
 import frappe
-# from frappe import Document
+from frappe import _
 from frappe.model.document import Document
 
 import re
@@ -17,6 +17,7 @@ class Leads(Document):
         self.calculate_system_size()
         self.calculate_total_price()
 
+    # mobile number validation
     def validate_mobile_number(self):
         """
         Validate and normalize the mobile number.
@@ -25,20 +26,33 @@ class Leads(Document):
         """
         if not self.mobile_no:
             return
-
+ 
         self.mobile_no = self.mobile_no.strip()
-
+ 
         # Check for recognized country code; otherwise, add the default "+91"
         if not self.mobile_no.startswith(("+91", "+", "1", "44", "91", "0")):
             self.mobile_no = "+91 " + self.mobile_no.lstrip("0")
         else:
             self.mobile_no = self.mobile_no.lstrip("0")
-
-        # Validate mobile number pattern: optional '+' with 1-3 digits, a space, then 10 digits.
-        pattern = r'^\+?\d{1,3} \d{10}$'
+ 
+        # Ensure there is a space after the country code
+        match = re.match(r'^(\+?\d{1,3})\s?(\d{10})$', self.mobile_no)
+        if match:
+            country_code = match.group(1)
+            number = match.group(2)
+ 
+            # Format number with space after first 5 digits
+            formatted_number = f"{number[:5]} {number[5:]}"
+            
+            # Combine country code with formatted number
+            self.mobile_no = f"{country_code} {formatted_number}"
+ 
+        # Validate final mobile number format
+        pattern = r'^\+?\d{1,3} \d{5} \d{5}$'
         if not re.match(pattern, self.mobile_no):
-            frappe.throw("Mobile number must follow the format: <Country Code> <10-digit phone number>")
+            frappe.throw("Mobile number must follow the format: <Country Code> <First 5 Digits> <Last 5 Digits>")
 
+    # email validation
     def validate_email(self):
         """
         Validate the email address format.
@@ -51,6 +65,7 @@ class Leads(Document):
         if not re.match(email_pattern, self.email_id):
             frappe.throw("Invalid email format. Please enter a valid email address.")
 
+    # count required kilo watt
     def calculate_required_kw(self):
         """
         Calculate the required kW based on the electricity bill, unit rate,
@@ -63,6 +78,7 @@ class Leads(Document):
             except ZeroDivisionError:
                 frappe.throw("Unit Rate cannot be zero.")
 
+    # count required panel count
     def calculate_panel_count(self):
         """
         Calculate the number of panels required based on required__kw and watt_peakkw.
@@ -92,6 +108,7 @@ class Leads(Document):
         else:
             self.panel_count = 0
 
+    # count system size
     def calculate_system_size(self):
         """
         Calculate System Size = (panel_count * watt_peakkw) / 1000
@@ -110,6 +127,7 @@ class Leads(Document):
         else:
             self.system_size = 0
  
+    # count total price
     def calculate_total_price(self):
         """Calculate total price = panel_count * per_panel_price"""
         if self.panel_count and self.per_panel_price:
@@ -209,31 +227,131 @@ class Leads(Document):
                     frappe.log_error(frappe.get_traceback(), "Opportunity Creation Failed")
                     frappe.throw(f"Failed to create opportunity: {str(e)}")
 
+# save new status     +++++++++++++++++++
+# @frappe.whitelist()
+# def log_status_change(docname, old_status, new_status, comment):
+#     """
+#     Log a status change for a lead and update its timeline.
+#     """
+#     lead = frappe.get_doc("Leads", docname)
+#     try:
+#         activity = frappe.get_doc({
+#             'doctype': 'Comment',
+#             'reference_doctype': 'Leads',
+#             'reference_name': docname,
+#             'content': f"Status changed from {old_status} to {new_status} by {frappe.session.user}:\n\n> {comment}",
+#             'comment_type': 'Comment',
+#             'owner': frappe.session.user,
+#         })
+#         activity.insert(ignore_permissions=True)
+#     except Exception as e:
+#         frappe.log_error(frappe.get_traceback(), "Status Change Logging Failed")
+#         frappe.throw(f"Failed to log status change: {str(e)}")
+
+#     # Update the Lead's status
+#     lead.status = new_status
+#     lead.save()
+#     return {"message": "Status change logged successfully"}
+
+
+# open quotation form when status is quotation **************
 @frappe.whitelist()
 def log_status_change(docname, old_status, new_status, comment):
     """
-    Log a status change for a lead and update its timeline.
+    Log a status change for a lead, update its timeline, and return lead data if needed.
     """
-    lead = frappe.get_doc("Leads", docname)
     try:
-        activity = frappe.get_doc({
+        # Fetch the Lead document
+        lead = frappe.get_doc("Leads", docname)
+
+        # Log the status change as a comment
+        frappe.get_doc({
             'doctype': 'Comment',
             'reference_doctype': 'Leads',
             'reference_name': docname,
             'content': f"Status changed from {old_status} to {new_status} by {frappe.session.user}:\n\n> {comment}",
             'comment_type': 'Comment',
+            'comment_email': frappe.session.user,  # Ensure email is logged
             'owner': frappe.session.user,
-        })
-        activity.insert(ignore_permissions=True)
+        }).insert(ignore_permissions=True)
+
+        # Update the Lead's status if it has changed
+        if lead.status != new_status:
+            lead.status = new_status
+            lead.save(ignore_permissions=True)
+
+        # Prepare Lead data for "Quotation" status
+        lead_data = {}
+        if new_status == "Quotation":
+            lead_data = {
+                'lead_id': lead.name,
+                'email_id': lead.email_id or "",
+                'address': lead.address or "",
+                'mobile_no': lead.mobile_no or "",
+                'company_name': lead.company_name or "",
+                'panel_tech': lead.panel_tech or "",
+                'watt_peak': lead.watt_peakkw or "",
+            }
+
+        return {
+            "message": "Status change logged successfully",
+            "lead_data": lead_data
+        }
+
     except Exception as e:
         frappe.log_error(frappe.get_traceback(), "Status Change Logging Failed")
-        frappe.throw(f"Failed to log status change: {str(e)}")
+        frappe.throw(_("Failed to log status change: {0}").format(str(e)))
 
-    # Update the Lead's status
-    lead.status = new_status
-    lead.save()
-    return {"message": "Status change logged successfully"}
+# open quotation form without promt  ############################
 
+# @frappe.whitelist()
+# def log_status_change(docname, old_status, new_status, comment):
+#     """
+#     Log a status change for a lead, update its timeline, and return lead data if needed.
+#     """
+#     try:
+#         # Fetch the Lead document
+#         lead = frappe.get_doc("Leads", docname)
+
+#         # Log the status change as a comment
+#         frappe.get_doc({
+#             'doctype': 'Comment',
+#             'reference_doctype': 'Leads',
+#             'reference_name': docname,
+#             'content': f"Status changed from {old_status} to {new_status} by {frappe.session.user}:\n\n> {comment}",
+#             'comment_type': 'Comment',
+#             'comment_email': frappe.session.user,
+#             'owner': frappe.session.user,
+#         }).insert(ignore_permissions=True)
+
+#         # Update the Lead's status directly without loading the document
+#         if lead.status != new_status:
+#             frappe.db.set_value("Leads", docname, "status", new_status)
+
+#         # Prepare Lead data for "Quotation" status
+#         lead_data = {}
+#         if new_status == "Quotation":
+#             lead_data = {
+#                 'lead_id': lead.name,
+#                 'email_id': lead.email_id or "",
+#                 'address': lead.address or "",
+#                 'mobile_no': lead.mobile_no or "",
+#                 'company_name': lead.company_name or "",
+#                 'panel_tech': lead.panel_tech or "",
+#                 'watt_peak': lead.watt_peakkw or "",
+#             }
+
+#         return {
+#             "message": "Status change logged successfully",
+#             "lead_data": lead_data
+#         }
+
+#     except Exception as e:
+#         frappe.log_error(frappe.get_traceback(), "Status Change Logging Failed")
+#         frappe.throw(_("Failed to log status change: {0}").format(str(e)))
+
+
+# function for get site visit history
 @frappe.whitelist()
 def get_site_visit_history(**kwargs):
     """

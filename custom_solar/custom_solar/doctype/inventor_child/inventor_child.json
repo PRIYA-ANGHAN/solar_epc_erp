@@ -1,0 +1,66 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-03-20 14:02:02.183991",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "inverter_company",
+  "capacity_kw",
+  "rate__qty",
+  "inventer_quantity",
+  "amount"
+ ],
+ "fields": [
+  {
+   "fieldname": "inverter_company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Inverter Company",
+   "options": "Inverter"
+  },
+  {
+   "fetch_from": "inverter_company.capacity_kw",
+   "fieldname": "capacity_kw",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Capacity KW"
+  },
+  {
+   "default": "1",
+   "fieldname": "inventer_quantity",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Inventer Quantity"
+  },
+  {
+   "fetch_from": "inverter_company.rate__qty",
+   "fieldname": "rate__qty",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Rate / qty.",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Amount",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-03-20 14:52:53.667151",
+ "modified_by": "Administrator",
+ "module": "Custom Solar",
+ "name": "Inventor Child",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
