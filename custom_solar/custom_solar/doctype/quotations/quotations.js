@@ -1,5 +1,149 @@
-// frappe.ui.form.on("Quotations", {
-// 	refresh(frm) {
-        
-// 	},
+// frappe.ui.form.on("Inverter Child", {
+//     inverter_quantity: function (frm, cdt, cdn) {
+//         let row = locals[cdt][cdn]; // Get the current row
+
+//         // Ensure rate__qty and inventer_quantity are numeric
+//         let rate = row.rate__qty ? parseFloat(row.rate__qty) : 0;
+//         let quantity = row.inverter_quantity ? parseInt(row.inverter_quantity) : 0;
+
+//         // Calculate amount
+//         let inverter_amount = rate * quantity;
+
+//         // Update amount in child table
+//         frappe.model.set_value(cdt, cdn, "inverter_amount", inverter_amount);
+//     }
 // });
+
+// frappe.ui.form.on("Structure Child", {
+//     structure_quantity: function (frm, cdt, cdn) {
+//         let row = locals[cdt][cdn]; // Get the current row
+
+//         // Ensure rate__pipe and structure_quantity are numeric
+//         let rate = row.rate__pipe ? parseFloat(row.rate__pipe) : 0;
+//         let quantity = row.structure_quantity ? parseInt(row.structure_quantity) : 0;
+
+//         // Calculate amount
+//         let structure_amount = rate * quantity;
+
+//         // Update amount in child table
+//         frappe.model.set_value(cdt, cdn, "structure_amount", structure_amount);
+//     }
+// });
+
+// frappe.ui.form.on("Wire Child", {
+//     size_mm2: function (frm, cdt, cdn) {
+//         let row = locals[cdt][cdn]; // Get the current row
+
+//         // Ensure rate__100m and size_mm2 are numeric
+//         let rate = row.rate__100m ? parseFloat(row.rate__100m) : 0;
+//         let size = row.size_mm2 ? parseFloat(row.size_mm2) : 0;
+
+//         // Calculate wire amount
+//         let wire_amount = rate * size;
+
+//         // Update wire_amount field in the child table
+//         frappe.model.set_value(cdt, cdn, "wire_amount", wire_amount);
+//     }
+// });
+
+// filter for inverter table
+frappe.ui.form.on("Inverter Child", {
+    inverter_quantity: function (frm, cdt, cdn) {
+        calculate_inverter_amount(frm, cdt, cdn);
+    },
+    rate__qty: function (frm, cdt, cdn) {
+        calculate_inverter_amount(frm, cdt, cdn);
+    },
+    inverter_details_add: function (frm, cdt, cdn) {
+        calculate_inverter_amount(frm, cdt, cdn); // Set amount on row creation
+    }
+});
+
+function calculate_inverter_amount(frm, cdt, cdn) {
+    let row = locals[cdt][cdn]; // Get the current row
+
+    // Ensure rate__qty and inverter_quantity are numeric
+    let rate = row.rate__qty ? parseFloat(row.rate__qty) : 0;
+    let quantity = row.inverter_quantity ? parseInt(row.inverter_quantity) : 1;
+
+    // If quantity is 1 (default), set amount as rate
+    let inverter_amount = (quantity === 1) ? rate : rate * quantity;
+
+    // Update inverter_amount in child table
+    frappe.model.set_value(cdt, cdn, "inverter_amount", inverter_amount);
+}
+
+// Structure Child Calculation
+frappe.ui.form.on("Structure Child", {
+    structure_quantity: function (frm, cdt, cdn) {
+        calculate_structure_amount(frm, cdt, cdn);
+    },
+    rate__pipe: function (frm, cdt, cdn) {
+        calculate_structure_amount(frm, cdt, cdn);
+    },
+    structure_details_add: function (frm, cdt, cdn) {
+        calculate_structure_amount(frm, cdt, cdn); // Set amount on row creation
+    }
+});
+
+function calculate_structure_amount(frm, cdt, cdn) {
+    let row = locals[cdt][cdn]; // Get the current row
+
+    // Ensure rate__pipe and structure_quantity are numeric
+    let rate = row.rate__pipe ? parseFloat(row.rate__pipe) : 0;
+    let quantity = row.structure_quantity ? parseInt(row.structure_quantity) : 1;
+
+    // If quantity is 1 (default), set amount as rate
+    let structure_amount = (quantity === 1) ? rate : rate * quantity;
+
+    // Update structure_amount in child table
+    frappe.model.set_value(cdt, cdn, "structure_amount", structure_amount);
+}
+
+// Wire Child Calculation
+frappe.ui.form.on("Wire Child", {
+    size_mm2: function (frm, cdt, cdn) {
+        calculate_wire_amount(frm, cdt, cdn);
+    },
+    rate__100m: function (frm, cdt, cdn) {
+        calculate_wire_amount(frm, cdt, cdn);
+    },
+    wire_details_add: function (frm, cdt, cdn) {
+        calculate_wire_amount(frm, cdt, cdn); // Set amount on row creation
+    }
+});
+
+function calculate_wire_amount(frm, cdt, cdn) {
+    let row = locals[cdt][cdn]; // Get the current row
+
+    // Ensure rate__100m and size_mm2 are numeric
+    let rate = row.rate__100m ? parseFloat(row.rate__100m) : 0;
+    let size = row.size_mm2 ? parseFloat(row.size_mm2) : 1;
+
+    // If size is 1 (default), set amount as rate
+    let wire_amount = (size === 1) ? rate : rate * size;
+
+    // Update wire_amount field in the child table
+    frappe.model.set_value(cdt, cdn, "wire_amount", wire_amount);
+}
+
+frappe.ui.form.on('Quotations', {
+    refresh: function(frm) {
+        // Apply filter when the form loads
+        filterChildFields(frm, "wire_details", "wire_type", "type", "wire_company");
+    }
+});
+
+// Function to filter child table fields dynamically
+function filterChildFields(frm, tableName, fieldTrigger, fieldName, fieldFiltered) {
+    frm.fields_dict[tableName].grid.get_field(fieldFiltered).get_query = function(doc, cdt, cdn) {
+        var child = locals[cdt][cdn];
+        if (child[fieldTrigger]) {
+            return {    
+                filters: [
+                    [fieldName, '=', child[fieldTrigger]]
+                ]
+            };
+        }
+    };
+}

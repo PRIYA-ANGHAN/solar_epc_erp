@@ -8,11 +8,12 @@
  "field_order": [
   "section_break_3iiv",
   "lead_id",
+  "lead_name",
   "email_id",
-  "address",
   "column_break_oxan",
   "mobile_no",
   "date",
+  "address",
   "section_break_itf6",
   "company_name",
   "column_break_s3g5",
@@ -20,11 +21,11 @@
   "column_break_evdl",
   "watt_peak",
   "inventor_details_section",
-  "table_vucq",
+  "inverter_details",
   "structure_details_section",
-  "table_hajp",
+  "structure_details",
   "wire_details_section",
-  "table_okfg",
+  "wire_details",
   "section_break_vibs",
   "miscellaneous_items",
   "column_break_lyim",
@@ -166,12 +167,7 @@
   {
    "fieldname": "inventor_details_section",
    "fieldtype": "Section Break",
-   "label": "Inventor Details"
-  },
-  {
-   "fieldname": "table_vucq",
-   "fieldtype": "Table",
-   "options": "Inventor Child"
+   "label": "Inverter Details"
   },
   {
    "fieldname": "structure_details_section",
@@ -179,19 +175,30 @@
    "label": "Structure Details"
   },
   {
-   "fieldname": "table_hajp",
+   "fieldname": "inverter_details",
+   "fieldtype": "Table",
+   "options": "Inverter Child"
+  },
+  {
+   "fieldname": "structure_details",
    "fieldtype": "Table",
    "options": "Structure Child"
   },
   {
-   "fieldname": "table_okfg",
+   "fieldname": "wire_details",
    "fieldtype": "Table",
    "options": "Wire Child"
+  },
+  {
+   "fetch_from": "lead_id.full_name",
+   "fieldname": "lead_name",
+   "fieldtype": "Data",
+   "label": "Lead Name"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-20 15:51:43.176676",
+ "modified": "2025-03-21 17:39:17.097239",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Quotations",

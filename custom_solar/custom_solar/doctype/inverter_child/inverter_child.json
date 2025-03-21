@@ -9,8 +9,8 @@
   "inverter_company",
   "capacity_kw",
   "rate__qty",
-  "inventer_quantity",
-  "amount"
+  "inverter_quantity",
+  "inverter_amount"
  ],
  "fields": [
   {
@@ -29,13 +29,6 @@
    "label": "Capacity KW"
   },
   {
-   "default": "1",
-   "fieldname": "inventer_quantity",
-   "fieldtype": "Int",
-   "in_list_view": 1,
-   "label": "Inventer Quantity"
-  },
-  {
    "fetch_from": "inverter_company.rate__qty",
    "fieldname": "rate__qty",
    "fieldtype": "Currency",
@@ -44,7 +37,14 @@
    "read_only": 1
   },
   {
-   "fieldname": "amount",
+   "default": "1",
+   "fieldname": "inverter_quantity",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Inverter Quantity"
+  },
+  {
+   "fieldname": "inverter_amount",
    "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "Amount",
@@ -54,10 +54,10 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-03-20 14:52:53.667151",
+ "modified": "2025-03-21 16:07:42.956361",
  "modified_by": "Administrator",
  "module": "Custom Solar",
- "name": "Inventor Child",
+ "name": "Inverter Child",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",

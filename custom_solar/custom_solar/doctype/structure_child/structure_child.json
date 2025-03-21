@@ -9,7 +9,7 @@
   "structure_company",
   "rate__pipe",
   "structure_quantity",
-  "amount"
+  "structure_amount"
  ],
  "fields": [
   {
@@ -35,7 +35,7 @@
    "read_only": 1
   },
   {
-   "fieldname": "amount",
+   "fieldname": "structure_amount",
    "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "Amount",
@@ -45,7 +45,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-03-20 14:52:29.451765",
+ "modified": "2025-03-21 16:08:16.455198",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Structure Child",

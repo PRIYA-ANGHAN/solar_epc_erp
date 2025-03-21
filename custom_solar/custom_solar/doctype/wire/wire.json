@@ -25,8 +25,9 @@
   },
   {
    "fieldname": "type",
-   "fieldtype": "Data",
-   "label": "Type"
+   "fieldtype": "Link",
+   "label": "Type",
+   "options": "Wire Type"
   },
   {
    "fieldname": "size_mm2",
@@ -46,7 +47,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-20 11:21:13.346317",
+ "modified": "2025-03-21 16:24:28.245524",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Wire",

@@ -100,7 +100,7 @@ class Leads(Document):
                 if not self.panel_count or self.panel_count == math.ceil((required_kw * 1000) / watt_peak):
                     self.panel_count = panel_count_calc  # Auto-calculate only if unchanged
  
-                frappe.msgprint(f"Panel Count calculated: {self.panel_count} panels")
+                # frappe.msgprint(f"Panel Count calculated: {self.panel_count} panels")
             except ZeroDivisionError:
                 frappe.throw("Watt Peak value cannot be zero.")
             except ValueError:
@@ -301,55 +301,6 @@ def log_status_change(docname, old_status, new_status, comment):
     except Exception as e:
         frappe.log_error(frappe.get_traceback(), "Status Change Logging Failed")
         frappe.throw(_("Failed to log status change: {0}").format(str(e)))
-
-# open quotation form without promt  ############################
-
-# @frappe.whitelist()
-# def log_status_change(docname, old_status, new_status, comment):
-#     """
-#     Log a status change for a lead, update its timeline, and return lead data if needed.
-#     """
-#     try:
-#         # Fetch the Lead document
-#         lead = frappe.get_doc("Leads", docname)
-
-#         # Log the status change as a comment
-#         frappe.get_doc({
-#             'doctype': 'Comment',
-#             'reference_doctype': 'Leads',
-#             'reference_name': docname,
-#             'content': f"Status changed from {old_status} to {new_status} by {frappe.session.user}:\n\n> {comment}",
-#             'comment_type': 'Comment',
-#             'comment_email': frappe.session.user,
-#             'owner': frappe.session.user,
-#         }).insert(ignore_permissions=True)
-
-#         # Update the Lead's status directly without loading the document
-#         if lead.status != new_status:
-#             frappe.db.set_value("Leads", docname, "status", new_status)
-
-#         # Prepare Lead data for "Quotation" status
-#         lead_data = {}
-#         if new_status == "Quotation":
-#             lead_data = {
-#                 'lead_id': lead.name,
-#                 'email_id': lead.email_id or "",
-#                 'address': lead.address or "",
-#                 'mobile_no': lead.mobile_no or "",
-#                 'company_name': lead.company_name or "",
-#                 'panel_tech': lead.panel_tech or "",
-#                 'watt_peak': lead.watt_peakkw or "",
-#             }
-
-#         return {
-#             "message": "Status change logged successfully",
-#             "lead_data": lead_data
-#         }
-
-#     except Exception as e:
-#         frappe.log_error(frappe.get_traceback(), "Status Change Logging Failed")
-#         frappe.throw(_("Failed to log status change: {0}").format(str(e)))
-
 
 # function for get site visit history
 @frappe.whitelist()

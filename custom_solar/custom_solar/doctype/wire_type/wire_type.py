@@ -1,9 +1,9 @@
-# Copyright (c) 2025, Neha Patil and contributors
+# Copyright (c) 2025, varoon soneji and contributors
 # For license information, please see license.txt
 
 # import frappe
 from frappe.model.document import Document
 
 
-class InventorChild(Document):
+class WireType(Document):
 	pass
