@@ -227,33 +227,6 @@ class Leads(Document):
                     frappe.log_error(frappe.get_traceback(), "Opportunity Creation Failed")
                     frappe.throw(f"Failed to create opportunity: {str(e)}")
 
-# save new status     +++++++++++++++++++
-# @frappe.whitelist()
-# def log_status_change(docname, old_status, new_status, comment):
-#     """
-#     Log a status change for a lead and update its timeline.
-#     """
-#     lead = frappe.get_doc("Leads", docname)
-#     try:
-#         activity = frappe.get_doc({
-#             'doctype': 'Comment',
-#             'reference_doctype': 'Leads',
-#             'reference_name': docname,
-#             'content': f"Status changed from {old_status} to {new_status} by {frappe.session.user}:\n\n> {comment}",
-#             'comment_type': 'Comment',
-#             'owner': frappe.session.user,
-#         })
-#         activity.insert(ignore_permissions=True)
-#     except Exception as e:
-#         frappe.log_error(frappe.get_traceback(), "Status Change Logging Failed")
-#         frappe.throw(f"Failed to log status change: {str(e)}")
-
-#     # Update the Lead's status
-#     lead.status = new_status
-#     lead.save()
-#     return {"message": "Status change logged successfully"}
-
-
 # open quotation form when status is quotation **************
 @frappe.whitelist()
 def log_status_change(docname, old_status, new_status, comment):
@@ -292,7 +265,6 @@ def log_status_change(docname, old_status, new_status, comment):
                 'panel_tech': lead.panel_tech or "",
                 'watt_peak': lead.watt_peakkw or "",
             }
-
         return {
             "message": "Status change logged successfully",
             "lead_data": lead_data

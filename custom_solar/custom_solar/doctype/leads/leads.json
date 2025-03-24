@@ -157,7 +157,8 @@
   {
    "fieldname": "total_price",
    "fieldtype": "Currency",
-   "label": "Total Price"
+   "label": "Total Price",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_lz9j",
@@ -193,7 +194,8 @@
   {
    "fieldname": "per_panel_price",
    "fieldtype": "Currency",
-   "label": "Per Panel Price"
+   "label": "Per Panel Price",
+   "read_only": 1
   },
   {
    "fieldname": "system_size",
@@ -212,7 +214,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-20 15:40:26.553722",
+ "modified": "2025-03-22 12:11:34.544246",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Leads",

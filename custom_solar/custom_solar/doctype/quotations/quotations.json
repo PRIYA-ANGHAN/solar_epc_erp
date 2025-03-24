@@ -1,6 +1,5 @@
 {
  "actions": [],
- "allow_rename": 1,
  "autoname": "format: SLQ-{lead_id}-{YYYY}-{####}",
  "creation": "2025-03-20 10:08:33.145483",
  "doctype": "DocType",
@@ -16,10 +15,11 @@
   "address",
   "section_break_itf6",
   "company_name",
+  "watt_peak",
+  "total_price_of_panel",
   "column_break_s3g5",
   "panel_tech",
-  "column_break_evdl",
-  "watt_peak",
+  "status",
   "inventor_details_section",
   "inverter_details",
   "structure_details_section",
@@ -32,6 +32,8 @@
   "item_price",
   "gst_section",
   "gst",
+  "column_break_ghfx",
+  "pdf_of_quotation",
   "section_break_08ds",
   "without_gst_amount",
   "column_break_l5f2",
@@ -41,6 +43,7 @@
   {
    "fieldname": "section_break_3iiv",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "Lead Details"
   },
   {
@@ -94,10 +97,6 @@
    "label": "Panel Tech"
   },
   {
-   "fieldname": "column_break_evdl",
-   "fieldtype": "Column Break"
-  },
-  {
    "fetch_from": "lead_id.watt_peakkw",
    "fieldname": "watt_peak",
    "fieldtype": "Data",
@@ -143,7 +142,6 @@
   {
    "fieldname": "gst_section",
    "fieldtype": "Section Break",
-   "hidden": 1,
    "label": "GST"
   },
   {
@@ -194,11 +192,34 @@
    "fieldname": "lead_name",
    "fieldtype": "Data",
    "label": "Lead Name"
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Draft\nAccepted\nRejected"
+  },
+  {
+   "fieldname": "column_break_ghfx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "pdf_of_quotation",
+   "fieldtype": "Attach",
+   "label": "PDF of Quotation"
+  },
+  {
+   "fetch_from": "lead_id.total_price",
+   "fieldname": "total_price_of_panel",
+   "fieldtype": "Currency",
+   "hidden": 1,
+   "label": "Total Price of Panel"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-21 17:39:17.097239",
+ "modified": "2025-03-22 13:15:52.843675",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Quotations",

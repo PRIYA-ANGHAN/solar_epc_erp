@@ -31,6 +31,7 @@ frappe.ui.form.on('Leads', {
         // Set Site Visit as the default tab when opening a new Lead
         $('#site-visit-tab').addClass('active');
         $('#activity-tab').removeClass('active');
+        $('#quotation-tab').removeClass('active');
     
         // Show Site Visit content and hide Activity content
         $('#site-visit-content').show();
@@ -42,7 +43,6 @@ frappe.ui.form.on('Leads', {
             $(frm.fields_dict[Object.keys(frm.fields_dict).pop()].wrapper).append(save_button);
             frm.custom_save_button = true;
         }
-        
     },
      
     onload: function(frm) {
@@ -145,66 +145,13 @@ frappe.ui.form.on('Leads', {
         }
     },
 
-    /* save status in comment doctype  */
-
-    // status: function(frm) {
-    //     if (frm.doc && frm.doc.status) {
-    //         const old_status = frm.old_status;
-    //         const new_status = frm.doc.status;
- 
-    //         if (old_status !== new_status) {
-    //             console.log('Status has changed.');
-    //             console.log('Old Status:', old_status);
-    //             console.log('New Status:', new_status);
- 
-    //             setTimeout(() => {
-    //                 frappe.prompt(
-    //                     {
-    //                         label: 'Add Comment',
-    //                         fieldname: 'status_comment',
-    //                         fieldtype: 'Small Text',
-    //                         reqd: 1
-    //                     },
-    //                     (values) => {
-    //                         console.log('Comment added:', values.status_comment);
- 
-    //                         // const content = `Status changed from **${old_status}** to **${new_status}** by ${frappe.session.user}:\n\n> **"${values.status_comment}"**`;
-    //                         const content = `Status changed from **${old_status}** to **${new_status}** by ${frappe.session.user}:\n\n> **"${values.status_comment}"**`;
- 
-    //                         frappe.call({
-    //                             method: 'frappe.desk.form.utils.add_comment',
-    //                             args: {
-    //                                 reference_doctype: 'Leads',
-    //                                 reference_name: frm.doc.name,
-    //                                 content: content,
-    //                                 comment_by: frappe.session.user,
-    //                                 comment_email: frappe.session.user
-    //                             },
-    //                             callback: function() {
-    //                                 frm.refresh();
-    //                                 frm.old_status = new_status;
-    //                             }
-    //                         });
-    //                     },
-    //                     'Status Change Comment',
-    //                     'Submit'
-    //                 );
-    //             }, 100);
-    //         }
-    //     } else {
-    //         console.error("frm.doc or status field is undefined.");
-    //     }
-    // }
-
-    /*    open quotation form with prompt message   */
     status: function(frm) {
         if (frm.doc && frm.doc.status) {
             const old_status = frm.old_status;
             const new_status = frm.doc.status;
     
-            if (old_status !== new_status) {
-                
-                // Open comment prompt
+            // Always open the prompt regardless of status change
+            if (new_status !== "Quotation") {
                 frappe.prompt(
                     {
                         label: 'Add Comment',
@@ -221,40 +168,56 @@ frappe.ui.form.on('Leads', {
                                 reference_name: frm.doc.name,
                                 content: `Status changed from **${old_status}** to **${new_status}** by ${frappe.session.user}:\n\n> **"${values.status_comment}"**`,
                                 comment_by: frappe.session.user,
-                                comment_email: frappe.session.user // Add this line
+                                comment_email: frappe.session.user
                             },
                             callback: function() {
                                 frm.refresh();
                                 frm.old_status = new_status;
-    
-                                // If status is "Quotation", open Quotation form with Lead data
-                                if (new_status === "Quotation") {
-                                    frappe.model.with_doctype('Quotations', () => {
-                                        let doc = frappe.model.get_new_doc('Quotations');
-    
-                                        // Map Lead fields to Quotation fields
-                                        doc.lead_id = frm.doc.name || "";
-                                        doc.email_id = frm.doc.email_id || "";
-                                        doc.address = frm.doc.address || "";
-                                        doc.mobile_no = frm.doc.mobile_no || "";
-                                        doc.date = frappe.datetime.now_datetime();
-                                        doc.company_name = frm.doc.company_name || "";
-                                        doc.panel_tech = frm.doc.panel_tech || "";
-                                        doc.watt_peak = frm.doc.watt_peakkw || "";
-    
-                                        // Navigate to the new Quotation form
-                                        frappe.set_route('Form', 'Quotations', doc.name);
-                                    });
-                                }
                             }
                         });
                     },
                     'Status Change Comment',
                     'Submit'
                 );
+    
+            } else {
+                // If status is "Quotation", log status change directly and open Quotation form
+                frappe.call({
+                    method: 'frappe.desk.form.utils.add_comment',
+                    args: {
+                        reference_doctype: 'Leads',
+                        reference_name: frm.doc.name,
+                        content: `Status changed from **${old_status}** to **${new_status}** by ${frappe.session.user}`,
+                        comment_by: frappe.session.user,
+                        comment_email: frappe.session.user
+                    },
+                    callback: function() {
+                        frm.refresh();
+                        frm.old_status = new_status;
+    
+                        // Open Quotation form with Lead data
+                        frappe.model.with_doctype('Quotations', () => {
+                            let doc = frappe.model.get_new_doc('Quotations');
+    
+                            // Map Lead fields to Quotation fields
+                            doc.lead_id = frm.doc.name || "";
+                            doc.email_id = frm.doc.email_id || "";
+                            doc.address = frm.doc.address || "";
+                            doc.mobile_no = frm.doc.mobile_no || "";
+                            doc.date = frappe.datetime.now_datetime();
+                            doc.company_name = frm.doc.company_name || "";
+                            doc.panel_tech = frm.doc.panel_tech || "";
+                            doc.watt_peak = frm.doc.watt_peakkw || "";
+    
+                            // Navigate to the new Quotation form
+                            frappe.set_route('Form', 'Quotations', doc.name);
+                        });
+                    }
+                });
             }
         }
-    }    
+    }
+    
 });
  
 function calculate_total_price(frm) {
@@ -334,8 +297,7 @@ function add_custom_timeline_tabs(frm) {
     if (!frm.custom_tabs_added) {
         let timeline_wrapper = frm.timeline.wrapper; // Get the timeline wrapper
         
-            // HTML structure for custom tabs
-
+        // HTML structure for custom tabs
         let tab_html = `
         <ul class="nav nav-tabs" id="customTab" role="tablist">
             <li class="nav-item">
@@ -345,61 +307,59 @@ function add_custom_timeline_tabs(frm) {
                 <a class="nav-link" id="activity-tab" role="tab">Activity</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" id="quotation-tab" role="tab">Quotation</a>
+                <a class="nav-link" id="quotation-tab" role="tab">Quotation</a>
             </li>
         </ul>
         <div class="tab-content mt-3">
             <div class="tab-pane fade show active" id="site-visit-content" role="tabpanel"></div>
             <div class="tab-pane fade" id="activity-content" role="tabpanel"></div>
-            <div class="tab-pane fade show active" id="quotation-content" role="tabpanel"></div>
-
+            <div class="tab-pane fade" id="quotation-content" role="tabpanel"></div>
         </div>`;
-         // Prepend the tab structure inside the timeline wrapper
 
+        // Prepend the tab structure inside the timeline wrapper
         $(timeline_wrapper).prepend(tab_html);
-                // Load data related to Site Visit
 
+        // Load data related to Site Visit
         load_site_visit_data(frm);
 
-        $(document).ready(function() {
+        $(document).ready(function () {
+            // Tab switching helper function
+            function switchTab(activeTab, activeContent) {
+                // Remove active class from all tabs and content
+                $('#site-visit-tab, #activity-tab, #quotation-tab').removeClass('active');
+                $('#site-visit-content, #activity-content, #quotation-content').hide();
+                frm.timeline.timeline_items_wrapper.hide();
+
+                // Set active tab and content
+                $(activeTab).addClass('active');
+                $(activeContent).show();
+            }
+
             // Show Site Visit tab by default
-        $('#site-visit-content').show();
-        $('#quotation-content, frm.timeline.timeline_items_wrapper').hide();  // Hide quotation & activity section
-        
-        $('#site-visit-tab').addClass('active');     // Mark the Site Visit tab as active by default
+            switchTab('#site-visit-tab', '#site-visit-content');
 
-            $('#activity-tab').on('click', function() {              // Event listener for Activity tab click
-            $('#site-visit-content').hide();
-            frm.timeline.timeline_items_wrapper.show();
-            frm.timeline.wrapper.find('.timeline-item').show();
-            // Remove active class from other tabs, add to Quotation tab
-
-            $('#site-visit-tab,#quotation-tab').removeClass('active');
-            $('#activity-tab').addClass('active');
-            });
- 
-            $('#site-visit-tab').on('click', function() {
+            // Handle Site Visit tab click
+            $('#site-visit-tab').on('click', function () {
+                switchTab('#site-visit-tab', '#site-visit-content');
                 frm.timeline.timeline_items_wrapper.hide();
-                frm.timeline.wrapper.find('.timeline-item').hide();
-                $('#site-visit-content').show();
-                $('#quotation-content').hide();
-
-                // Remove active class from other tabs, add to Quotation tab
-                $('#activity-tab,#quotation-tab').removeClass('active');
-                $('#site-visit-tab').addClass('active');
+                frm.timeline.wrapper.find('.timeline-item').hide(); // Hide Activity content         
             });
-                    
-            $('#quotation-tab').on('click', function() {
-                frm.timeline.timeline_items_wrapper.hide();
-                frm.timeline.wrapper.find('.timeline-item').hide();
-                $('#site-visit-content').hide();
-                $('#quotation-content').show();
 
-                // Remove active class from other tabs, add to Quotation tab
-                $('#activity-tab, #site-visit-tab').removeClass('active');
-                $('#quotation-tab').addClass('active');
+            // Handle Activity tab click
+            $('#activity-tab').on('click', function () {
+                switchTab('#activity-tab', '#activity-content');
+                frm.timeline.timeline_items_wrapper.show();
+                frm.timeline.wrapper.find('.timeline-item').show();
+            });
+
+            // Handle Quotation tab click
+            $('#quotation-tab').on('click', function () {
+                switchTab('#quotation-tab', '#quotation-content');
+                frm.timeline.timeline_items_wrapper.hide();
+                frm.timeline.wrapper.find('.timeline-item').hide(); // Hide Activity content            
             });
         });
+
         frm.custom_tabs_added = true;
     }
 }
@@ -410,9 +370,8 @@ function load_site_visit_data(frm) {
  
     frm.timeline.timeline_items_wrapper.hide();
     frm.timeline.wrapper.find('.timeline-item').hide(); // Hide Activity content
- 
-    frm.timeline.timeline_items_wrapper.show(); // Ensure timeline is visible
- 
+    $('#quotation-content').hide();
+  
     frappe.call({
         method: 'custom_solar.custom_solar.doctype.leads.leads.get_site_visit_history',
         args: { lead: frm.doc.name },
@@ -505,7 +464,6 @@ function load_site_visit_data(frm) {
                     </div>
                `;
             });
- 
             $('#site-visit-content').html(content); // Display Site Visit data
         }
     });
