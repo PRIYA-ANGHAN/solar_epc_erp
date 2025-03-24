@@ -293,3 +293,27 @@ def get_site_visit_history(**kwargs):
     if not visits:
         return {"message": "No site visits found for this lead"}
     return visits
+
+@frappe.whitelist()
+def get_quotation_ids(**kwargs):
+    """
+    Retrieve the history of site visits for a given lead.
+    """
+    lead = kwargs.get("lead_id")
+    print(f"Fetching quotations for Lead ID: {lead}")
+
+    frappe.logger().info(f"Fetching quotations for Lead ID: {lead}")
+
+    quotations = frappe.get_all(
+        'Quotations',
+        filters={'lead_id': lead},
+        fields=['name','status'
+        ]
+    )
+    print(f"Quotations Found: {quotations}")
+
+    frappe.logger().info(f"Quotations Found: {quotations}")
+
+    if not quotations:
+        return {"message": "No Quotation found for this lead"}
+    return quotations
