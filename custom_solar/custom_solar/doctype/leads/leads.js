@@ -215,6 +215,7 @@ frappe.ui.form.on('Leads', {
         } else {
             frm.set_value("per_panel_price", "");
         }
+        calculate_panel_count(frm)
     },
 
     status: function(frm) {
