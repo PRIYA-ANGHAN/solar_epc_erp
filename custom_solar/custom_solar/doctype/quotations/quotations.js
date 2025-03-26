@@ -54,10 +54,10 @@ function calculate_structure_amount(frm, cdt, cdn) {
 
 // Wire Child Calculation
 frappe.ui.form.on("Wire Child", {
-    size_mm2: function (frm, cdt, cdn) {
+    wire_sizemeter: function (frm, cdt, cdn) {
         calculate_wire_amount(frm, cdt, cdn);
     },
-    rate__100m: function (frm, cdt, cdn) {
+    rate__1m: function (frm, cdt, cdn) {
         calculate_wire_amount(frm, cdt, cdn);
     },
     wire_details_add: function (frm, cdt, cdn) {
@@ -68,9 +68,9 @@ frappe.ui.form.on("Wire Child", {
 function calculate_wire_amount(frm, cdt, cdn) {
     let row = locals[cdt][cdn]; // Get the current row
 
-    // Ensure rate__100m and size_mm2 are numeric
-    let rate = row.rate__100m ? parseFloat(row.rate__100m) : 0;
-    let size = row.size_mm2 ? parseFloat(row.size_mm2) : 1;
+    // Ensure rate__100m and wire_sizemeter are numeric
+    let rate = row.rate__1m ? parseFloat(row.rate__1m) : 0;
+    let size = row.wire_sizemeter ? parseFloat(row.wire_sizemeter) : 1;
 
     // If size is 1 (default), set amount as rate
     let wire_amount = (size === 1) ? rate : rate * size;
@@ -99,3 +99,11 @@ function filterChildFields(frm, tableName, fieldTrigger, fieldName, fieldFiltere
         }
     };
 }
+
+frappe.ui.form.on('Quotations', {
+    refresh: function(frm) {
+        frm.fields_dict['inverter_details'].$wrapper.find('.grid-add-row').text('Add Inverter');
+        frm.fields_dict['structure_details'].$wrapper.find('.grid-add-row').text('Add Structure');
+        frm.fields_dict['wire_details'].$wrapper.find('.grid-add-row').text('Add Wire');        
+    }
+});

@@ -16,28 +16,28 @@
   "date_sgma",
   "status_section_section",
   "status",
-  "section_break_6jud",
-  "column_break_fsrf",
-  "services",
+  "section_break_hudt",
   "electricity_bill",
-  "billing_cycle",
-  "panel_tech",
-  "company_name",
-  "system_size",
-  "per_panel_price",
-  "column_break_lz9j",
-  "electricity_provider",
-  "unit_rate",
-  "required__kw",
-  "watt_peakkw",
+  "services",
   "panel_count",
-  "total_price"
+  "billing_cycle",
+  "watt_peakkw",
+  "system_size",
+  "column_break_wagy",
+  "total_price",
+  "electricity_provider",
+  "required__kw",
+  "unit_rate",
+  "panel_tech",
+  "column_break_osbj",
+  "company_name",
+  "per_panel_price"
  ],
  "fields": [
   {
    "fieldname": "personal_details_section",
    "fieldtype": "Section Break",
-   "label": "Lead Details"
+   "label": "User Details"
   },
   {
    "fieldname": "full_name",
@@ -78,9 +78,11 @@
    "label": "Status Section"
   },
   {
-   "fieldname": "section_break_6jud",
-   "fieldtype": "Section Break",
-   "label": "Service And Electricity Details"
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Unqualified Suspect\nFollow Up\nSite Visit Schedule\nSite Visit Done\nDormant\nQuotation\nClosed"
   },
   {
    "fieldname": "electricity_provider",
@@ -96,7 +98,7 @@
   {
    "fieldname": "required__kw",
    "fieldtype": "Float",
-   "label": "Required  KW"
+   "label": "Required  kw"
   },
   {
    "fieldname": "panel_count",
@@ -129,10 +131,6 @@
    "read_only": 1
   },
   {
-   "fieldname": "column_break_lz9j",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "panel_tech",
    "fieldtype": "Link",
    "label": "Panel Tech",
@@ -143,10 +141,6 @@
    "fieldtype": "Link",
    "label": "Company Name",
    "options": "Panel Company"
-  },
-  {
-   "fieldname": "column_break_fsrf",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "services",
@@ -164,24 +158,30 @@
   {
    "fieldname": "system_size",
    "fieldtype": "Data",
-   "label": "System Size",
-   "read_only": 1
-  },
-  {
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "label": "Status",
-   "options": "Unqualified Prospect\nIntro Call\nFollow Up\nSite Visit Schedule\nSite Visit Done\nDormant\nQuotation\nClosed"
+   "label": "System Size"
   },
   {
    "fieldname": "address",
    "fieldtype": "Data",
    "label": "Address"
+  },
+  {
+   "fieldname": "section_break_hudt",
+   "fieldtype": "Section Break",
+   "label": "sdfgh"
+  },
+  {
+   "fieldname": "column_break_osbj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_wagy",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-26 17:34:01.429183",
+ "modified": "2025-03-26 14:38:56.105830",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Leads",

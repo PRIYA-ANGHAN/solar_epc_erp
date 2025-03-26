@@ -192,7 +192,8 @@ class Leads(Document):
                         "billing_cycle": self.billing_cycle,
                         "watt_peakkw": self.watt_peakkw,
                         "panel_count": self.panel_count,
-                        "total_price": self.total_price
+                        "total_price": self.total_price,
+                        "system_size": self.system_size
                         })
     
                     opportunity.insert(ignore_permissions=True)

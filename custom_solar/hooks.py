@@ -4,6 +4,7 @@ app_publisher = "Neha Patil"
 app_description = "Solar EPC"
 app_email = "neha.sarvadhi@gmail.com"
 app_license = "mit"
+# app_logo_url = "/files/navi-solar-120x120.jpg"
 
 # Apps
 # ------------------
@@ -242,4 +243,3 @@ app_license = "mit"
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
-

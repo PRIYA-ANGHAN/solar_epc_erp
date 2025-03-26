@@ -8,8 +8,8 @@
  "field_order": [
   "wire_type",
   "wire_company",
-  "rate__100m",
-  "size_mm2",
+  "rate__1m",
+  "wire_sizemeter",
   "wire_amount"
  ],
  "fields": [
@@ -29,31 +29,31 @@
    "options": "Wire Type"
   },
   {
-   "fieldname": "size_mm2",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Size (mm2)"
-  },
-  {
-   "fetch_from": "wire_company.price",
-   "fieldname": "rate__100m",
-   "fieldtype": "Currency",
-   "in_list_view": 1,
-   "label": "Rate / 100m",
-   "read_only": 1
-  },
-  {
    "fieldname": "wire_amount",
    "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "wire_sizemeter",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Wire Size(Meter) "
+  },
+  {
+   "fetch_from": "wire_company.price",
+   "fieldname": "rate__1m",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Rate / 1m",
    "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-03-21 16:25:50.936259",
+ "modified": "2025-03-26 10:56:39.964406",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Wire Child",

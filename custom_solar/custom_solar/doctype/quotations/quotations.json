@@ -1,6 +1,6 @@
 {
  "actions": [],
- "autoname": "format: SLQ-{lead_id[1:]}-{YYYY}-{####}",
+ "autoname": "format: {lead_id}-{YY}-{####}",
  "creation": "2025-03-20 10:08:33.145483",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -32,8 +32,6 @@
   "item_price",
   "gst_section",
   "gst",
-  "column_break_ghfx",
-  "pdf_of_quotation",
   "section_break_08ds",
   "without_gst_amount",
   "column_break_l5f2",
@@ -107,11 +105,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "wire_details_section",
-   "fieldtype": "Section Break",
-   "label": "Wire Details"
-  },
-  {
    "fieldname": "section_break_vibs",
    "fieldtype": "Section Break",
    "label": "Miscellaneous Items"
@@ -142,6 +135,7 @@
   {
    "fieldname": "gst_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "GST"
   },
   {
@@ -183,43 +177,38 @@
    "options": "Structure Child"
   },
   {
-   "fieldname": "wire_details",
-   "fieldtype": "Table",
-   "options": "Wire Child"
-  },
-  {
    "fetch_from": "lead_id.full_name",
    "fieldname": "lead_name",
    "fieldtype": "Data",
    "label": "Lead Name"
   },
   {
-   "default": "Draft",
+   "default": "Pending",
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "Draft\nAccepted\nRejected"
-  },
-  {
-   "fieldname": "column_break_ghfx",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "pdf_of_quotation",
-   "fieldtype": "Attach",
-   "label": "PDF of Quotation"
+   "options": "Pending\nAccepted\nRejected"
   },
   {
    "fetch_from": "lead_id.total_price",
    "fieldname": "total_price_of_panel",
    "fieldtype": "Currency",
-   "hidden": 1,
    "label": "Total Price of Panel"
+  },
+  {
+   "fieldname": "wire_details_section",
+   "fieldtype": "Section Break",
+   "label": "Wire Details"
+  },
+  {
+   "fieldname": "wire_details",
+   "fieldtype": "Table",
+   "options": "Wire Child"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-24 18:03:23.810704",
+ "modified": "2025-03-26 15:47:14.744077",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Quotations",

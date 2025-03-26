@@ -26,8 +26,8 @@ class Quotations(Document):
     def wire_amount(self):
         """Calculate amount for each wire entry in the child table."""
         for item in self.get("wire_details") or []:
-            rate = float(item.rate__100m) if item.rate__100m else 0
-            size = int(item.size_mm2) if item.size_mm2 else 0
+            rate = float(item.rate__1m) if item.rate__1m else 0
+            size = int(item.wire_sizemeter) if item.wire_sizemeter else 0
             item.wire_amount = rate * size
 
     def calculate_total_amount(self):
@@ -38,9 +38,11 @@ class Quotations(Document):
         s_sum = get_total_amount(self.structure_details, "structure_amount")
         w_sum = get_total_amount(self.wire_details, "wire_amount")
 
-        item_price = self.item_price or 0
+        # item_price = self.item_price or 0
+        item_price = self.item_price if self.item_price is not None else 0
+        panel_price = self.total_price_of_panel
 
-        without_gst_amount = i_sum + s_sum + w_sum + item_price
+        without_gst_amount = i_sum + s_sum + w_sum + item_price + panel_price
         self.without_gst_amount = round(without_gst_amount, 2)
 
         # Convert GST from percentage string to a decimal value

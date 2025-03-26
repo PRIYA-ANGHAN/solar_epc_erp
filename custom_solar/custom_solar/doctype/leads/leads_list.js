@@ -34,8 +34,11 @@ frappe.listview_settings["Leads"] = {
             case "Closed":
                 indicator[1] = "green";  // Green color for Closed status
                 break;
-            case "Unqualified Suspect":
+            case "Unqualified Prospect":
                 indicator[1] = "red";  // Red color for Unqualified Suspect
+                break;
+            case "Intro Call":
+                indicator[1] = "yellow";  // Light orange color for Intro Call
                 break;
             case "Follow Up":
                 indicator[1] = "orange";  // Orange color for Follow Up
@@ -44,10 +47,13 @@ frappe.listview_settings["Leads"] = {
                 indicator[1] = "blue";  // Blue color for Site Visit Schedule
                 break;
             case "Site Visit Done":
-                indicator[1] = "pink";  // pink color for Site Visit Done
+                indicator[1] = "pink";  // Pink color for Site Visit Done
                 break;
             case "Dormant":
                 indicator[1] = "grey";  // Grey color for Dormant
+                break;
+            case "Quotation":
+                indicator[1] = "purple";  // Light green color for Quotation
                 break;
             default:
                 indicator[1] = "transparent";  // Default color if status is not listed
@@ -60,7 +66,7 @@ frappe.listview_settings["Leads"] = {
 // Your existing button code remains unchanged
 frappe.listview_settings['Leads'].button = {
     show: function(doc) {
-        return doc.status !== 'Closed'; // Button is visible only if status is not "Closed"
+        return doc.status == 'Site Visit Schedule'; // Button is visible only if status is not "Closed"
     },
     get_label: function() {
         return __('Site Visit');
@@ -82,6 +88,4 @@ function create_site_visit_for_lead(doc) {
         }
     });
     frappe.set_route('Form', 'Site_Visit', 'new');
-}
- 
- 
+}2

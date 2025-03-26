@@ -25,7 +25,13 @@ frappe.ui.form.on('Leads', {
     },
 
     refresh: function(frm) {
-        add_custom_timeline_tabs(frm); // Ensure tabs are added
+        // add_custom_timeline_tabs(frm); // Ensure tabs are added
+
+        // Ensure tabs are added only once
+        if (!frm.custom_tabs_added) {
+            add_custom_timeline_tabs(frm); 
+        }
+
         load_site_visit_data(frm); // Load correct Site Visit data for the opened lead
     
         // Set Site Visit as the default tab when opening a new Lead
@@ -36,6 +42,7 @@ frappe.ui.form.on('Leads', {
         // Show Site Visit content and hide Activity content
         $('#site-visit-content').show();
         frm.timeline.timeline_items_wrapper.hide(); // Hide Activity
+        $('#activity-content, #quotation-content').hide();
 
         // Add Save Button at the bottom if not already added
         if (!frm.custom_save_button) {
@@ -56,8 +63,45 @@ frappe.ui.form.on('Leads', {
         if (!frm.doc.mobile_no) {  
             frm.set_value('mobile_no', '+91 ');  
         }
+
+        frappe.call({                      //onload logic for rejected quotation when quotation is reject add quotation button is shown
+            method: 'custom_solar.custom_solar.doctype.leads.leads.get_quotation_ids',
+            args: { lead_id: frm.doc.name },
+            callback: function(response) {
+                let quotations = response.message || [];
+                let hasRejectedQuotation = quotations.some(q => q.status === 'Rejected');
+                let hasAcceptedQuotation = quotations.some(q => q.status === 'Accepted');
+
+                if (hasRejectedQuotation && !hasAcceptedQuotation) {
+                    // Show the "Add New Quotation" button in the Lead list view
+                    frm.add_custom_button(__('Add New Quotation'), function() {
+                        frappe.model.with_doctype('Quotations', () => {
+                            let doc = frappe.model.get_new_doc('Quotations');
+
+                            // Map Lead fields to Quotation fields
+                            doc.lead_id = frm.doc.name || "";
+                            doc.email_id = frm.doc.email_id || "";
+                            doc.address = frm.doc.address || "";
+                            doc.mobile_no = frm.doc.mobile_no || "";
+                            doc.date = frappe.datetime.now_datetime();
+                            doc.company_name = frm.doc.company_name || "";
+                            doc.panel_tech = frm.doc.panel_tech || "";
+                            doc.watt_peak = frm.doc.watt_peakkw || "";
+
+                            // Navigate to the new Quotation form
+                            frappe.set_route('Form', 'Quotations', doc.name);
+                        });
+                    }).css({
+                        "color": "white",
+                        "background-color": "#14141f",
+                        "font-weight": "800"
+                    });
+                }
+            }
+        });
+
     },
- 
+
     services: function(frm) {
         if (frm.doc.services && frm.doc.services.length > 0) {
             let selected_services = frm.doc.services;
@@ -78,6 +122,15 @@ frappe.ui.form.on('Leads', {
     },
  
     panel_tech: function(frm) {
+        if (!frm.doc.services) {
+            frappe.msgprint({
+                title: __('Missing Selection'),
+                message: __('Please select a Service before choosing Panel Tech.'),
+                indicator: 'red'
+            });
+            frm.set_value("panel_tech", ""); // Reset invalid input
+            return;
+        }
         if (frm.doc.panel_tech) {
             frm.set_query("watt_peakkw", function() {
                 return {
@@ -92,8 +145,18 @@ frappe.ui.form.on('Leads', {
             });
         }
     },
-    
+
     watt_peakkw: function(frm) {
+        if (!frm.doc.panel_tech) {
+            frappe.msgprint({
+                title: __('Missing Selection'),
+                message: __('Please select a Panel Tech before choosing Watt Peak.'),
+                indicator: 'red'
+            });
+            frm.set_value("watt_peakkw", ""); // Reset invalid input
+            return;
+        }
+
         if (frm.doc.watt_peakkw) {
             frappe.call({
                 method: 'frappe.client.get_list',
@@ -119,8 +182,17 @@ frappe.ui.form.on('Leads', {
             });
         }
     },
-    
-    company_name: function(frm) {           //this filter is for panel per price from company detail doctype
+
+    company_name: function(frm) {  
+        if (!frm.doc.watt_peakkw) {
+            frappe.msgprint({
+                title: __('Missing Selection'),
+                message: __('Please select a Watt Peak before choosing Company Name.'),
+                indicator: 'red'
+            });
+            frm.set_value("company_name", ""); // Reset invalid input
+            return;
+        }         //this filter is for panel per price from company detail doctype
         if (frm.doc.company_name && frm.doc.watt_peakkw) {
             frappe.call({
                 method: 'frappe.client.get_value',
@@ -138,7 +210,7 @@ frappe.ui.form.on('Leads', {
                     } else {
                         frm.set_value("per_panel_price", "");
                     }
-                }
+                },
             });
         } else {
             frm.set_value("per_panel_price", "");
@@ -325,6 +397,7 @@ function add_custom_timeline_tabs(frm) {
         $(document).ready(function () {
             // Tab switching helper function
             function switchTab(activeTab, activeContent) {
+                
                 // Remove active class from all tabs and content
                 $('#site-visit-tab, #activity-tab, #quotation-tab').removeClass('active');
                 $('.tab-pane').removeClass('show active').css('opacity', '0'); // add css to for show quotation contant
@@ -352,6 +425,11 @@ function add_custom_timeline_tabs(frm) {
                 switchTab('#activity-tab', '#activity-content');
                 frm.timeline.timeline_items_wrapper.show();
                 frm.timeline.wrapper.find('.timeline-item').show();
+
+                // Hide the div with class 'timeline-items timeline-actions'
+                frm.timeline.wrapper.find('.timeline-items.timeline-actions').hide(); 
+                // frm.timeline.wrapper.find('.d-flex.align-items-center.show-all-activity').hide(); 
+        
             });
 
             // Handle Quotation tab click
@@ -377,6 +455,7 @@ $(`<style>
     }
 </style>`).appendTo('head');
 
+// function for show site visit data in tab
 function load_site_visit_data(frm) {
  
     $('#site-visit-content').html('');  // Clear previous Site Visit data
@@ -478,7 +557,7 @@ function load_site_visit_data(frm) {
                `;
             });
             $('#site-visit-content').html(content); // Display Site Visit data
-        }
+        },
     });
 }
 
@@ -500,35 +579,52 @@ function load_quotation_data(frm) {
                 content = `<div class="alert alert-warning">No quotations found for this lead.</div>`;
             } else {
                 quotations.forEach((quotation, index) => {
+                    // Determine badge color based on status
                     let status_badge_color = quotation.status === 'Accepted' ? 'success' : 
-                                             (quotation.status === 'Rejected' ? 'danger' : 'secondary');
-
+                                             (quotation.status === 'Rejected' ? 'danger' :
+                                             (quotation.status === 'Pending' ? 'warning' : 'secondary'));
+            
+                    // Conditionally render buttons
+                    let buttons = '';
+                    if (quotation.status != 'Accepted' && quotation.status !== 'Rejected') {
+   
+                        buttons = `
+                            <button class="btn btn-success btn-sm update-status accept-btn" data-id="${quotation.name}" data-status="Accepted">Accept</button>
+                            <button class="btn btn-danger btn-sm update-status reject-btn" data-id="${quotation.name}" data-status="Rejected">Reject</button>
+                        `;
+                    }
+                    else{
+                        buttons='';
+                    }
+            
                     content += `
-                        <div class="quotation-details card p-4 mb-4">
-                            <h5>Quotation #${index + 1}</h5>
-
-                            <div class="row mb-3 align-items-center">
-                                <div class="col-md-6">
-                                    <div><strong>Quotation ID:</strong> ${quotation.name || '-'}</div>
+                        <div class="quotation-details card p-3 mb-3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <!-- Quotation ID -->
+                                <div class="quotation-id">
+                                    <strong>Quotation ID:</strong> ${quotation.name || '-'}
                                 </div>
-                                <div class="col-md-12 mt-2">
-                                    <div><strong>Status:</strong> 
-                                        <span class="badge bg-${status_badge_color}" id="status-${quotation.name}">${quotation.status || 'Draft'}</span>
-                                    </div>
+            
+                                <!-- Status Badge -->
+                                <div class="status">
+                                    <strong>Status:</strong> 
+                                    <span class="badge bg-${status_badge_color}" id="status-${quotation.name}">${quotation.status || 'Pending'}</span>
                                 </div>
-                                <div class="col-md-12 mt-2">
-                                    <button class="btn btn-success btn-sm update-status" data-id="${quotation.name}" data-status="Accepted">Accept</button>
-                                    <button class="btn btn-danger btn-sm update-status reject-btn" data-id="${quotation.name}" data-status="Rejected">Reject</button>
-                                    <button class="btn btn-primary btn-sm new-quotation-btn d-none mt-2">Add New Quotation</button>
+            
+                                <!-- Buttons -->
+                                <div class="actions">
+                                    ${buttons}
                                 </div>
-                        </div>
-                   </div>`;
+                            </div>
+                        </div>`;
                 });
             }
-
+            
+            $('#quotation-content').html(content);
+            
             $('#quotation-content').html(content); // Display Quotation data
 
-            // Add event listener for status update buttons
+            // Event listener for status update buttons
             $('.update-status').on('click', function () {
                 let quotation_id = $(this).data('id');
                 let new_status = $(this).data('status');
@@ -543,16 +639,21 @@ function load_quotation_data(frm) {
                     },
                     callback: function(response) {
                         if (!response.exc) {
+                            // Update the status badge UI
                             $(`#status-${quotation_id}`).text(new_status);
                             let badge_color = new_status === 'Accepted' ? 'success' : 'danger';
                             $(`#status-${quotation_id}`).removeClass('bg-secondary bg-success bg-danger').addClass(`bg-${badge_color}`);
                             frappe.msgprint(`Quotation ${quotation_id} status updated to ${new_status}`);
 
-                            // If accepted, update Lead status to 'Closed'
+                            // When Accept or Reject is clicked, hide the Reject button
+                            $(`button.reject-btn[data-id="${quotation_id}"]`).hide();
+                            $(`button.accept-btn[data-id="${quotation_id}"]`).hide();
+
+                            // If accepted, also update Lead status to 'Closed'
                             if (new_status === 'Accepted') {
                                 frappe.call({
                                     method: 'frappe.client.set_value',
-                                    args: {
+                                    args: {     
                                         doctype: 'Leads',
                                         name: frm.doc.name,
                                         fieldname: 'status',
@@ -564,34 +665,11 @@ function load_quotation_data(frm) {
                                     }
                                 });
                             }
+                            else {
+                                frm.reload_doc()
+                            }
                         }
                     }
-                });
-            });
-
-            // Show "Add New Quotation" button on reject
-            $('.reject-btn').on('click', function () {
-                let newQuotationBtn = $(this).closest('.quotation-details').find('.new-quotation-btn');
-                newQuotationBtn.removeClass('d-none');
-            });
-
-            // Open Quotation form on "Add New Quotation" click and auto-fill Lead details
-            $('.new-quotation-btn').on('click', function () {
-                frappe.model.with_doctype('Quotations', () => {
-                    let doc = frappe.model.get_new_doc('Quotations');
-
-                    // Map Lead fields to Quotation fields
-                    doc.lead_id = frm.doc.name || "";
-                    doc.email_id = frm.doc.email_id || "";
-                    doc.address = frm.doc.address || "";
-                    doc.mobile_no = frm.doc.mobile_no || "";
-                    doc.date = frappe.datetime.now_datetime();
-                    doc.company_name = frm.doc.company_name || "";
-                    doc.panel_tech = frm.doc.panel_tech || "";
-                    doc.watt_peak = frm.doc.watt_peakkw || "";
-
-                    // Navigate to the new Quotation form
-                    frappe.set_route('Form', 'Quotations', doc.name);
                 });
             });
         }

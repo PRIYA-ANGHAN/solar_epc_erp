@@ -10,7 +10,6 @@
   "company",
   "specifications",
   "type",
-  "size_mm2",
   "price"
  ],
  "fields": [
@@ -30,11 +29,6 @@
    "options": "Wire Type"
   },
   {
-   "fieldname": "size_mm2",
-   "fieldtype": "Data",
-   "label": "Size (mm2)"
-  },
-  {
    "fieldname": "price",
    "fieldtype": "Currency",
    "label": "Price"
@@ -47,7 +41,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-21 16:24:28.245524",
+ "modified": "2025-03-26 10:27:46.975243",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Wire",
