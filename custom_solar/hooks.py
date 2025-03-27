@@ -4,11 +4,18 @@ app_publisher = "Neha Patil"
 app_description = "Solar EPC"
 app_email = "neha.sarvadhi@gmail.com"
 app_license = "mit"
-# app_logo_url = "/files/navi-solar-120x120.jpg"
+app_logo_url = "/assets/custom_solar/image/navi-solar.jpg"
 
 # Apps
 # ------------------
 
+
+website_context = {
+    "favicon": "/assets/custom_solar/image/navi-solar.jpg",
+    "splash_image": "/assets/custom_solar/image/navi-solar.jpg",
+    # "logo": "/assets/custom_solar/image/navi-solar.jpg",
+
+}
 # required_apps = []
 
 # Each item in the list will be shown as an app in the apps page
@@ -21,7 +28,6 @@ app_license = "mit"
 # 		"has_permission": "custom_solar.api.permission.has_app_permission"
 # 	}
 # ]
-
 
 # Includes in <head>
 # ------------------

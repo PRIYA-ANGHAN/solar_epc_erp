@@ -17,6 +17,21 @@ class Leads(Document):
         self.calculate_system_size()
         self.calculate_total_price()
 
+        # Validation for "Closed" status
+        if self.status == "Closed":
+            quotations = frappe.get_all(
+                "Quotations",
+                filters={"lead_id": self.name},
+                fields=["name", "status"]
+            )
+
+            if not quotations:
+                frappe.throw("Create a Quotation first before closing the lead.")
+
+            if not any(q["status"] == "Accepted" for q in quotations):
+                frappe.throw("At least one Quotation must be 'Accepted' before closing the lead.")
+
+
     # mobile number validation
     def validate_mobile_number(self):
         """
@@ -286,9 +301,7 @@ def get_site_visit_history(**kwargs):
         'Site_Visit',
         filters={'lead': lead},
         fields=[
-            'lead_owner', 'cantilever_position', 'lead', 'shadow_object_analysis',
-            'roof_type', 'structure_type', 'sanction_load', 'is_same_name', 'no_of_floor',
-            'final_note', 'remarks', '2d_diagram_of_site', 'site_image', 'site_video'
+            'lead_owner', 'cantilever_position', 'shadow_object_analysis', 'roof_type', 'structure_type', 'sanction_load', 'no_of_floor', 'remarks', '2d_diagram_of_site', 'site_image', 'site_video'
         ]
     )
     if not visits:
@@ -301,17 +314,14 @@ def get_quotation_ids(**kwargs):
     Retrieve the history of site visits for a given lead.
     """
     lead = kwargs.get("lead_id")
-    print(f"Fetching quotations for Lead ID: {lead}")
 
     frappe.logger().info(f"Fetching quotations for Lead ID: {lead}")
 
     quotations = frappe.get_all(
         'Quotations',
         filters={'lead_id': lead},
-        fields=['name','status'
-        ]
+        fields=['name','status','rejection_reason']
     )
-    print(f"Quotations Found: {quotations}")
 
     frappe.logger().info(f"Quotations Found: {quotations}")
 

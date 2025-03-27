@@ -181,7 +181,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-26 17:34:01.429183",
+ "modified": "2025-03-27 14:47:06.894692",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Leads",
@@ -204,6 +204,5 @@
  "search_fields": "full_name",
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": [],
- "track_seen": 1
+ "states": []
 }

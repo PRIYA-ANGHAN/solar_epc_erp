@@ -25,7 +25,7 @@ frappe.ui.form.on('Leads', {
     },
 
     refresh: function(frm) {
-        // add_custom_timeline_tabs(frm); // Ensure tabs are added
+        add_custom_timeline_tabs(frm); // Ensure tabs are added
 
         // Ensure tabs are added only once
         if (!frm.custom_tabs_added) {
@@ -51,8 +51,11 @@ frappe.ui.form.on('Leads', {
             frm.custom_save_button = true;
         }
     },
-     
+    
     onload: function(frm) {
+        add_custom_timeline_tabs(frm); // Ensure tabs are added
+        load_site_visit_data(frm); // Load correct Site Visit data for the opened lead
+
         if (!frm.doc.status) {
             frm.old_status = "";
         } else {
@@ -222,7 +225,17 @@ frappe.ui.form.on('Leads', {
         if (frm.doc && frm.doc.status) {
             const old_status = frm.old_status;
             const new_status = frm.doc.status;
-    
+
+             // Show message when user selects "Closed" (but still block save in Python)
+            if (new_status === "Closed") {
+                frappe.msgprint({
+                    title: __('Validation'),
+                    message: __('Lead cannot be closed unless a Quotation is created and accepted.'),
+                    indicator: 'red'
+                });
+                return;
+            }
+
             // Always open the prompt regardless of status change
             if (new_status !== "Quotation") {
                 frappe.prompt(
@@ -289,10 +302,10 @@ frappe.ui.form.on('Leads', {
                 });
             }
         }
-    }
+    },
     
 });
- 
+
 function calculate_total_price(frm) {
     // Convert both fields to numbers (default to 0 if empty/NaN)
     let panel_count = parseFloat(frm.doc.panel_count) || 0;
@@ -418,7 +431,7 @@ function add_custom_timeline_tabs(frm) {
             $('#site-visit-tab').on('click', function () {
                 switchTab('#site-visit-tab', '#site-visit-content');
                 frm.timeline.timeline_items_wrapper.hide();
-                frm.timeline.wrapper.find('.timeline-item').hide(); // Hide Activity content         
+                frm.timeline.wrapper.find('.timeline-item').hide(); // Hide Activity content  
             });
 
             // Handle Activity tab click
@@ -429,7 +442,7 @@ function add_custom_timeline_tabs(frm) {
 
                 // Hide the div with class 'timeline-items timeline-actions'
                 frm.timeline.wrapper.find('.timeline-items.timeline-actions').hide(); 
-                // frm.timeline.wrapper.find('.d-flex.align-items-center.show-all-activity').hide(); 
+                frm.timeline.wrapper.find('.d-flex.align-items-center.show-all-activity').removeClass('d-flex').hide(); 
         
             });
 
@@ -488,21 +501,18 @@ function load_site_visit_data(frm) {
                                 <div>${visit.cantilever_position || '-'}</div>
                             </div>
                             <div class="col-md-3">
-                                <div><strong>Lead:</strong></div>
-                                <div>${visit.lead || '-'}</div>
-                            </div>
-                            <div class="col-md-3">
                                 <div><strong>Shadow Object/Analysis:</strong></div>
                                 <div>${visit.shadow_object_analysis || '-'}</div>
                             </div>
-                        </div>
- 
-                        <!-- Row with another 4 values -->
-                        <div class="row mb-3">
                             <div class="col-md-3">
                                 <div><strong>Roof Type:</strong></div>
                                 <div>${visit.roof_type || '-'}</div>
                             </div>
+
+                        </div>
+ 
+                        <!-- Row with another 4 values -->
+                        <div class="row mb-3">
                             <div class="col-md-3">
                                 <div><strong>Structure Type:</strong></div>
                                 <div>${visit.structure_type || '-'}</div>
@@ -512,25 +522,14 @@ function load_site_visit_data(frm) {
                                 <div>${visit.sanction_load || '-'}</div>
                             </div>
                             <div class="col-md-3">
-                                <div><strong>Is Same Name:</strong></div>
-                                <div>${visit.is_same_name || '-'}</div>
-                            </div>
-                        </div>
- 
-                        <!-- Row with No. of Floors and others -->
-                        <div class="row mb-3">
-                            <div class="col-md-3">
                                 <div><strong>No. of Floors:</strong></div>
                                 <div>${visit.no_of_floor || '-'}</div>
-                            </div>
-                            <div class="col-md-3">
-                                <div><strong>Final Note:</strong></div>
-                                <div>${visit.final_note || '-'}</div>
                             </div>
                             <div class="col-md-3">
                                 <div><strong>Remarks:</strong></div>
                                 <div>${visit.remarks || '-'}</div>
                             </div>
+
                         </div>
  
                         <!-- Row with additional 4 values -->
@@ -580,96 +579,107 @@ function load_quotation_data(frm) {
                 content = `<div class="alert alert-warning">No quotations found for this lead.</div>`;
             } else {
                 quotations.forEach((quotation, index) => {
-                    // Determine badge color based on status
                     let status_badge_color = quotation.status === 'Accepted' ? 'success' : 
                                              (quotation.status === 'Rejected' ? 'danger' :
                                              (quotation.status === 'Pending' ? 'warning' : 'secondary'));
             
-                    // Conditionally render buttons
                     let buttons = '';
-                    if (quotation.status != 'Accepted' && quotation.status !== 'Rejected') {
-   
+                    if (quotation.status !== 'Accepted' && quotation.status !== 'Rejected') {
                         buttons = `
                             <button class="btn btn-success btn-sm update-status accept-btn" data-id="${quotation.name}" data-status="Accepted">Accept</button>
                             <button class="btn btn-danger btn-sm update-status reject-btn" data-id="${quotation.name}" data-status="Rejected">Reject</button>
                         `;
                     }
-                    else{
-                        buttons='';
-                    }
+
+                    // Add PDF button with hardcoded base URL
+                    buttons += `
+                        <button class="btn btn-primary btn-sm pdf-btn" data-id="${quotation.name}">PDF</button>
+                    `;
             
                     content += `
                         <div class="quotation-details card p-3 mb-3">
                             <div class="d-flex justify-content-between align-items-center">
-                                <!-- Quotation ID -->
                                 <div class="quotation-id">
                                     <strong>Quotation ID:</strong> ${quotation.name || '-'}
                                 </div>
-            
-                                <!-- Status Badge -->
                                 <div class="status">
                                     <strong>Status:</strong> 
-                                    <span class="badge bg-${status_badge_color}" id="status-${quotation.name}">${quotation.status || 'Pending'}</span>
+                                    <span class="badge bg-${status_badge_color} p-1.5" id="status-${quotation.name}">${quotation.status || 'Pending'}</span>
                                 </div>
-            
-                                <!-- Buttons -->
-                                <div class="actions">
-                                    ${buttons}
-                                </div>
+                                <div class="actions">${buttons}</div>
                             </div>
                         </div>`;
                 });
             }
             
             $('#quotation-content').html(content);
-            
-            $('#quotation-content').html(content); // Display Quotation data
 
-            // Event listener for status update buttons
+            // Handle PDF Button Click
+            $('.pdf-btn').on('click', function () {
+                let quotation_id = $(this).data('id');
+                let base_url = "http://127.0.0.1:8001";  // Hardcoded Base URL
+                let print_format = "Quotation";  // Ensure this is the exact name of your custom print format
+
+                let pdf_url = `${base_url}/api/method/frappe.utils.print_format.download_pdf?doctype=Quotations&name=${quotation_id}&format=${print_format}&no_letterhead=0`;
+            
+                window.open(pdf_url, '_blank');
+            });
+
+            // Handle Accept & Reject Status Change
             $('.update-status').on('click', function () {
                 let quotation_id = $(this).data('id');
                 let new_status = $(this).data('status');
+                let confirmation_message = `Are you sure you want to ${new_status.toLowerCase()} this quotation?`;
 
-                frappe.call({
-                    method: 'frappe.client.set_value',
-                    args: {
-                        doctype: 'Quotations',
-                        name: quotation_id,
-                        fieldname: 'status',
-                        value: new_status
-                    },
-                    callback: function(response) {
-                        if (!response.exc) {
-                            // Update the status badge UI
-                            $(`#status-${quotation_id}`).text(new_status);
-                            let badge_color = new_status === 'Accepted' ? 'success' : 'danger';
-                            $(`#status-${quotation_id}`).removeClass('bg-secondary bg-success bg-danger').addClass(`bg-${badge_color}`);
-                            frappe.msgprint(`Quotation ${quotation_id} status updated to ${new_status}`);
+                frappe.confirm(confirmation_message, function () {
+                    if (new_status === 'Accepted') {
+                        frappe.call({
+                            method: 'frappe.client.set_value',
+                            args: {
+                                doctype: 'Quotations',
+                                name: quotation_id,
+                                fieldname: 'status',
+                                value: 'Accepted'
+                            },
+                            callback: function (response) {
+                                if (!response.exc) {
+                                    $(`#status-${quotation_id}`).text('Accepted').removeClass('bg-secondary bg-danger bg-warning').addClass('bg-success');
+                                    frappe.msgprint(`Quotation ${quotation_id} has been accepted.`);
+                                    $(`button.reject-btn[data-id="${quotation_id}"]`).hide();
+                                    $(`button.accept-btn[data-id="${quotation_id}"]`).hide();
 
-                            // When Accept or Reject is clicked, hide the Reject button
-                            $(`button.reject-btn[data-id="${quotation_id}"]`).hide();
-                            $(`button.accept-btn[data-id="${quotation_id}"]`).hide();
-
-                            // If accepted, also update Lead status to 'Closed'
-                            if (new_status === 'Accepted') {
-                                frappe.call({
-                                    method: 'frappe.client.set_value',
-                                    args: {     
-                                        doctype: 'Leads',
-                                        name: frm.doc.name,
-                                        fieldname: 'status',
-                                        value: 'Closed'
-                                    },
-                                    callback: function() {
-                                        frappe.msgprint(`Lead status updated to Closed`);
+                                    // Update Lead Status to Closed
+                                    frappe.call({
+                                        method: 'frappe.client.set_value',
+                                        args: { doctype: 'Leads', name: frm.doc.name, fieldname: 'status', value: 'Closed' },
+                                        callback: function() {
+                                            frappe.msgprint(`Lead status updated to Closed`);
+                                            frm.reload_doc();
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                    } else if (new_status === 'Rejected') {
+                        frappe.prompt([{ label: 'Rejection Reason', fieldname: 'rejection_reason', fieldtype: 'Small Text', reqd: 1 }], function (values) {
+                            frappe.call({
+                                method: 'frappe.client.set_value',
+                                args: {
+                                    doctype: 'Quotations',
+                                    name: quotation_id,
+                                    fieldname: { 'status': 'Rejected', 'rejection_reason': values.rejection_reason }
+                                },
+                                callback: function (response) {
+                                    if (!response.exc) {
+                                        $(`#status-${quotation_id}`).text('Rejected').removeClass('bg-secondary bg-success bg-warning').addClass('bg-danger');
+                                        frappe.msgprint(`Quotation ${quotation_id} has been rejected. Reason: ${values.rejection_reason}`);
+                                        $(`button.reject-btn[data-id="${quotation_id}"]`).hide();
+                                        $(`button.accept-btn[data-id="${quotation_id}"]`).hide();
                                         frm.reload_doc();
                                     }
-                                });
-                            }
-                            else {
-                                frm.reload_doc()
-                            }
-                        }
+                                }
+                            });
+                        }, 'Rejection Reason', 'Submit');
                     }
                 });
             });

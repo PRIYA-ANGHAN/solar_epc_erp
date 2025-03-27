@@ -20,6 +20,7 @@
   "column_break_s3g5",
   "panel_tech",
   "status",
+  "rejection_reason",
   "inventor_details_section",
   "inverter_details",
   "structure_details_section",
@@ -204,11 +205,16 @@
    "fieldname": "wire_details",
    "fieldtype": "Table",
    "options": "Wire Child"
+  },
+  {
+   "fieldname": "rejection_reason",
+   "fieldtype": "Small Text",
+   "label": "Rejection Reason"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-26 15:47:14.744077",
+ "modified": "2025-03-27 11:16:38.074795",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Quotations",

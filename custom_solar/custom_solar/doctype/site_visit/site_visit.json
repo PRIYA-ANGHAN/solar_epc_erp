@@ -36,18 +36,23 @@
   {
    "fieldname": "lead_owner",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Lead Owner",
-   "options": "User"
+   "options": "User",
+   "reqd": 1
   },
   {
    "fieldname": "cantilever_position",
    "fieldtype": "Data",
-   "label": "Cantilever Position"
+   "in_list_view": 1,
+   "label": "Cantilever Position",
+   "reqd": 1
   },
   {
    "fieldname": "sanction_load",
    "fieldtype": "Data",
-   "label": "Sanction Load"
+   "label": "Sanction Load",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_wknm",
@@ -56,19 +61,23 @@
   {
    "fieldname": "shadow_object_analysis",
    "fieldtype": "Data",
-   "label": "Shadow Object/ Analysis"
+   "in_list_view": 1,
+   "label": "Shadow Object/ Analysis",
+   "reqd": 1
   },
   {
    "fieldname": "roof_type",
    "fieldtype": "Select",
    "label": "Roof Type",
-   "options": "Select Service\nRCC Roof\nCement Roof\nMetal Roof\nRCC + Metal\nGround Mounted"
+   "options": "Select Service\nRCC Roof\nCement Roof\nMetal Roof\nRCC + Metal\nGround Mounted",
+   "reqd": 1
   },
   {
    "fieldname": "structure_type",
    "fieldtype": "Select",
    "label": "Structure Type",
-   "options": "Select Service\n80 * 40\n60 * 40\nMono Rail\nLong Rail\nRound Doom"
+   "options": "Select Service\n80 * 40\n60 * 40\nMono Rail\nLong Rail\nRound Doom",
+   "reqd": 1
   },
   {
    "fieldname": "section_break_gjso",
@@ -78,12 +87,14 @@
    "fieldname": "is_same_name",
    "fieldtype": "Select",
    "label": "Is Same Name",
-   "options": "\nYes\nNo"
+   "options": "\nYes\nNo",
+   "reqd": 1
   },
   {
    "fieldname": "no_of_floor",
    "fieldtype": "Data",
-   "label": "No. of Floor"
+   "label": "No. of Floor",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_qauc",
@@ -92,7 +103,8 @@
   {
    "fieldname": "final_note",
    "fieldtype": "Data",
-   "label": "Final Note"
+   "label": "Final Note",
+   "reqd": 1
   },
   {
    "fieldname": "remarks",
@@ -106,12 +118,14 @@
   {
    "fieldname": "2d_diagram_of_site",
    "fieldtype": "Attach",
-   "label": "2D diagram of Site"
+   "label": "2D diagram of Site",
+   "reqd": 1
   },
   {
    "fieldname": "site_image",
    "fieldtype": "Attach Image",
-   "label": "SIte Image"
+   "label": "SIte Image",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_cbnz",
@@ -120,18 +134,21 @@
   {
    "fieldname": "site_video",
    "fieldtype": "Attach",
-   "label": "Site Video"
+   "label": "Site Video",
+   "reqd": 1
   },
   {
    "fieldname": "lead",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Lead",
-   "options": "Leads"
+   "options": "Leads",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-06 14:20:54.989442",
+ "modified": "2025-03-27 14:37:17.947227",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Site_Visit",
