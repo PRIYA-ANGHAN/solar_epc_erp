@@ -1,7 +1,7 @@
 frappe.listview_settings['Site_Visit'] = {
     refresh: function(listview) {
 
-        // hide_name_column: true,
+        hide_name_column: true,
         // frm.set_df_property('name', 'visibility', 'hidden');
         // $('[data-fieldname="name"]').hide();
 
