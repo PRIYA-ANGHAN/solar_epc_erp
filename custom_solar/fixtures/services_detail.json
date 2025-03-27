@@ -1,0 +1,22 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "services detail",
+  "modified": "2025-02-19 10:52:08.335463",
+  "name": "5nelenfj6g",
+  "parent": "Bifacial",
+  "parentfield": "services_detail",
+  "parenttype": "Panel Tech",
+  "service": "Ground-Mounted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "services detail",
+  "modified": "2025-02-19 10:52:08.335463",
+  "name": "d7m780ok83",
+  "parent": "Bifacial",
+  "parentfield": "services_detail",
+  "parenttype": "Panel Tech",
+  "service": "Industrial"
+ }
+]

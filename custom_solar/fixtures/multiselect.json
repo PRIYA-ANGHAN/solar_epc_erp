@@ -1,0 +1,842 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-02-18 09:46:36.841127",
+  "name": "fk0j28k9v4",
+  "parent": "SL000001",
+  "parentfield": "service",
+  "parenttype": "Leads",
+  "service": "Common Building"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-02-18 09:46:36.841127",
+  "name": "s4vj9spp56",
+  "parent": "SL000001",
+  "parentfield": "service",
+  "parenttype": "Leads",
+  "service": "Ground-Mounted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-02-18 09:46:36.841127",
+  "name": "m2b4m073k8",
+  "parent": "SL000001",
+  "parentfield": "service",
+  "parenttype": "Leads",
+  "service": "Industrial"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-02-18 09:46:36.841127",
+  "name": "7kku3j26um",
+  "parent": "SL000001",
+  "parentfield": "service",
+  "parenttype": "Leads",
+  "service": "Residential"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:04.468522",
+  "name": "hgtr8jhbtl",
+  "parent": "TOPCon",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Ground-Mounted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:05.579097",
+  "name": "h28njigeu7",
+  "parent": "Bifacial",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Industrial"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:05.879293",
+  "name": "suilggln7q",
+  "parent": "Polycrystalline",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Ground-Mounted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:06.317924",
+  "name": "quum34nubl",
+  "parent": "Monocrystalline",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Industrial"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:08.648230",
+  "name": "0ctcertk6c",
+  "parent": "Goldi",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Industrial"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:08.945935",
+  "name": "rpd56qqh91",
+  "parent": "Adani",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Common Building"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:09.242287",
+  "name": "jck68btq78",
+  "parent": "TATA",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Residential"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:04.470995",
+  "name": "1vncatd1me",
+  "parent": "TOPCon",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Residential"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:05.580155",
+  "name": "ra6pfgkagh",
+  "parent": "Bifacial",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Ground-Mounted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:05.887220",
+  "name": "aabqmq1h7h",
+  "parent": "Polycrystalline",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Residential"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:06.319456",
+  "name": "5hjq2tpf2d",
+  "parent": "Monocrystalline",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Ground-Mounted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:08.650448",
+  "name": "u4tg7631dj",
+  "parent": "Goldi",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Residential"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:08.946695",
+  "name": "lmvr8420jq",
+  "parent": "Adani",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Industrial"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:09.243468",
+  "name": "vtor6mg6rv",
+  "parent": "TATA",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Industrial"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:04.650032",
+  "name": "9e38d6ieke",
+  "parent": "TOPCon",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Residential"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:05.581107",
+  "name": "pl5anthhkv",
+  "parent": "Bifacial",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Industrial"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:05.890145",
+  "name": "rq02ibutqt",
+  "parent": "Polycrystalline",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Residential"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:06.320628",
+  "name": "6jgjnfc1ja",
+  "parent": "Monocrystalline",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Common Building"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:08.652283",
+  "name": "kmue5g0709",
+  "parent": "Goldi",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Industrial"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:08.947466",
+  "name": "rkuk28v96l",
+  "parent": "Adani",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Residential"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:09.244448",
+  "name": "r1e7id8jpt",
+  "parent": "TATA",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Ground-Mounted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:05.004431",
+  "name": "f3lnokum53",
+  "parent": "TOPCon",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Ground-Mounted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:05.582058",
+  "name": "ierioci5qc",
+  "parent": "Bifacial",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Ground-Mounted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:05.892604",
+  "name": "mm0j00hj4q",
+  "parent": "Polycrystalline",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Ground-Mounted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:06.321746",
+  "name": "s98s1k7mka",
+  "parent": "Monocrystalline",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Residential"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:08.655727",
+  "name": "ml26oqfnur",
+  "parent": "Goldi",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Residential"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:08.948248",
+  "name": "d3drcbql78",
+  "parent": "Adani",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Ground-Mounted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:09.245286",
+  "name": "ibr2ecg0kc",
+  "parent": "TATA",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Common Building"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:06.323538",
+  "name": "gdj2qepsnj",
+  "parent": "Monocrystalline",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Common Building"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:08.949804",
+  "name": "q3sdoktd83",
+  "parent": "Adani",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Ground-Mounted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:09.246108",
+  "name": "b45q7nv557",
+  "parent": "TATA",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Common Building"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:06.324607",
+  "name": "4acbaanj6e",
+  "parent": "Monocrystalline",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Ground-Mounted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:08.950669",
+  "name": "hqdujr8c01",
+  "parent": "Adani",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Industrial"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:09.247096",
+  "name": "aikko30fni",
+  "parent": "TATA",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Ground-Mounted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:06.325822",
+  "name": "g5rspoei95",
+  "parent": "Monocrystalline",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Industrial"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:08.951528",
+  "name": "96k4qiccfg",
+  "parent": "Adani",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Common Building"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:09.249371",
+  "name": "6o33cpiqpl",
+  "parent": "TATA",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Industrial"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:06.326843",
+  "name": "2p4meh9mca",
+  "parent": "Monocrystalline",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Residential"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:08.952333",
+  "name": "a8k2k6n58l",
+  "parent": "Adani",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Residential"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:53:09.250244",
+  "name": "v2fbv5nj92",
+  "parent": "TATA",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Residential"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.305151",
+  "name": "8sjg6keel2",
+  "parent": "TOPCon",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Ground-Mounted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.366898",
+  "name": "m7obogcfsk",
+  "parent": "Bifacial",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Industrial"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.427753",
+  "name": "dv786p22bp",
+  "parent": "Polycrystalline",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Ground-Mounted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.516076",
+  "name": "pejjp9gfit",
+  "parent": "Monocrystalline",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Industrial"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.616754",
+  "name": "gqc0slv73j",
+  "parent": "Goldi",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Industrial"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.715568",
+  "name": "hm94vafu8m",
+  "parent": "Adani",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Common Building"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.814170",
+  "name": "u6giu18egn",
+  "parent": "TATA",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Residential"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.305775",
+  "name": "34sjpn8nht",
+  "parent": "TOPCon",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Residential"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.367497",
+  "name": "ckhc80kh35",
+  "parent": "Bifacial",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Ground-Mounted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.428392",
+  "name": "oieavoihn2",
+  "parent": "Polycrystalline",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Residential"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.516675",
+  "name": "l9ml3nr9tg",
+  "parent": "Monocrystalline",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Ground-Mounted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.617358",
+  "name": "kj0rp7vau2",
+  "parent": "Goldi",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Residential"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.716460",
+  "name": "nm99lrjaka",
+  "parent": "Adani",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Industrial"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.814959",
+  "name": "kmr4fqlp46",
+  "parent": "TATA",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Industrial"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.306343",
+  "name": "oa3rm6ldqa",
+  "parent": "TOPCon",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Residential"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.368097",
+  "name": "usmii6oolu",
+  "parent": "Bifacial",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Industrial"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.428946",
+  "name": "i47ok13n99",
+  "parent": "Polycrystalline",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Residential"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.517267",
+  "name": "mgg5lqlf61",
+  "parent": "Monocrystalline",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Common Building"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.617955",
+  "name": "56l5g5abj8",
+  "parent": "Goldi",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Industrial"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.717034",
+  "name": "lplicsp5g9",
+  "parent": "Adani",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Residential"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.815562",
+  "name": "rm5kd4r1h0",
+  "parent": "TATA",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Ground-Mounted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.306968",
+  "name": "759knb4eal",
+  "parent": "TOPCon",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Ground-Mounted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.368694",
+  "name": "h67toe2rl9",
+  "parent": "Bifacial",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Ground-Mounted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.429658",
+  "name": "cpp0bjgm2m",
+  "parent": "Polycrystalline",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Ground-Mounted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.517851",
+  "name": "uf4p6trhp3",
+  "parent": "Monocrystalline",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Residential"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.618536",
+  "name": "75h5dsqnat",
+  "parent": "Goldi",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Residential"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.717758",
+  "name": "4vem32qmbs",
+  "parent": "Adani",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Ground-Mounted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.816158",
+  "name": "gd64qf28bp",
+  "parent": "TATA",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Common Building"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.518437",
+  "name": "rqnvv55uci",
+  "parent": "Monocrystalline",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Common Building"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.718448",
+  "name": "6knmptpecu",
+  "parent": "Adani",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Ground-Mounted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.816746",
+  "name": "pncsm7gj0i",
+  "parent": "TATA",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Common Building"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.519024",
+  "name": "s3kqkq3t3b",
+  "parent": "Monocrystalline",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Ground-Mounted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.719145",
+  "name": "66c14l2vlh",
+  "parent": "Adani",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Industrial"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.817330",
+  "name": "cj1jfl0cqr",
+  "parent": "TATA",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Ground-Mounted"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.519608",
+  "name": "8hq0qj31kk",
+  "parent": "Monocrystalline",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Industrial"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.719799",
+  "name": "nhvqn2qplq",
+  "parent": "Adani",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Common Building"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.817891",
+  "name": "6qbaapgeci",
+  "parent": "TATA",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Industrial"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.520201",
+  "name": "jge21a3r06",
+  "parent": "Monocrystalline",
+  "parentfield": "services",
+  "parenttype": "Panel Tech",
+  "service": "Residential"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.720538",
+  "name": "rut96u0n4a",
+  "parent": "Adani",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Residential"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Multiselect",
+  "modified": "2025-03-27 22:56:50.818484",
+  "name": "bgs7lduoej",
+  "parent": "TATA",
+  "parentfield": "service",
+  "parenttype": "Panel Company",
+  "service": "Residential"
+ }
+]

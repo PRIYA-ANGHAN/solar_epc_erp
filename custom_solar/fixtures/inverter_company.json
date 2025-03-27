@@ -1,0 +1,51 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Inverter Company",
+  "inverter_company": "SUNGROW",
+  "modified": "2025-03-26 10:08:05.368603",
+  "name": "SUNGROW"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Inverter Company",
+  "inverter_company": "EVVO",
+  "modified": "2025-03-26 10:08:15.650742",
+  "name": "EVVO"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Inverter Company",
+  "inverter_company": "SOFAR",
+  "modified": "2025-03-26 10:08:24.215152",
+  "name": "SOFAR"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Inverter Company",
+  "inverter_company": "SOLARYAAN",
+  "modified": "2025-03-26 10:07:47.451949",
+  "name": "SOLARYAAN"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Inverter Company",
+  "inverter_company": "SOLIS",
+  "modified": "2025-03-26 10:07:56.820250",
+  "name": "SOLIS"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Inverter Company",
+  "inverter_company": "HAVELLS",
+  "modified": "2025-03-26 10:07:35.724015",
+  "name": "HAVELLS"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Inverter Company",
+  "inverter_company": "GROWATT",
+  "modified": "2025-03-20 10:47:18.773754",
+  "name": "GROWATT"
+ }
+]
