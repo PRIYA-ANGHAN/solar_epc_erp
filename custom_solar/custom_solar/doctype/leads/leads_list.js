@@ -143,7 +143,7 @@ frappe.listview_settings["Leads"] = {
         // frm.set_df_property('name', 'visibility', 'hidden');
         // $('[data-fieldname="name"]').hide();
 
-        // Hide the "Add Opportunity" button
+        // Hide the "Add leads" button
         $('[data-liked-by]').hide();   
         $("use.like-icon").hide();
         $('[list-liked-by-me]').hide();

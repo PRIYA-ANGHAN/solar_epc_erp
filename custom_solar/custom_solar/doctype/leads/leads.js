@@ -617,7 +617,8 @@ function load_quotation_data(frm) {
             // Handle PDF Button Click
             $('.pdf-btn').on('click', function () {
                 let quotation_id = $(this).data('id');
-                let base_url = "http://127.0.0.1:8001";  // Hardcoded Base URL
+                // let base_url = "http://127.0.0.1:8001";  // Hardcoded Base URL
+                let base_url = window.location.origin;  // Base URL
                 let print_format = "Quotation";  // Ensure this is the exact name of your custom print format
 
                 let pdf_url = `${base_url}/api/method/frappe.utils.print_format.download_pdf?doctype=Quotations&name=${quotation_id}&format=${print_format}&no_letterhead=0`;
