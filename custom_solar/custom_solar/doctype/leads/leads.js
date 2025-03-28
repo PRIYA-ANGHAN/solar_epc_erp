@@ -450,28 +450,33 @@ function add_custom_timeline_tabs(frm) {
     }
 }
 
-// function for show site visit data in tab
 function load_site_visit_data(frm) {
- 
     $('#site-visit-content').html('');  // Clear previous Site Visit data
- 
+
     frm.timeline.timeline_items_wrapper.hide();
     frm.timeline.wrapper.find('.timeline-item').hide(); // Hide Activity content
     $('#quotation-content').hide();
-  
+
     frappe.call({
         method: 'custom_solar.custom_solar.doctype.leads.leads.get_site_visit_history',
         args: { lead: frm.doc.name },
         callback: function(response) {
-            let visits = response.message || [];
+            let visits = response.message; // Get response
+
+            // show msg when no site visit for lead
+            
+            // if (!Array.isArray(visits)) { 
+                // If response is NOT an array, show the "No site visit" message
+                // $('#site-visit-content').html(`<div class="alert alert-warning text-center">No Site Visit Created for this Lead.</div>`);
+                // return;
+            // }
+
             let content = '';
- 
-            visits.forEach((visit, index) => {
+            visits.forEach((visit) => {
                 content += `
                     <div class="site-visit-details card p-4 mb-4">
                         <h5>Site Visit</h5>
- 
-                        <!-- Row with 4 values -->
+
                         <div class="row mb-3">
                             <div class="col-md-3">
                                 <div><strong>Lead Owner:</strong></div>
@@ -489,10 +494,8 @@ function load_site_visit_data(frm) {
                                 <div><strong>Roof Type:</strong></div>
                                 <div>${visit.roof_type || '-'}</div>
                             </div>
-
                         </div>
- 
-                        <!-- Row with another 4 values -->
+
                         <div class="row mb-3">
                             <div class="col-md-3">
                                 <div><strong>Structure Type:</strong></div>
@@ -510,10 +513,8 @@ function load_site_visit_data(frm) {
                                 <div><strong>Remarks:</strong></div>
                                 <div>${visit.remarks || '-'}</div>
                             </div>
-
                         </div>
- 
-                        <!-- Row with additional 4 values -->
+
                         <div class="row mb-3">
                             <div class="col-md-3">
                                 <div><strong>2D Diagram of Site:</strong></div>
@@ -535,13 +536,17 @@ function load_site_visit_data(frm) {
                             </div>
                         </div>
                     </div>
-               `;
+                `;
             });
+
             $('#site-visit-content').html(content); // Display Site Visit data
         },
+        error: function(err) {
+            console.error("Error fetching site visit data:", err);
+            $('#site-visit-content').html(`<div class="alert alert-danger text-center">Error loading site visit data.</div>`);
+        }
     });
 }
-
 
 function load_quotation_data(frm) {
     // Hide other tab contents to prevent overlap
@@ -558,6 +563,7 @@ function load_quotation_data(frm) {
         args: { lead_id: frm.doc.name },
         callback: function(response) {
             let quotations = response.message || [];
+            
             let content = '';
 
             if (quotations.length === 0) {

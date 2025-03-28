@@ -16,15 +16,15 @@
  {
   "docstatus": 0,
   "doctype": "Services",
-  "modified": "2025-02-18 09:23:46.560920",
-  "name": "Industrial",
-  "service": "Industrial"
+  "modified": "2025-02-18 09:24:05.838159",
+  "name": "Common Building",
+  "service": "Common Building"
  },
  {
   "docstatus": 0,
   "doctype": "Services",
-  "modified": "2025-02-18 09:24:05.838159",
-  "name": "Common Building",
-  "service": "Common Building"
+  "modified": "2025-02-18 09:23:46.560920",
+  "name": "Industrial",
+  "service": "Industrial"
  }
 ]

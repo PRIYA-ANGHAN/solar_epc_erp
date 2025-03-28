@@ -10,14 +10,6 @@
  {
   "docstatus": 0,
   "doctype": "Watt Peaks",
-  "modified": "2025-02-20 14:34:55.634995",
-  "name": "640WP-Bifacial",
-  "panel_tech": "Bifacial",
-  "watt_peakkw": 640.0
- },
- {
-  "docstatus": 0,
-  "doctype": "Watt Peaks",
   "modified": "2025-02-20 14:34:29.791298",
   "name": "520WP-Monocrystalline",
   "panel_tech": "Monocrystalline",
@@ -38,5 +30,13 @@
   "name": "420WP-Monocrystalline",
   "panel_tech": "Monocrystalline",
   "watt_peakkw": 420.0
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Watt Peaks",
+  "modified": "2025-02-20 14:34:55.634995",
+  "name": "640WP-Bifacial",
+  "panel_tech": "Bifacial",
+  "watt_peakkw": 640.0
  }
 ]

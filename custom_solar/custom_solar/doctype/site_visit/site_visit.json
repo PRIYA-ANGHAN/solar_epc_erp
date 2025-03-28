@@ -9,7 +9,7 @@
   "site_survey_section",
   "lead_owner",
   "cantilever_position",
-  "lead",
+  "lead_id",
   "column_break_wknm",
   "shadow_object_analysis",
   "roof_type",
@@ -138,17 +138,15 @@
    "reqd": 1
   },
   {
-   "fieldname": "lead",
+   "fieldname": "lead_id",
    "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Lead",
-   "options": "Leads",
-   "reqd": 1
+   "label": "Lead ID",
+   "options": "Leads"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-27 14:37:17.947227",
+ "modified": "2025-03-28 15:32:41.028083",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Site_Visit",

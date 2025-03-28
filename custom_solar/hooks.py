@@ -252,14 +252,11 @@ website_context = {
 
 
 fixtures = [
-    {"dt": "Leads", "filters": [], "or_filters": []},
-    {"dt": "Site_Visit", "filters": [], "or_filters": []},
     {"dt": "Services", "filters": [], "or_filters": []},
     {"dt": "Panel Company", "filters": [], "or_filters": []},
     {"dt": "Panel Tech", "filters": [], "or_filters": []},
     {"dt": "Watt Peaks", "filters": [], "or_filters": []},
     {"dt": "Multiselect", "filters": [], "or_filters": []},
-    {"dt": "Opportunity", "filters": [], "or_filters": []},
     {"dt": "Electricity Provider", "filters": [], "or_filters": []},
     {"dt": "services detail", "filters": [], "or_filters": []},
     {"dt": "Company Details", "filters": [], "or_filters": []},
@@ -273,5 +270,8 @@ fixtures = [
     {"dt": "Wire Type", "filters": [], "or_filters": []},
     {"dt": "Workspace", "filters": [], "or_filters": []},
     {"dt": "Print Format", "filters": [], "or_filters": []}, 
+    {"dt": "Print Format", "or_filters": [
+        ["module", "=", "Custom Solar"]
+        ]},
 ]
  

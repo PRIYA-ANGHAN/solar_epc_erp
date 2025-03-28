@@ -299,7 +299,7 @@ def get_site_visit_history(**kwargs):
     lead = kwargs.get("lead")
     visits = frappe.get_all(
         'Site_Visit',
-        filters={'lead': lead},
+        filters={'lead_id': lead},
         fields=[
             'lead_owner', 'cantilever_position', 'shadow_object_analysis', 'roof_type', 'structure_type', 'sanction_load', 'no_of_floor', 'remarks', '2d_diagram_of_site', 'site_image', 'site_video'
         ]

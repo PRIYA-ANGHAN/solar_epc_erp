@@ -209,12 +209,13 @@
   {
    "fieldname": "rejection_reason",
    "fieldtype": "Small Text",
+   "hidden": 1,
    "label": "Rejection Reason"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-27 11:16:38.074795",
+ "modified": "2025-03-28 14:48:13.577869",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Quotations",

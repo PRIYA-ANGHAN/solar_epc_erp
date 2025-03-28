@@ -1,4 +1,225 @@
 
+// //  =========== =========== ============== ===================
+
+// frappe.ui.form.on('Opportunity', {
+//     refresh: function(frm) {
+//         add_custom_timeline_tabs(frm);
+
+//         if (!frm.custom_tabs_added) {
+//             add_custom_timeline_tabs(frm);
+//         }
+
+//         load_site_visit_data(frm);
+
+//         $('#site-visit-tab').addClass('active');
+//         $('#activity-tab').removeClass('active');
+//         $('#quotation-tab').removeClass('active');
+
+//         $('#site-visit-content').show();
+//         frm.timeline.timeline_items_wrapper.hide();
+//         frm.timeline.wrapper.find('.timeline-item').hide();
+//         $('#activity-content').hide();
+//         $('#quotation-content').hide();
+//     },
+
+//     onload: function(frm) {
+//         add_custom_timeline_tabs(frm);
+//         load_site_visit_data(frm);
+//     }
+// });
+
+// function add_custom_timeline_tabs(frm) {
+//     if (!frm.custom_tabs_added) {
+//         let timeline_wrapper = frm.timeline.wrapper;
+ 
+//         let tab_html = `
+//         <ul class="nav nav-tabs" id="customTab" role="tablist">
+//             <li class="nav-item">
+//                 <a class="nav-link active" id="site-visit-tab" role="tab">Site Visit</a>
+//             </li>
+//             <li class="nav-item">
+//                 <a class="nav-link" id="activity-tab" role="tab">Activity</a>
+//             </li>
+//             <li class="nav-item">
+//                 <a class="nav-link" id="quotation-tab" role="tab">Quotation</a>
+//             </li>
+//         </ul>
+//         <div class="tab-content mt-3">
+//             <div class="tab-pane fade show active" id="site-visit-content" role="tabpanel"></div>
+//             <div class="tab-pane fade" id="activity-content" role="tabpanel"></div>
+//             <div class="tab-pane fade" id="quotation-content" role="tabpanel"></div>
+//         </div>`;
+ 
+//         $(timeline_wrapper).prepend(tab_html);
+//         load_site_visit_data(frm);
+
+//         $('#activity-tab').on('click', function() {
+//             frm.timeline.timeline_items_wrapper.show();
+//             frm.timeline.wrapper.find('.timeline-item').show();
+//             $('#quotation-content').hide();
+//             $('#site-visit-content').hide();
+//             $('#activity-tab').addClass('active');
+//             $('#site-visit-tab').removeClass('active');
+//             $('#quotation-tab').removeClass('active');
+//             frm.timeline.wrapper.find('.timeline-items.timeline-actions').hide(); 
+//             frm.timeline.wrapper.find('.d-flex.align-items-center.show-all-activity').removeClass('d-flex').hide();
+//         });
+
+//         $('#site-visit-tab').on('click', function() {
+//             frm.timeline.timeline_items_wrapper.hide();
+//             frm.timeline.wrapper.find('.timeline-item').hide();
+//             $('#quotation-content').hide();
+//             $('#site-visit-content').show();
+//             $('#site-visit-tab').addClass('active'); 
+//             $('#activity-tab').removeClass('active');
+//             $('#quotation-tab').removeClass('active');
+//         });
+
+//         $('#quotation-tab').on('click', function() {
+//             frm.timeline.timeline_items_wrapper.hide();
+//             frm.timeline.wrapper.find('.timeline-item').hide();
+//             $('#site-visit-content').hide();
+//             $('#quotation-content').show();
+//             $('#activity-tab').removeClass('active');
+//             $('#quotation-tab').addClass('active');
+//             $('#site-visit-tab').removeClass('active');
+//             load_quotation_data(frm);
+//         });
+
+//         frm.custom_tabs_added = true;
+//     }
+// }
+// function load_site_visit_data(frm) {
+//     $('#site-visit-content').html('');
+//     frm.timeline.timeline_items_wrapper.hide();
+//     frm.timeline.wrapper.find('.timeline-item').hide();
+//     $('#quotation-content').hide();
+
+//     console.log("Fetching Site Visit data for:", frm.doc.name);
+
+//     frappe.call({
+//         method: 'custom_solar.custom_solar.doctype.leads.leads.get_site_visit_history',
+//         args: { lead: frm.doc.name },
+//         callback: function(response) {
+//             console.log("Site Visit API Response:", response);
+
+//             if (response.exc) {
+//                 console.error("Error fetching Site Visit data:", response.exc);
+//                 frappe.msgprint("Failed to fetch Site Visit data.");
+//                 return;
+//             }
+
+//             let visits = response.message || [];
+//             let content = '';
+
+//             visits.forEach((visit) => {
+//                 content += `
+//                     <div class="site-visit-details card p-4 mb-4">
+//                         <h5 class="mb-3">Site Visit</h5>
+//                         <div class="table-responsive">
+//                             <table class="table table-bordered">
+//                                 <thead class="thead-light">
+//                                     <tr>
+//                                         <th>Lead Owner</th>
+//                                         <th>Cantilever Position</th>
+//                                         <th>Shadow Object/Analysis</th>
+//                                         <th>Roof Type</th>
+//                                     </tr>
+//                                 </thead>
+//                                 <tbody>
+//                                     <tr>
+//                                         <td>${visit.lead_owner || '-'}</td>
+//                                         <td>${visit.cantilever_position || '-'}</td>
+//                                         <td>${visit.shadow_object_analysis || '-'}</td>
+//                                         <td>${visit.roof_type || '-'}</td>
+//                                     </tr>
+//                                 </tbody>
+//                             </table>
+//                         </div>
+//                     </div>`;
+//             });
+
+//             $('#site-visit-content').html(content);
+//         },
+//         error: function(error) {
+//             console.error("Site Visit API Error:", error);
+//             frappe.msgprint("Error loading Site Visit data. Please check the console for details.");
+//         }
+//     });
+// }
+
+// function load_quotation_data(frm) {
+//     $('#site-visit-content, #activity-content').hide();
+//     $('#quotation-content').html('').hide();
+
+//     console.log("Fetching Quotation data for:", frm.doc.name);
+
+//     frappe.call({
+//         method: 'custom_solar.custom_solar.doctype.leads.leads.get_quotation_ids',
+//         args: { lead_id: frm.doc.name },
+//         callback: function(response) {
+//             console.log("Quotation API Response:", response);
+
+//             if (response.exc) {
+//                 console.error("Error fetching Quotation data:", response.exc);
+//                 frappe.msgprint("Failed to fetch Quotation data.");
+//                 return;
+//             }
+
+//             let quotations = response.message || [];
+//             let content = '';
+
+//             if (quotations.length === 0) {
+//                 content = `<div class="alert alert-warning">No quotations found for this lead.</div>`;
+//             } else {
+//                 content = `
+//                     <div class="quotation-details card p-3 mb-3">
+//                         <h5 class="mb-3">Quotations</h5>
+//                         <div class="table-responsive">
+//                             <table class="table table-bordered">
+//                                 <thead class="thead-light">
+//                                     <tr>
+//                                         <th>Quotation ID</th>
+//                                         <th>Status</th>
+//                                     </tr>
+//                                 </thead>
+//                                 <tbody>`;
+
+//                 quotations.forEach((quotation) => {
+//                     let status_badge_color = quotation.status === 'Accepted' ? 'success' : 
+//                                              (quotation.status === 'Rejected' ? 'danger' :
+//                                              (quotation.status === 'Pending' ? 'warning' : 'secondary'));
+
+//                     content += `
+//                         <tr>
+//                             <td>${quotation.name || '-'}</td>
+//                             <td>
+//                                 <span class="badge bg-${status_badge_color}" id="status-${quotation.name}">
+//                                     ${quotation.status || 'Pending'}
+//                                 </span>
+//                             </td>
+//                         </tr>`;
+//                 });
+
+//                 content += `
+//                                 </tbody>
+//                             </table>
+//                         </div>
+//                     </div>`;
+//             }
+
+//             $('#quotation-content').html(content).fadeIn();
+//         },
+//         error: function(error) {
+//             console.error("Quotation API Error:", error);
+//             frappe.msgprint("Error loading Quotation data. Please check the console for details.");
+//         }
+//     });
+// }
+
+
+
+
 frappe.ui.form.on('Opportunity', {
     refresh: function(frm) {
         add_custom_tabs(frm); // Ensure tabs are added
@@ -103,21 +324,18 @@ function load_site_visit_data(frm) {
                                 <div>${visit.cantilever_position || '-'}</div>
                             </div>
                             <div class="col-md-3">
-                                <div><strong>Lead:</strong></div>
-                                <div>${visit.lead || '-'}</div>
-                            </div>
-                            <div class="col-md-3">
                                 <div><strong>Shadow Object/Analysis:</strong></div>
                                 <div>${visit.shadow_object_analysis || '-'}</div>
                             </div>
-                        </div>
-
-                        <!-- Row with another 4 values -->
-                        <div class="row mb-3">
                             <div class="col-md-3">
                                 <div><strong>Roof Type:</strong></div>
                                 <div>${visit.roof_type || '-'}</div>
                             </div>
+
+                        </div>
+
+                        <!-- Row with another 4 values -->
+                        <div class="row mb-3">
                             <div class="col-md-3">
                                 <div><strong>Structure Type:</strong></div>
                                 <div>${visit.structure_type || '-'}</div>
@@ -127,20 +345,8 @@ function load_site_visit_data(frm) {
                                 <div>${visit.sanction_load || '-'}</div>
                             </div>
                             <div class="col-md-3">
-                                <div><strong>Is Same Name:</strong></div>
-                                <div>${visit.is_same_name || '-'}</div>
-                            </div>
-                        </div>
-
-                        <!-- Row with No. of Floors and others -->
-                        <div class="row mb-3">
-                            <div class="col-md-3">
                                 <div><strong>No. of Floors:</strong></div>
                                 <div>${visit.no_of_floor || '-'}</div>
-                            </div>
-                            <div class="col-md-3">
-                                <div><strong>Final Note:</strong></div>
-                                <div>${visit.final_note || '-'}</div>
                             </div>
                             <div class="col-md-3">
                                 <div><strong>Remarks:</strong></div>

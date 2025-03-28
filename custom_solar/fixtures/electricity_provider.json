@@ -34,14 +34,6 @@
  {
   "docstatus": 0,
   "doctype": "Electricity Provider",
-  "electricity_provide": "Gujarat Electricity Board",
-  "modified": "2025-02-20 14:05:22.442863",
-  "name": "Gujarat Electricity Board",
-  "unit_rate": 11.0
- },
- {
-  "docstatus": 0,
-  "doctype": "Electricity Provider",
   "electricity_provide": "DGVCL",
   "modified": "2025-02-20 14:05:35.298644",
   "name": "DGVCL",
@@ -54,5 +46,13 @@
   "modified": "2025-02-20 14:05:00.115189",
   "name": "Department of Power, Arunachal Pradesh",
   "unit_rate": 9.0
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Electricity Provider",
+  "electricity_provide": "Gujarat Electricity Board",
+  "modified": "2025-02-20 14:05:22.442863",
+  "name": "Gujarat Electricity Board",
+  "unit_rate": 11.0
  }
 ]
