@@ -273,8 +273,5 @@ fixtures = [
     {"dt": "Wire Type", "filters": [], "or_filters": []},
     {"dt": "Workspace", "filters": [], "or_filters": []},
     {"dt": "Print Format", "filters": [], "or_filters": []}, 
-    {"dt": "File", "filters": [], "or_filters": []}, 
-    {"dt": "Navbar Settings", "filters": [], "or_filters": []}, 
-
 ]
  

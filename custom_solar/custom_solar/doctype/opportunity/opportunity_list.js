@@ -1,5 +1,9 @@
 frappe.listview_settings['Opportunity'] = {
     refresh: function(listview) {
+       
+        // Hide the "Add Opportunity" button
+        listview.page.btn_primary.hide();
+
         // Hide the "Add Opportunity" button
         $('[data-liked-by]').hide();   
         $("use.like-icon").hide();

@@ -11,6 +11,102 @@
     "parent": "Goldi",
     "parentfield": "service",
     "parenttype": "Panel Company",
+    "service": "Residential"
+   },
+   {
+    "parent": "Goldi",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Goldi",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Residential"
+   },
+   {
+    "parent": "Goldi",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Residential"
+   },
+   {
+    "parent": "Goldi",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Goldi",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Goldi",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Goldi",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Goldi",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Residential"
+   },
+   {
+    "parent": "Goldi",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Residential"
+   },
+   {
+    "parent": "Goldi",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Goldi",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Residential"
+   },
+   {
+    "parent": "Goldi",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Goldi",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Residential"
+   },
+   {
+    "parent": "Goldi",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Goldi",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Residential"
+   },
+   {
+    "parent": "Goldi",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
     "service": "Industrial"
    },
    {
@@ -113,6 +209,198 @@
   "modified": "2025-02-18 09:30:10.264292",
   "name": "Adani",
   "service": [
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Residential"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Common Building"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Residential"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Residential"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Residential"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Common Building"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Residential"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Residential"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Common Building"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Residential"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Common Building"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Common Building"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Residential"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Common Building"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Common Building"
+   },
+   {
+    "parent": "Adani",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Common Building"
+   },
    {
     "parent": "Adani",
     "parentfield": "service",
@@ -315,6 +603,198 @@
   "modified": "2025-02-18 09:30:28.082965",
   "name": "TATA",
   "service": [
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Common Building"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Industrial"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Common Building"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Common Building"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Industrial"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Residential"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Common Building"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Industrial"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Residential"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Industrial"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Residential"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Industrial"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Residential"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Industrial"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Industrial"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Common Building"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Residential"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Residential"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Residential"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Industrial"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Common Building"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Common Building"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Common Building"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "TATA",
+    "parentfield": "service",
+    "parenttype": "Panel Company",
+    "service": "Residential"
+   },
    {
     "parent": "TATA",
     "parentfield": "service",
