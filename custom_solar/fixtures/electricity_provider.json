@@ -1,0 +1,58 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Electricity Provider",
+  "electricity_provide": "Torrent Power Ltd.",
+  "modified": "2025-02-20 14:05:30.120207",
+  "name": "Torrent Power Ltd.",
+  "unit_rate": 11.0
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Electricity Provider",
+  "electricity_provide": "Southern Power Distribution Company of A.P. Limited",
+  "modified": "2025-02-20 14:05:08.443936",
+  "name": "Southern Power Distribution Company of A.P. Limited",
+  "unit_rate": 9.5
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Electricity Provider",
+  "electricity_provide": "APDCL",
+  "modified": "2025-02-20 14:04:53.207691",
+  "name": "APDCL",
+  "unit_rate": 10.0
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Electricity Provider",
+  "electricity_provide": "Madhya Gujarat Vij Company Limited",
+  "modified": "2025-02-20 14:05:15.221485",
+  "name": "Madhya Gujarat Vij Company Limited",
+  "unit_rate": 9.0
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Electricity Provider",
+  "electricity_provide": "Gujarat Electricity Board",
+  "modified": "2025-02-20 14:05:22.442863",
+  "name": "Gujarat Electricity Board",
+  "unit_rate": 11.0
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Electricity Provider",
+  "electricity_provide": "DGVCL",
+  "modified": "2025-02-20 14:05:35.298644",
+  "name": "DGVCL",
+  "unit_rate": 10.0
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Electricity Provider",
+  "electricity_provide": "Department of Power, Arunachal Pradesh ",
+  "modified": "2025-02-20 14:05:00.115189",
+  "name": "Department of Power, Arunachal Pradesh",
+  "unit_rate": 9.0
+ }
+]

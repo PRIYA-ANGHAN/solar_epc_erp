@@ -1,0 +1,30 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Wire Type",
+  "modified": "2025-03-21 16:21:34.043534",
+  "name": "LA",
+  "wire_type": "LA"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Wire Type",
+  "modified": "2025-03-21 16:21:28.874467",
+  "name": "DC",
+  "wire_type": "DC"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Wire Type",
+  "modified": "2025-03-21 16:22:29.458905",
+  "name": "Earthing",
+  "wire_type": "Earthing"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Wire Type",
+  "modified": "2025-03-21 16:21:23.830009",
+  "name": "AC",
+  "wire_type": "AC"
+ }
+]

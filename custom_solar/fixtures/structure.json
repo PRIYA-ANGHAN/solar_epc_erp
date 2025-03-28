@@ -1,0 +1,72 @@
+[
+ {
+  "company": "HINDUSTAR",
+  "docstatus": 0,
+  "doctype": "Structure",
+  "modified": "2025-03-26 10:22:52.331473",
+  "name": "HINDUSTAR-(60*40, 80 micron 2 mm)",
+  "rate__pipe": "70",
+  "structure_specifications": "60*40, 80 micron 2 mm",
+  "weight__pipe": 18.5
+ },
+ {
+  "company": "ELEVATED - APOLLO",
+  "docstatus": 0,
+  "doctype": "Structure",
+  "modified": "2025-03-26 10:21:36.545800",
+  "name": "ELEVATED - APOLLO-(40*40, 60 micron 2 mm)",
+  "rate__pipe": "1250",
+  "structure_specifications": "40*40, 60 micron 2 mm",
+  "weight__pipe": 15.2
+ },
+ {
+  "company": "MONORAIL STRUT CHANNEL",
+  "docstatus": 0,
+  "doctype": "Structure",
+  "modified": "2025-03-26 10:22:04.227094",
+  "name": "MONORAIL STRUT CHANNEL-(ALUMINIUM - 41mm*41mm*2.6mm)",
+  "rate__pipe": "750",
+  "structure_specifications": "ALUMINIUM - 41mm*41mm*2.6mm",
+  "weight__pipe": 10.0
+ },
+ {
+  "company": "HINDUSTAR",
+  "docstatus": 0,
+  "doctype": "Structure",
+  "modified": "2025-03-26 10:21:10.245415",
+  "name": "HINDUSTAR-(40*40, 60 micron 2 mm)",
+  "rate__pipe": "70",
+  "structure_specifications": "40*40, 60 micron 2 mm",
+  "weight__pipe": 14.5
+ },
+ {
+  "company": "APOLLO",
+  "docstatus": 0,
+  "doctype": "Structure",
+  "modified": "2025-03-26 10:22:25.830360",
+  "name": "APOLLO-(80*40, 60 micron 2 mm)",
+  "rate__pipe": "72",
+  "structure_specifications": "80*40, 60 micron 2 mm",
+  "weight__pipe": 23.3
+ },
+ {
+  "company": "APOLLO",
+  "docstatus": 0,
+  "doctype": "Structure",
+  "modified": "2025-03-26 10:20:25.771437",
+  "name": "APOLLO-(40*40, 60 micron 2 mm)",
+  "rate__pipe": "72",
+  "structure_specifications": "40*40, 60 micron 2 mm",
+  "weight__pipe": 15.2
+ },
+ {
+  "company": "Sarvadhi",
+  "docstatus": 0,
+  "doctype": "Structure",
+  "modified": "2025-03-26 10:05:56.057375",
+  "name": "Sarvadhi-(Solar epc project for solar energy)",
+  "rate__pipe": "5000",
+  "structure_specifications": "Solar epc project for solar energy",
+  "weight__pipe": 165.9
+ }
+]

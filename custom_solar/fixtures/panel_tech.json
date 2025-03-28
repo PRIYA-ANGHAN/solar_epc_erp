@@ -1,0 +1,1018 @@
+[
+ {
+  "common_building": 0,
+  "description": "An advanced technology that enhances the efficiency of silicon-based solar cells by reducing energy losses at the rear side of the cells.",
+  "docstatus": 0,
+  "doctype": "Panel Tech",
+  "ground_mounted": 1,
+  "industrial": 0,
+  "modified": "2025-02-19 17:36:58.718393",
+  "name": "TOPCon",
+  "panel_tech": "TOPCon",
+  "residential": 1,
+  "services": [
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "TOPCon",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   }
+  ]
+ },
+ {
+  "common_building": 0,
+  "description": "These panels are designed to absorb sunlight from both the front and rear sides of the panel, increasing energy production.",
+  "docstatus": 0,
+  "doctype": "Panel Tech",
+  "ground_mounted": 1,
+  "industrial": 1,
+  "modified": "2025-02-19 17:36:50.911464",
+  "name": "Bifacial",
+  "panel_tech": "Bifacial",
+  "residential": 0,
+  "services": [
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Bifacial",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   }
+  ]
+ },
+ {
+  "common_building": 0,
+  "description": "Made from silicon crystals that are melted together. These are less efficient than monocrystalline panels but are more cost-effective.",
+  "docstatus": 0,
+  "doctype": "Panel Tech",
+  "ground_mounted": 1,
+  "industrial": 0,
+  "modified": "2025-02-19 17:37:06.283873",
+  "name": "Polycrystalline",
+  "panel_tech": "Polycrystalline",
+  "residential": 1,
+  "services": [
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Polycrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   }
+  ]
+ },
+ {
+  "common_building": 1,
+  "description": "Made from a single, continuous crystal structure. These panels are known for their high efficiency and performance.",
+  "docstatus": 0,
+  "doctype": "Panel Tech",
+  "ground_mounted": 1,
+  "industrial": 1,
+  "modified": "2025-02-19 17:37:18.908323",
+  "name": "Monocrystalline",
+  "panel_tech": "Monocrystalline",
+  "residential": 1,
+  "services": [
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Common Building"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Common Building"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Common Building"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Common Building"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Common Building"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Common Building"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Common Building"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Common Building"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Common Building"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Common Building"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Common Building"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Common Building"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Common Building"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Common Building"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Common Building"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Common Building"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Ground-Mounted"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Industrial"
+   },
+   {
+    "parent": "Monocrystalline",
+    "parentfield": "services",
+    "parenttype": "Panel Tech",
+    "service": "Residential"
+   }
+  ]
+ }
+]

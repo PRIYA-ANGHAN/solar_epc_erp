@@ -1,0 +1,112 @@
+[
+ {
+  "capacity_kw": 3.0,
+  "docstatus": 0,
+  "doctype": "Inverter",
+  "inverter_company": "GROWATT",
+  "modified": "2025-03-26 10:12:49.440693",
+  "name": "GROWATT-022",
+  "rate__qty": "17600",
+  "weight": null
+ },
+ {
+  "capacity_kw": 3.6,
+  "docstatus": 0,
+  "doctype": "Inverter",
+  "inverter_company": "SOLARYAAN",
+  "modified": "2025-03-26 10:14:47.641350",
+  "name": "SOLARYAAN-026",
+  "rate__qty": "15800",
+  "weight": null
+ },
+ {
+  "capacity_kw": 4.0,
+  "docstatus": 0,
+  "doctype": "Inverter",
+  "inverter_company": "SOLIS",
+  "modified": "2025-03-26 10:15:24.001638",
+  "name": "SOLIS-028",
+  "rate__qty": "30000",
+  "weight": null
+ },
+ {
+  "capacity_kw": 10.0,
+  "docstatus": 0,
+  "doctype": "Inverter",
+  "inverter_company": "SOLIS",
+  "modified": "2025-03-26 10:15:37.083336",
+  "name": "SOLIS-029",
+  "rate__qty": "63000",
+  "weight": null
+ },
+ {
+  "capacity_kw": 4.0,
+  "docstatus": 0,
+  "doctype": "Inverter",
+  "inverter_company": "SUNGROW",
+  "modified": "2025-03-26 10:15:57.389608",
+  "name": "SUNGROW-030",
+  "rate__qty": "27500",
+  "weight": null
+ },
+ {
+  "capacity_kw": 3.3,
+  "docstatus": 0,
+  "doctype": "Inverter",
+  "inverter_company": "HAVELLS",
+  "modified": "2025-03-26 10:14:10.035701",
+  "name": "HAVELLS-024",
+  "rate__qty": "19800",
+  "weight": null
+ },
+ {
+  "capacity_kw": 5.5,
+  "docstatus": 0,
+  "doctype": "Inverter",
+  "inverter_company": "HAVELLS",
+  "modified": "2025-03-26 10:14:29.156045",
+  "name": "HAVELLS-025",
+  "rate__qty": "64350",
+  "weight": null
+ },
+ {
+  "capacity_kw": 6.0,
+  "docstatus": 0,
+  "doctype": "Inverter",
+  "inverter_company": "SOLARYAAN",
+  "modified": "2025-03-26 10:15:07.312249",
+  "name": "SOLARYAAN-027",
+  "rate__qty": "28500",
+  "weight": null
+ },
+ {
+  "capacity_kw": 4.2,
+  "docstatus": 0,
+  "doctype": "Inverter",
+  "inverter_company": "EVVO",
+  "modified": "2025-03-26 10:16:21.520069",
+  "name": "EVVO-031",
+  "rate__qty": "28840",
+  "weight": null
+ },
+ {
+  "capacity_kw": 125.0,
+  "docstatus": 0,
+  "doctype": "Inverter",
+  "inverter_company": "SOFAR",
+  "modified": "2025-03-26 10:17:08.021579",
+  "name": "SOFAR-032",
+  "rate__qty": "303000",
+  "weight": null
+ },
+ {
+  "capacity_kw": 3.3,
+  "docstatus": 0,
+  "doctype": "Inverter",
+  "inverter_company": "GROWATT",
+  "modified": "2025-03-26 10:13:46.260739",
+  "name": "GROWATT-023",
+  "rate__qty": "17900",
+  "weight": null
+ }
+]
