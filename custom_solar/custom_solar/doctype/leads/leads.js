@@ -25,29 +25,25 @@ frappe.ui.form.on('Leads', {
     },
 
     refresh: function(frm) {
-        add_custom_timeline_tabs(frm); // Ensure tabs are added
+        add_custom_timeline_tabs(frm); 
 
-        // Ensure tabs are added only once
         if (!frm.custom_tabs_added) {
             add_custom_timeline_tabs(frm); 
         }
 
-        load_site_visit_data(frm); // Load correct Site Visit data for the opened lead
+        load_site_visit_data(frm); 
     
-        // Set Site Visit as the default tab when opening a new Lead
         $('#site-visit-tab').addClass('active');
         $('#activity-tab').removeClass('active');
         $('#quotation-tab').removeClass('active');
     
-        // Show Site Visit content and hide Activity content
         $('#site-visit-content').show();
         frm.timeline.timeline_items_wrapper.hide();
         frm.timeline.wrapper.find('.timeline-item').hide();
         $('#activity-content').hide();
         $('#quotation-content').hide();
 
-        // Add Save Button at the bottom if not already added
-        if (!frm.custom_save_button) {
+        if (!frm.custom_save_button) {              //save button
             let save_button = $('<button class="btn btn-primary mt-4" style="float: right;">Save</button>').click(() => frm.save());
             $(frm.fields_dict[Object.keys(frm.fields_dict).pop()].wrapper).append(save_button);
             frm.custom_save_button = true;
@@ -55,9 +51,6 @@ frappe.ui.form.on('Leads', {
     },
     
     onload: function(frm) {
-        add_custom_timeline_tabs(frm); // Ensure tabs are added
-        load_site_visit_data(frm); // Load correct Site Visit data for the opened lead
-
         if (!frm.doc.status) {
             frm.old_status = "";
         } else {
@@ -83,7 +76,6 @@ frappe.ui.form.on('Leads', {
                         frappe.model.with_doctype('Quotations', () => {
                             let doc = frappe.model.get_new_doc('Quotations');
 
-                            // Map Lead fields to Quotation fields
                             doc.lead_id = frm.doc.name || "";
                             doc.email_id = frm.doc.email_id || "";
                             doc.address = frm.doc.address || "";
@@ -93,7 +85,6 @@ frappe.ui.form.on('Leads', {
                             doc.panel_tech = frm.doc.panel_tech || "";
                             doc.watt_peak = frm.doc.watt_peakkw || "";
 
-                            // Navigate to the new Quotation form
                             frappe.set_route('Form', 'Quotations', doc.name);
                         });
                     }).css({
@@ -228,7 +219,6 @@ frappe.ui.form.on('Leads', {
             const old_status = frm.old_status;
             const new_status = frm.doc.status;
 
-             // Show message when user selects "Closed" (but still block save in Python)
             if (new_status === "Closed") {
                 frappe.msgprint({
                     title: __('Validation'),
@@ -238,7 +228,6 @@ frappe.ui.form.on('Leads', {
                 return;
             }
 
-            // Always open the prompt regardless of status change
             if (new_status !== "Quotation") {
                 frappe.prompt(
                     {
@@ -248,7 +237,6 @@ frappe.ui.form.on('Leads', {
                         reqd: 1
                     },
                     (values) => {
-                        // Log comment via Frappe
                         frappe.call({
                             method: 'frappe.desk.form.utils.add_comment',
                             args: {
@@ -269,7 +257,6 @@ frappe.ui.form.on('Leads', {
                 );
     
             } else {
-                // If status is "Quotation", log status change directly and open Quotation form
                 frappe.call({
                     method: 'frappe.desk.form.utils.add_comment',
                     args: {
@@ -283,11 +270,9 @@ frappe.ui.form.on('Leads', {
                         frm.refresh();
                         frm.old_status = new_status;
     
-                        // Open Quotation form with Lead data
                         frappe.model.with_doctype('Quotations', () => {
                             let doc = frappe.model.get_new_doc('Quotations');
     
-                            // Map Lead fields to Quotation fields
                             doc.lead_id = frm.doc.name || "";
                             doc.email_id = frm.doc.email_id || "";
                             doc.address = frm.doc.address || "";
@@ -297,7 +282,6 @@ frappe.ui.form.on('Leads', {
                             doc.panel_tech = frm.doc.panel_tech || "";
                             doc.watt_peak = frm.doc.watt_peakkw || "";
     
-                            // Navigate to the new Quotation form
                             frappe.set_route('Form', 'Quotations', doc.name);
                         });
                     }
@@ -313,10 +297,7 @@ function calculate_total_price(frm) {
     let panel_count = parseFloat(frm.doc.panel_count) || 0;
     let per_panel_price = parseFloat(frm.doc.per_panel_price) || 0;
     
-    // Calculate the total
     let total = panel_count * per_panel_price;
-    
-    // Update the total_price field
     frm.set_value('total_price', total);
 }
  
@@ -327,7 +308,6 @@ function calculate_required_kw(frm) {
  
     if (electricity_bill > 0 && unit_rate > 0 && billing_cycle) {
         let divisor = (billing_cycle === "1 Month") ? 120 : 240;
-        // let required_kw = electricity_bill / (divisor * unit_rate);
         let required_kw = electricity_bill / (divisor * unit_rate);
         frm.set_value('required__kw', required_kw.toFixed(2));
     }
@@ -352,7 +332,6 @@ function calculate_panel_count(frm) {
 
         let panel_count = Math.ceil((required_kw * 1000) / watt_peak);
 
-        // Only auto-update panel_count if it has not been manually modified
         if (!frm.doc.panel_count || frm.doc.panel_count === panel_count) {
             frm.set_value("panel_count", panel_count);
         }
@@ -417,7 +396,6 @@ function add_custom_timeline_tabs(frm) {
             $('#site-visit-tab').removeClass('active');
             $('#quotation-tab').removeClass('active');
 
-            // Hide the div with class 'timeline-items timeline-actions'
             frm.timeline.wrapper.find('.timeline-items.timeline-actions').hide(); 
             frm.timeline.wrapper.find('.d-flex.align-items-center.show-all-activity').removeClass('d-flex').hide(); 
 
@@ -451,25 +429,17 @@ function add_custom_timeline_tabs(frm) {
 }
 
 function load_site_visit_data(frm) {
-    $('#site-visit-content').html('');  // Clear previous Site Visit data
+    $('#site-visit-content').html('');  
 
     frm.timeline.timeline_items_wrapper.hide();
-    frm.timeline.wrapper.find('.timeline-item').hide(); // Hide Activity content
+    frm.timeline.wrapper.find('.timeline-item').hide(); 
     $('#quotation-content').hide();
 
     frappe.call({
         method: 'custom_solar.custom_solar.doctype.leads.leads.get_site_visit_history',
         args: { lead: frm.doc.name },
         callback: function(response) {
-            let visits = response.message; // Get response
-
-            // show msg when no site visit for lead
-            
-            // if (!Array.isArray(visits)) { 
-                // If response is NOT an array, show the "No site visit" message
-                // $('#site-visit-content').html(`<div class="alert alert-warning text-center">No Site Visit Created for this Lead.</div>`);
-                // return;
-            // }
+            let visits = response.message; 
 
             let content = '';
             visits.forEach((visit) => {
@@ -539,7 +509,7 @@ function load_site_visit_data(frm) {
                 `;
             });
 
-            $('#site-visit-content').html(content); // Display Site Visit data
+            $('#site-visit-content').html(content);
         },
         error: function(err) {
             console.error("Error fetching site visit data:", err);
@@ -549,14 +519,12 @@ function load_site_visit_data(frm) {
 }
 
 function load_quotation_data(frm) {
-    // Hide other tab contents to prevent overlap
     $('#site-visit-content, #activity-content').hide();
 
-    // Clear previous Quotation data
     $('#quotation-content').html('').hide(); // Hide initially to avoid flickering
 
     frm.timeline.timeline_items_wrapper.hide();
-    frm.timeline.wrapper.find('.timeline-item').hide(); // Hide Activity content
+    frm.timeline.wrapper.find('.timeline-item').hide(); 
 
     frappe.call({
         method: 'custom_solar.custom_solar.doctype.leads.leads.get_quotation_ids',
@@ -605,8 +573,7 @@ function load_quotation_data(frm) {
             
             $('#quotation-content').html(content).attr('style', 'opacity: 1; visibility: visible; display: block;').fadeIn(); // Ensure smooth transition
 
-            // Handle PDF Button Click
-            $('.pdf-btn').on('click', function () {
+            $('.pdf-btn').on('click', function () {             //pdf button
                 let quotation_id = $(this).data('id');
                 let base_url = window.location.origin;
                 let print_format = "Quotation";
@@ -616,8 +583,7 @@ function load_quotation_data(frm) {
                 window.open(pdf_url, '_blank');
             });
 
-            // Handle Accept & Reject Status Change
-            $('.update-status').on('click', function () {
+            $('.update-status').on('click', function () {                   //handle accept and reject status
                 let quotation_id = $(this).data('id');
                 let new_status = $(this).data('status');
                 let confirmation_message = `Are you sure you want to ${new_status.toLowerCase()} this quotation?`;
@@ -639,8 +605,7 @@ function load_quotation_data(frm) {
                                     $(`button.reject-btn[data-id="${quotation_id}"]`).hide();
                                     $(`button.accept-btn[data-id="${quotation_id}"]`).hide();
 
-                                    // Update Lead Status to Closed
-                                    frappe.call({
+                                    frappe.call({               //update lead status to closed
                                         method: 'frappe.client.set_value',
                                         args: { doctype: 'Leads', name: frm.doc.name, fieldname: 'status', value: 'Closed' },
                                         callback: function() {

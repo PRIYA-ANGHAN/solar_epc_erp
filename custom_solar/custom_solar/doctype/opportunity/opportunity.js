@@ -1,239 +1,22 @@
-
-// //  =========== =========== ============== ===================
-
-// frappe.ui.form.on('Opportunity', {
-//     refresh: function(frm) {
-//         add_custom_timeline_tabs(frm);
-
-//         if (!frm.custom_tabs_added) {
-//             add_custom_timeline_tabs(frm);
-//         }
-
-//         load_site_visit_data(frm);
-
-//         $('#site-visit-tab').addClass('active');
-//         $('#activity-tab').removeClass('active');
-//         $('#quotation-tab').removeClass('active');
-
-//         $('#site-visit-content').show();
-//         frm.timeline.timeline_items_wrapper.hide();
-//         frm.timeline.wrapper.find('.timeline-item').hide();
-//         $('#activity-content').hide();
-//         $('#quotation-content').hide();
-//     },
-
-//     onload: function(frm) {
-//         add_custom_timeline_tabs(frm);
-//         load_site_visit_data(frm);
-//     }
-// });
-
-// function add_custom_timeline_tabs(frm) {
-//     if (!frm.custom_tabs_added) {
-//         let timeline_wrapper = frm.timeline.wrapper;
- 
-//         let tab_html = `
-//         <ul class="nav nav-tabs" id="customTab" role="tablist">
-//             <li class="nav-item">
-//                 <a class="nav-link active" id="site-visit-tab" role="tab">Site Visit</a>
-//             </li>
-//             <li class="nav-item">
-//                 <a class="nav-link" id="activity-tab" role="tab">Activity</a>
-//             </li>
-//             <li class="nav-item">
-//                 <a class="nav-link" id="quotation-tab" role="tab">Quotation</a>
-//             </li>
-//         </ul>
-//         <div class="tab-content mt-3">
-//             <div class="tab-pane fade show active" id="site-visit-content" role="tabpanel"></div>
-//             <div class="tab-pane fade" id="activity-content" role="tabpanel"></div>
-//             <div class="tab-pane fade" id="quotation-content" role="tabpanel"></div>
-//         </div>`;
- 
-//         $(timeline_wrapper).prepend(tab_html);
-//         load_site_visit_data(frm);
-
-//         $('#activity-tab').on('click', function() {
-//             frm.timeline.timeline_items_wrapper.show();
-//             frm.timeline.wrapper.find('.timeline-item').show();
-//             $('#quotation-content').hide();
-//             $('#site-visit-content').hide();
-//             $('#activity-tab').addClass('active');
-//             $('#site-visit-tab').removeClass('active');
-//             $('#quotation-tab').removeClass('active');
-//             frm.timeline.wrapper.find('.timeline-items.timeline-actions').hide(); 
-//             frm.timeline.wrapper.find('.d-flex.align-items-center.show-all-activity').removeClass('d-flex').hide();
-//         });
-
-//         $('#site-visit-tab').on('click', function() {
-//             frm.timeline.timeline_items_wrapper.hide();
-//             frm.timeline.wrapper.find('.timeline-item').hide();
-//             $('#quotation-content').hide();
-//             $('#site-visit-content').show();
-//             $('#site-visit-tab').addClass('active'); 
-//             $('#activity-tab').removeClass('active');
-//             $('#quotation-tab').removeClass('active');
-//         });
-
-//         $('#quotation-tab').on('click', function() {
-//             frm.timeline.timeline_items_wrapper.hide();
-//             frm.timeline.wrapper.find('.timeline-item').hide();
-//             $('#site-visit-content').hide();
-//             $('#quotation-content').show();
-//             $('#activity-tab').removeClass('active');
-//             $('#quotation-tab').addClass('active');
-//             $('#site-visit-tab').removeClass('active');
-//             load_quotation_data(frm);
-//         });
-
-//         frm.custom_tabs_added = true;
-//     }
-// }
-// function load_site_visit_data(frm) {
-//     $('#site-visit-content').html('');
-//     frm.timeline.timeline_items_wrapper.hide();
-//     frm.timeline.wrapper.find('.timeline-item').hide();
-//     $('#quotation-content').hide();
-
-//     console.log("Fetching Site Visit data for:", frm.doc.name);
-
-//     frappe.call({
-//         method: 'custom_solar.custom_solar.doctype.leads.leads.get_site_visit_history',
-//         args: { lead: frm.doc.name },
-//         callback: function(response) {
-//             console.log("Site Visit API Response:", response);
-
-//             if (response.exc) {
-//                 console.error("Error fetching Site Visit data:", response.exc);
-//                 frappe.msgprint("Failed to fetch Site Visit data.");
-//                 return;
-//             }
-
-//             let visits = response.message || [];
-//             let content = '';
-
-//             visits.forEach((visit) => {
-//                 content += `
-//                     <div class="site-visit-details card p-4 mb-4">
-//                         <h5 class="mb-3">Site Visit</h5>
-//                         <div class="table-responsive">
-//                             <table class="table table-bordered">
-//                                 <thead class="thead-light">
-//                                     <tr>
-//                                         <th>Lead Owner</th>
-//                                         <th>Cantilever Position</th>
-//                                         <th>Shadow Object/Analysis</th>
-//                                         <th>Roof Type</th>
-//                                     </tr>
-//                                 </thead>
-//                                 <tbody>
-//                                     <tr>
-//                                         <td>${visit.lead_owner || '-'}</td>
-//                                         <td>${visit.cantilever_position || '-'}</td>
-//                                         <td>${visit.shadow_object_analysis || '-'}</td>
-//                                         <td>${visit.roof_type || '-'}</td>
-//                                     </tr>
-//                                 </tbody>
-//                             </table>
-//                         </div>
-//                     </div>`;
-//             });
-
-//             $('#site-visit-content').html(content);
-//         },
-//         error: function(error) {
-//             console.error("Site Visit API Error:", error);
-//             frappe.msgprint("Error loading Site Visit data. Please check the console for details.");
-//         }
-//     });
-// }
-
-// function load_quotation_data(frm) {
-//     $('#site-visit-content, #activity-content').hide();
-//     $('#quotation-content').html('').hide();
-
-//     console.log("Fetching Quotation data for:", frm.doc.name);
-
-//     frappe.call({
-//         method: 'custom_solar.custom_solar.doctype.leads.leads.get_quotation_ids',
-//         args: { lead_id: frm.doc.name },
-//         callback: function(response) {
-//             console.log("Quotation API Response:", response);
-
-//             if (response.exc) {
-//                 console.error("Error fetching Quotation data:", response.exc);
-//                 frappe.msgprint("Failed to fetch Quotation data.");
-//                 return;
-//             }
-
-//             let quotations = response.message || [];
-//             let content = '';
-
-//             if (quotations.length === 0) {
-//                 content = `<div class="alert alert-warning">No quotations found for this lead.</div>`;
-//             } else {
-//                 content = `
-//                     <div class="quotation-details card p-3 mb-3">
-//                         <h5 class="mb-3">Quotations</h5>
-//                         <div class="table-responsive">
-//                             <table class="table table-bordered">
-//                                 <thead class="thead-light">
-//                                     <tr>
-//                                         <th>Quotation ID</th>
-//                                         <th>Status</th>
-//                                     </tr>
-//                                 </thead>
-//                                 <tbody>`;
-
-//                 quotations.forEach((quotation) => {
-//                     let status_badge_color = quotation.status === 'Accepted' ? 'success' : 
-//                                              (quotation.status === 'Rejected' ? 'danger' :
-//                                              (quotation.status === 'Pending' ? 'warning' : 'secondary'));
-
-//                     content += `
-//                         <tr>
-//                             <td>${quotation.name || '-'}</td>
-//                             <td>
-//                                 <span class="badge bg-${status_badge_color}" id="status-${quotation.name}">
-//                                     ${quotation.status || 'Pending'}
-//                                 </span>
-//                             </td>
-//                         </tr>`;
-//                 });
-
-//                 content += `
-//                                 </tbody>
-//                             </table>
-//                         </div>
-//                     </div>`;
-//             }
-
-//             $('#quotation-content').html(content).fadeIn();
-//         },
-//         error: function(error) {
-//             console.error("Quotation API Error:", error);
-//             frappe.msgprint("Error loading Quotation data. Please check the console for details.");
-//         }
-//     });
-// }
-
-
-
-
 frappe.ui.form.on('Opportunity', {
     refresh: function(frm) {
-        add_custom_tabs(frm); // Ensure tabs are added
-        load_site_visit_data(frm); // Load Site Visit data for the opened lead
-        // load_activity_data(frm);  // Load Activity data (as part of timeline)
+        add_custom_tabs(frm); 
+        load_site_visit_data(frm); 
 
-        // Set Site Visit as the default tab when opening a new Opportunity
         $('#site-visit-tab').addClass('active');
         $('#activity-tab').removeClass('active');
+        $('#quotation-tab').removeClass('active');
     
-        // Show Site Visit content and hide Activity content initially
         $('#site-visit-content').show();
-        frm.timeline.timeline_items_wrapper.hide();  // Hide Activity by default
-        frm.timeline.wrapper.find('.timeline-item').hide(); // Hide the timeline items (Activity)
+        frm.timeline.timeline_items_wrapper.hide();  
+        frm.timeline.wrapper.find('.timeline-item').hide(); 
+        $('#quotation-content').hide();     
+
+    },
+    onload : function(frm){
+        add_custom_tabs(frm); 
+        load_site_visit_data(frm); 
+
     }
 });
 
@@ -241,7 +24,6 @@ function add_custom_tabs(frm) {
     if (!frm.custom_tabs_added) {
         let timeline_wrapper = frm.timeline.wrapper;
 
-        // Create the tab buttons and the tab content structure for Site Visit and Activity
         let tab_html = `
         <ul class="nav nav-tabs" id="customTab" role="tablist">
             <li class="nav-item">
@@ -250,7 +32,11 @@ function add_custom_tabs(frm) {
             <li class="nav-item">
                 <a class="nav-link" id="activity-tab" role="tab">Activity</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" id="quotation-tab" role="tab">Quotation</a>
+            </li>
         </ul>
+
         <div class="tab-content mt-3">
             <div class="tab-pane fade show active" id="site-visit-content" role="tabpanel">
                 <!-- Site Visit logic will go here -->
@@ -258,35 +44,53 @@ function add_custom_tabs(frm) {
             <div class="tab-pane fade" id="activity-content" role="tabpanel">
                 <!-- Activity logic will go here -->
             </div>
+            <div class="tab-pane fade" id="quotation-content" role="tabpanel">
+                <!-- quotation logic will go here -->
+            </div>
         </div>`;
 
-        // Append the custom tabs to the timeline wrapper
         $(timeline_wrapper).prepend(tab_html);
         load_site_visit_data(frm);
 
-
-        load_site_visit_data(frm);
-
-        // Bind Activity tab click event to toggle visibility of content
         $('#activity-tab').on('click', function() {
-            $('#site-visit-content').hide();  // Hide Site Visit content
-            frm.timeline.timeline_items_wrapper.show(); // Show Activity content (via Timeline items)
-            frm.timeline.wrapper.find('.timeline-item').show(); // Show the timeline items (Activity)
+            $('#site-visit-content').hide();  
+            $('#quotation-content').hide();     
+            frm.timeline.timeline_items_wrapper.show(); 
+            frm.timeline.wrapper.find('.timeline-item').show();
 
-            // Update the active class for tabs
             $('#site-visit-tab').removeClass('active');
             $('#activity-tab').addClass('active');
+            $('#quotation-tab').removeClass('active');
+
+            frm.timeline.wrapper.find('.timeline-items.timeline-actions').hide(); 
+            frm.timeline.wrapper.find('.d-flex.align-items-center.show-all-activity').removeClass('d-flex').hide(); 
+
         });
 
-        // Bind Site Visit tab click event to toggle visibility of content
         $('#site-visit-tab').on('click', function() {
-            frm.timeline.timeline_items_wrapper.hide();  // Hide Activity content
-            frm.timeline.wrapper.find('.timeline-item').hide();  // Hide the timeline items (Activity)
-            $('#site-visit-content').show(); // Show Site Visit content
+            load_site_visit_data(frm);
+            frm.timeline.timeline_items_wrapper.hide();  
+            frm.timeline.wrapper.find('.timeline-item').hide();  
+            $('#site-visit-content').show(); 
+            $('#quotation-content').hide();      
+            $('#dispatch-content').hide();     
 
-            // Update the active class for tabs
             $('#activity-tab').removeClass('active');
             $('#site-visit-tab').addClass('active');
+            $('#quotation-tab').removeClass('active');
+            $('#dispatch-tab').removeClass('active');
+        });
+        
+        $('#quotation-tab').on('click', function() {
+            load_quotation_data(frm)
+            frm.timeline.timeline_items_wrapper.hide(); 
+            frm.timeline.wrapper.find('.timeline-item').hide();  
+            $('#site-visit-content').hide(); 
+            $('#quotation-content').show();     
+
+            $('#activity-tab').removeClass('active');
+            $('#site-visit-tab').removeClass('active');
+            $('#quotation-tab').addClass('active');
         });
 
         frm.custom_tabs_added = true;  // Prevent duplicate tabs
@@ -294,13 +98,13 @@ function add_custom_tabs(frm) {
 }
 
 function load_site_visit_data(frm) {
-    $('#site-visit-content').html('');  // Clear previous Site Visit data
+    $('#site-visit-content').html('');  
 
     frm.timeline.timeline_items_wrapper.hide();
-    frm.timeline.wrapper.find('.timeline-item').hide(); // Hide Activity content
+    frm.timeline.wrapper.find('.timeline-item').hide();
+    $('#quotation-content').hide();    
+    $('#dispatch-content').hide();      
  
-    frm.timeline.timeline_items_wrapper.show(); // Ensure timeline is visible
-
     frappe.call({
         method: 'custom_solar.custom_solar.doctype.leads.leads.get_site_visit_history',
         args: { lead: frm.doc.lead_id },
@@ -379,7 +183,192 @@ function load_site_visit_data(frm) {
                `;
             });
 
-            $('#site-visit-content').html(content); // Display Site Visit data
+            $('#site-visit-content').html(content); 
+        }
+    });
+}
+
+// function load_quotation_data(frm) {
+//     $('#quotation-content').html(''); // Hide initially to avoid flickering
+
+//     $('#site-visit-content, #activity-content', '#dispatch-content').hide();
+
+//     frm.timeline.timeline_items_wrapper.hide();
+//     frm.timeline.wrapper.find('.timeline-item').hide(); 
+
+//     frappe.call({
+//         method: 'custom_solar.custom_solar.doctype.leads.leads.get_quotation_ids',
+//         args: { lead_id: frm.doc.lead_id },
+//         callback: function(response) {
+//             let quotations = response.message || [];
+            
+//             let content = '';
+
+//             if (quotations.length === 0) {
+//                 content = `<div class="alert alert-warning">No quotations found for this lead.</div>`;
+//             } else {
+//                 quotations.forEach((quotation) => {
+//                     let status_badge_color = quotation.status === 'Accepted' ? 'success' : 
+//                                              (quotation.status === 'Rejected' ? 'danger' :
+//                                              (quotation.status === 'Pending' ? 'warning' : 'secondary'));
+            
+//                     let buttons = '';
+//                     if (quotation.status !== 'Accepted' && quotation.status !== 'Rejected') {
+//                         buttons = `
+//                             <button class="btn btn-success btn-sm update-status accept-btn" data-id="${quotation.name}" data-status="Accepted">Accept</button>
+//                             <button class="btn btn-danger btn-sm update-status reject-btn" data-id="${quotation.name}" data-status="Rejected">Reject</button>
+//                         `;
+//                     }
+
+//                     // Add PDF button
+//                     buttons += `
+//                         <button class="btn btn-primary btn-sm pdf-btn" data-id="${quotation.name}">PDF</button>
+//                     `;
+            
+//                     content += `
+//                         <div class="quotation-details card p-3 mb-3" style="border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; opacity: 1;">
+//                             <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap;">
+//                                 <div class="quotation-id">
+//                                     <strong>Quotation ID:</strong> ${quotation.name || '-'}
+//                                 </div>
+//                                 <div class="status">
+//                                     <strong>Status:</strong> 
+//                                     <span class="badge bg-${status_badge_color} p-1.5" id="status-${quotation.name}">${quotation.status || 'Pending'}</span>
+//                                 </div>
+//                                 <div class="actions">${buttons}</div>
+//                             </div>
+//                         </div>`;
+//                 });
+//             }
+            
+//             $('#quotation-content').html(content).attr('style', 'opacity: 1; visibility: visible; display: block;').fadeIn(); // Ensure smooth transition
+
+//             $('.pdf-btn').on('click', function () {             //pdf button
+//                 let quotation_id = $(this).data('id');
+//                 let base_url = window.location.origin;
+//                 let print_format = "Quotation";
+
+//                 let pdf_url = `${base_url}/api/method/frappe.utils.print_format.download_pdf?doctype=Quotations&name=${quotation_id}&format=${print_format}&no_letterhead=0`;
+            
+//                 window.open(pdf_url, '_blank');
+//             });
+
+//             $('.update-status').on('click', function () {                   //handle accept and reject status
+//                 let quotation_id = $(this).data('id');
+//                 let new_status = $(this).data('status');
+//                 let confirmation_message = `Are you sure you want to ${new_status.toLowerCase()} this quotation?`;
+
+//                 frappe.confirm(confirmation_message, function () {
+//                     if (new_status === 'Accepted') {
+//                         frappe.call({
+//                             method: 'frappe.client.set_value',
+//                             args: {
+//                                 doctype: 'Quotations',
+//                                 name: quotation_id,
+//                                 fieldname: 'status',
+//                                 value: 'Accepted'
+//                             },
+//                             callback: function (response) {
+//                                 if (!response.exc) {
+//                                     $(`#status-${quotation_id}`).text('Accepted').removeClass('bg-secondary bg-danger bg-warning').addClass('bg-success');
+//                                     frappe.msgprint(`Quotation ${quotation_id} has been accepted.`);
+//                                     $(`button.reject-btn[data-id="${quotation_id}"]`).hide();
+//                                     $(`button.accept-btn[data-id="${quotation_id}"]`).hide();
+
+//                                     frappe.call({               //update lead status to closed
+//                                         method: 'frappe.client.set_value',
+//                                         args: { doctype: 'Leads', name: frm.doc.name, fieldname: 'status', value: 'Closed' },
+//                                         callback: function() {
+//                                             frappe.msgprint(`Lead status updated to Closed`);
+//                                             frm.reload_doc();
+//                                         }
+//                                     });
+//                                 }
+//                             }
+//                         });
+//                     } else if (new_status === 'Rejected') {
+//                         frappe.prompt([{ label: 'Rejection Reason', fieldname: 'rejection_reason', fieldtype: 'Small Text', reqd: 1 }], function (values) {
+//                             frappe.call({
+//                                 method: 'frappe.client.set_value',
+//                                 args: {
+//                                     doctype: 'Quotations',
+//                                     name: quotation_id,
+//                                     fieldname: { 'status': 'Rejected', 'rejection_reason': values.rejection_reason }
+//                                 },
+//                                 callback: function (response) {
+//                                     if (!response.exc) {
+//                                         $(`#status-${quotation_id}`).text('Rejected').removeClass('bg-secondary bg-success bg-warning').addClass('bg-danger');
+//                                         frappe.msgprint(`Quotation ${quotation_id} has been rejected. Reason: ${values.rejection_reason}`);
+//                                         $(`button.reject-btn[data-id="${quotation_id}"]`).hide();
+//                                         $(`button.accept-btn[data-id="${quotation_id}"]`).hide();
+//                                         frm.reload_doc();
+//                                     }
+//                                 }
+//                             });
+//                         }, 'Rejection Reason', 'Submit');
+//                     }
+//                 });
+//             });
+//         }
+//     });
+// }
+
+function load_quotation_data(frm) {
+    $('#quotation-content').html(''); // Hide initially to avoid flickering
+
+    $('#site-visit-content, #activity-content, #dispatch-content').hide();
+
+    frm.timeline.timeline_items_wrapper.hide();
+    frm.timeline.wrapper.find('.timeline-item').hide(); 
+
+    frappe.call({
+        method: 'custom_solar.custom_solar.doctype.leads.leads.get_quotation_ids',
+        args: { lead_id: frm.doc.lead_id },
+        callback: function(response) {
+            let quotations = response.message || [];
+            let content = '';
+
+            if (quotations.length === 0) {
+                content = `<div class="alert alert-warning">No quotations found for this lead.</div>`;
+            } else {
+                quotations.forEach((quotation) => {
+                    let status_badge_color = quotation.status === 'Accepted' ? 'success' : 
+                                             (quotation.status === 'Rejected' ? 'danger' :
+                                             (quotation.status === 'Pending' ? 'warning' : 'secondary'));
+
+                    // PDF button
+                    let buttons = `
+                        <button class="btn btn-primary btn-sm pdf-btn" data-id="${quotation.name}">PDF</button>
+                    `;
+
+                    content += `
+                        <div class="quotation-details card p-3 mb-3" style="border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; opacity: 1;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap;">
+                                <div class="quotation-id">
+                                    <strong>Quotation ID:</strong> ${quotation.name || '-'}
+                                </div>
+                                <div class="status">
+                                    <strong>Status:</strong> 
+                                    <span class="badge bg-${status_badge_color} p-1.5">${quotation.status || 'Pending'}</span>
+                                </div>
+                                <div class="actions">${buttons}</div>
+                            </div>
+                        </div>`;
+                });
+            }
+            
+            $('#quotation-content').html(content).attr('style', 'opacity: 1; visibility: visible; display: block;').fadeIn(); // Ensure smooth transition
+
+            // PDF button logic
+            $('.pdf-btn').on('click', function () {             
+                let quotation_id = $(this).data('id');
+                let base_url = window.location.origin;
+                let print_format = "Quotation";
+
+                let pdf_url = `${base_url}/api/method/frappe.utils.print_format.download_pdf?doctype=Quotations&name=${quotation_id}&format=${print_format}&no_letterhead=0`;
+            
+                window.open(pdf_url, '_blank');
+            });
         }
     });
 }

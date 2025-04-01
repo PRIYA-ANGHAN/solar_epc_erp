@@ -8,8 +8,8 @@
  "field_order": [
   "site_survey_section",
   "lead_owner",
-  "cantilever_position",
   "lead_id",
+  "cantilever_position",
   "column_break_wknm",
   "shadow_object_analysis",
   "roof_type",
@@ -118,14 +118,12 @@
   {
    "fieldname": "2d_diagram_of_site",
    "fieldtype": "Attach",
-   "label": "2D diagram of Site",
-   "reqd": 1
+   "label": "2D diagram of Site"
   },
   {
    "fieldname": "site_image",
    "fieldtype": "Attach Image",
-   "label": "SIte Image",
-   "reqd": 1
+   "label": "SIte Image"
   },
   {
    "fieldname": "column_break_cbnz",
@@ -134,8 +132,7 @@
   {
    "fieldname": "site_video",
    "fieldtype": "Attach",
-   "label": "Site Video",
-   "reqd": 1
+   "label": "Site Video"
   },
   {
    "fieldname": "lead_id",
@@ -146,7 +143,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-28 15:32:41.028083",
+ "modified": "2025-04-01 16:00:08.917474",
  "modified_by": "Administrator",
  "module": "Custom Solar",
  "name": "Site_Visit",

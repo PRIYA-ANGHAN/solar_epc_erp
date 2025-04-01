@@ -1,0 +1,220 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "DI.####",
+ "creation": "2025-04-01 11:45:43.384922",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_rhzb",
+  "opportunity",
+  "structure_dispatch",
+  "structure_dispatch_comment",
+  "structure_dispatch_date",
+  "panel_dispatch",
+  "panel_dispatch_comment",
+  "panel_dispatch_date",
+  "inverter_dispatch",
+  "inverter_dispatch_comment",
+  "inverter_dispatch_date",
+  "meter_dispatch",
+  "meter_dispatch_comment",
+  "meter_dispatch_date",
+  "structure_installation",
+  "structure_installation_comment",
+  "structure_installation_date",
+  "panel_installation",
+  "panel_installation_comment",
+  "panel_installation_date",
+  "inverter_installation",
+  "inverter_installation_comment",
+  "inverter_installation_date",
+  "meter_installation",
+  "meter_installation_comment",
+  "meter_installation_date",
+  "project_pending",
+  "project_comment",
+  "project_pending_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_rhzb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "opportunity",
+   "fieldtype": "Link",
+   "label": "Opportunity",
+   "options": "Opportunity"
+  },
+  {
+   "fieldname": "structure_dispatch",
+   "fieldtype": "Select",
+   "label": "Structure Dispatch",
+   "options": "Structure Dispatch is Pending\nStructure Dispatch is Completed"
+  },
+  {
+   "fieldname": "panel_dispatch",
+   "fieldtype": "Select",
+   "label": "Panel Dispatch",
+   "options": "Panel Dispatch is Pending\nPanel Dispatch is Completed"
+  },
+  {
+   "fieldname": "inverter_dispatch",
+   "fieldtype": "Select",
+   "label": "Inverter Dispatch",
+   "options": "Inverter Dispatch is Pending\nInverter Dispatch is Completed"
+  },
+  {
+   "fieldname": "meter_dispatch",
+   "fieldtype": "Select",
+   "label": "Meter Dispatch",
+   "options": "Meter Dispatch is Pending\nMeter Dispatch is Completed"
+  },
+  {
+   "fieldname": "structure_installation",
+   "fieldtype": "Select",
+   "label": "Structure Installation",
+   "options": "Meter Installation is Pending\nMeter Installation is Completed"
+  },
+  {
+   "fieldname": "panel_installation",
+   "fieldtype": "Select",
+   "label": "Panel Installation",
+   "options": "PanelInstallation is Pending\nPanel Installation is Completed"
+  },
+  {
+   "fieldname": "inverter_installation",
+   "fieldtype": "Select",
+   "label": "Inverter Installation",
+   "options": "Inverter Installation is Pending\nInverter Installation is Completed"
+  },
+  {
+   "fieldname": "meter_installation",
+   "fieldtype": "Select",
+   "label": "Meter Installation",
+   "options": "Meter Installation is Pending\nMeter Installation is Completed"
+  },
+  {
+   "fieldname": "structure_dispatch_comment",
+   "fieldtype": "Small Text",
+   "label": "Structure Dispatch Comment"
+  },
+  {
+   "fieldname": "panel_dispatch_comment",
+   "fieldtype": "Small Text",
+   "label": "Panel Dispatch Comment"
+  },
+  {
+   "fieldname": "inverter_dispatch_comment",
+   "fieldtype": "Small Text",
+   "label": "Inverter Dispatch Comment"
+  },
+  {
+   "fieldname": "meter_dispatch_comment",
+   "fieldtype": "Small Text",
+   "label": "Meter Dispatch Comment"
+  },
+  {
+   "fieldname": "structure_installation_comment",
+   "fieldtype": "Small Text",
+   "label": "Structure Installation Comment"
+  },
+  {
+   "fieldname": "panel_installation_comment",
+   "fieldtype": "Small Text",
+   "label": "Panel Installation Comment"
+  },
+  {
+   "fieldname": "inverter_installation_comment",
+   "fieldtype": "Small Text",
+   "label": "Inverter Installation Comment"
+  },
+  {
+   "fieldname": "meter_installation_comment",
+   "fieldtype": "Small Text",
+   "label": "Meter Installation Comment"
+  },
+  {
+   "fieldname": "project_pending",
+   "fieldtype": "Select",
+   "label": "Project Pending ",
+   "options": "Project Ongoing\nProject Completed"
+  },
+  {
+   "fieldname": "project_comment",
+   "fieldtype": "Small Text",
+   "label": "Project Comment"
+  },
+  {
+   "fieldname": "structure_dispatch_date",
+   "fieldtype": "Date",
+   "label": "Structure Dispatch Date"
+  },
+  {
+   "fieldname": "panel_dispatch_date",
+   "fieldtype": "Date",
+   "label": "Panel Dispatch Date"
+  },
+  {
+   "fieldname": "inverter_dispatch_date",
+   "fieldtype": "Date",
+   "label": "Inverter Dispatch Date"
+  },
+  {
+   "fieldname": "meter_dispatch_date",
+   "fieldtype": "Date",
+   "label": "Meter Dispatch Date"
+  },
+  {
+   "fieldname": "structure_installation_date",
+   "fieldtype": "Date",
+   "label": "Structure Installation Date"
+  },
+  {
+   "fieldname": "panel_installation_date",
+   "fieldtype": "Date",
+   "label": "Panel Installation date"
+  },
+  {
+   "fieldname": "inverter_installation_date",
+   "fieldtype": "Date",
+   "label": "Inverter Installation Date"
+  },
+  {
+   "fieldname": "meter_installation_date",
+   "fieldtype": "Date",
+   "label": "Meter Installation Date"
+  },
+  {
+   "fieldname": "project_pending_date",
+   "fieldtype": "Date",
+   "label": "Project Pending Date"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-04-01 12:23:01.887938",
+ "modified_by": "Administrator",
+ "module": "Custom Solar",
+ "name": "Dispatch",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
