@@ -25,7 +25,7 @@ frappe.ui.form.on('Leads', {
     },
 
     refresh: function(frm) {
-        add_custom_timeline_tabs(frm); 
+        // add_custom_timeline_tabs(frm); 
 
         if (!frm.custom_tabs_added) {
             add_custom_timeline_tabs(frm); 
@@ -51,6 +51,10 @@ frappe.ui.form.on('Leads', {
     },
     
     onload: function(frm) {
+        add_custom_timeline_tabs(frm); 
+
+        load_site_visit_data(frm); 
+
         if (!frm.doc.status) {
             frm.old_status = "";
         } else {
@@ -71,7 +75,6 @@ frappe.ui.form.on('Leads', {
                 let hasAcceptedQuotation = quotations.some(q => q.status === 'Accepted');
 
                 if (hasRejectedQuotation && !hasAcceptedQuotation) {
-                    // Show the "Add New Quotation" button in the Lead list view
                     frm.add_custom_button(__('Add New Quotation'), function() {
                         frappe.model.with_doctype('Quotations', () => {
                             let doc = frappe.model.get_new_doc('Quotations');
@@ -402,6 +405,7 @@ function add_custom_timeline_tabs(frm) {
         });
  
         $('#site-visit-tab').on('click', function() {
+            load_site_visit_data(frm); 
             frm.timeline.timeline_items_wrapper.hide();
             frm.timeline.wrapper.find('.timeline-item').hide();
             $('#quotation-content').hide();
@@ -563,7 +567,7 @@ function load_quotation_data(frm) {
                                 </div>
                                 <div class="status">
                                     <strong>Status:</strong> 
-                                    <span class="badge bg-${status_badge_color} p-1.5" id="status-${quotation.name}">${quotation.status || 'Pending'}</span>
+                                    <span class="badge bg-${status_badge_color} text-white p-1.5" id="status-${quotation.name}">${quotation.status || 'Pending'}</span>
                                 </div>
                                 <div class="actions">${buttons}</div>
                             </div>

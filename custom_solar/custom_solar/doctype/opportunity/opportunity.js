@@ -13,11 +13,11 @@ frappe.ui.form.on('Opportunity', {
         $('#quotation-content').hide();     
 
     },
-    onload : function(frm){
-        add_custom_tabs(frm); 
-        load_site_visit_data(frm); 
+    // onload : function(frm){
+    //     add_custom_tabs(frm); 
+    //     load_site_visit_data(frm); 
 
-    }
+    // }
 });
 
 function add_custom_tabs(frm) {
@@ -224,7 +224,7 @@ function load_quotation_data(frm) {
                                 </div>
                                 <div class="status">
                                     <strong>Status:</strong> 
-                                    <span class="badge bg-${status_badge_color} p-1.5">${quotation.status || 'Pending'}</span>
+                                    <span class="badge bg-${status_badge_color} text-white p-1.5">${quotation.status || 'Pending'}</span>
                                 </div>
                                 <div class="actions">${buttons}</div>
                             </div>
