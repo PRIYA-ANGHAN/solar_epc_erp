@@ -13,12 +13,10 @@ frappe.ui.form.on('Leads', {
     },
     panel_count: function(frm) {
         calculate_total_price(frm);
+        calculate_system_size(frm);
     },
     per_panel_price: function(frm) {
         calculate_total_price(frm);
-    },
-    panel_count: function(frm) {
-        calculate_system_size(frm);
     },
     watt_peakkw: function(frm) {
         calculate_system_size(frm);
@@ -51,10 +49,6 @@ frappe.ui.form.on('Leads', {
     },
     
     onload: function(frm) {
-        add_custom_timeline_tabs(frm); 
-
-        load_site_visit_data(frm); 
-
         if (!frm.doc.status) {
             frm.old_status = "";
         } else {
@@ -523,10 +517,9 @@ function load_site_visit_data(frm) {
 }
 
 function load_quotation_data(frm) {
-    $('#site-visit-content, #activity-content').hide();
-
     $('#quotation-content').html('').hide(); // Hide initially to avoid flickering
 
+    $('#site-visit-content, #activity-content').hide();
     frm.timeline.timeline_items_wrapper.hide();
     frm.timeline.wrapper.find('.timeline-item').hide(); 
 

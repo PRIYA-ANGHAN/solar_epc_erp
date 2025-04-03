@@ -11,13 +11,7 @@ frappe.ui.form.on('Opportunity', {
         frm.timeline.timeline_items_wrapper.hide();  
         frm.timeline.wrapper.find('.timeline-item').hide(); 
         $('#quotation-content').hide();     
-
     },
-    // onload : function(frm){
-    //     add_custom_tabs(frm); 
-    //     load_site_visit_data(frm); 
-
-    // }
 });
 
 function add_custom_tabs(frm) {
@@ -73,12 +67,10 @@ function add_custom_tabs(frm) {
             frm.timeline.wrapper.find('.timeline-item').hide();  
             $('#site-visit-content').show(); 
             $('#quotation-content').hide();      
-            $('#dispatch-content').hide();     
 
             $('#activity-tab').removeClass('active');
             $('#site-visit-tab').addClass('active');
             $('#quotation-tab').removeClass('active');
-            $('#dispatch-tab').removeClass('active');
         });
         
         $('#quotation-tab').on('click', function() {
@@ -103,7 +95,6 @@ function load_site_visit_data(frm) {
     frm.timeline.timeline_items_wrapper.hide();
     frm.timeline.wrapper.find('.timeline-item').hide();
     $('#quotation-content').hide();    
-    $('#dispatch-content').hide();      
  
     frappe.call({
         method: 'custom_solar.custom_solar.doctype.leads.leads.get_site_visit_history',
@@ -191,8 +182,7 @@ function load_site_visit_data(frm) {
 function load_quotation_data(frm) {
     $('#quotation-content').html(''); // Hide initially to avoid flickering
 
-    $('#site-visit-content, #activity-content, #dispatch-content').hide();
-
+    $('#site-visit-content, #activity-content').hide();
     frm.timeline.timeline_items_wrapper.hide();
     frm.timeline.wrapper.find('.timeline-item').hide(); 
 
