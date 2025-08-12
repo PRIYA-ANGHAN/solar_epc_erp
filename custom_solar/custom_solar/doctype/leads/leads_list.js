@@ -108,7 +108,7 @@ function create_site_visit_for_lead(doc) {
     });
     frappe.set_route('Form', 'Site_Visit', 'new');
 }
-
+z
 
 
 

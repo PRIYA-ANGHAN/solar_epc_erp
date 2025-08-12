@@ -1,4 +1,3 @@
-
 frappe.ui.form.on('Opportunity', {
     refresh: function(frm) {
         add_custom_tabs(frm); // Ensure tabs are added
@@ -103,21 +102,18 @@ function load_site_visit_data(frm) {
                                 <div>${visit.cantilever_position || '-'}</div>
                             </div>
                             <div class="col-md-3">
-                                <div><strong>Lead:</strong></div>
-                                <div>${visit.lead || '-'}</div>
-                            </div>
-                            <div class="col-md-3">
                                 <div><strong>Shadow Object/Analysis:</strong></div>
                                 <div>${visit.shadow_object_analysis || '-'}</div>
                             </div>
-                        </div>
-
-                        <!-- Row with another 4 values -->
-                        <div class="row mb-3">
                             <div class="col-md-3">
                                 <div><strong>Roof Type:</strong></div>
                                 <div>${visit.roof_type || '-'}</div>
                             </div>
+
+                        </div>
+
+                        <!-- Row with another 4 values -->
+                        <div class="row mb-3">
                             <div class="col-md-3">
                                 <div><strong>Structure Type:</strong></div>
                                 <div>${visit.structure_type || '-'}</div>
@@ -127,20 +123,8 @@ function load_site_visit_data(frm) {
                                 <div>${visit.sanction_load || '-'}</div>
                             </div>
                             <div class="col-md-3">
-                                <div><strong>Is Same Name:</strong></div>
-                                <div>${visit.is_same_name || '-'}</div>
-                            </div>
-                        </div>
-
-                        <!-- Row with No. of Floors and others -->
-                        <div class="row mb-3">
-                            <div class="col-md-3">
                                 <div><strong>No. of Floors:</strong></div>
                                 <div>${visit.no_of_floor || '-'}</div>
-                            </div>
-                            <div class="col-md-3">
-                                <div><strong>Final Note:</strong></div>
-                                <div>${visit.final_note || '-'}</div>
                             </div>
                             <div class="col-md-3">
                                 <div><strong>Remarks:</strong></div>

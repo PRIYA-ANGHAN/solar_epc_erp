@@ -6,9 +6,6 @@ app_email = "neha.sarvadhi@gmail.com"
 app_license = "mit"
 app_logo_url = "/assets/custom_solar/image/navi-solar.jpg"
 
-# Apps
-# ------------------
-
 
 website_context = {
     "favicon": "/assets/custom_solar/image/navi-solar.jpg",
